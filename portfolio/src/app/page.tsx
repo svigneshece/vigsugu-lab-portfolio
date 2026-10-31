@@ -45,9 +45,9 @@ export default function Page() {
         <Skills />
         <EngineeringToolkit />
         <Projects />
+        <Experience />
         <Certifications />
         <Research />
-        <Experience />
         <Services />
         <Contact />
       </main>

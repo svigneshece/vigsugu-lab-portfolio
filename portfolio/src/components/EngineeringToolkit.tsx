@@ -70,22 +70,25 @@ export function EngineeringToolkit() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
-          {/* Real Photo Column */}
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#B6E778]/30 bg-[#101310] shadow-lg lg:col-span-7">
-            <Image
-              src="/projects/epaper-display-esp32.jpg"
-              alt="Vignesh Sugunathan bringing up ESP32 with 1.54 inch e-paper SPI display running paper_screen.ino in Arduino IDE"
-              fill
-              className="object-cover transition-transform duration-500 hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 58vw"
-              priority
-            />
-            {/* Overlay Chip Tag */}
-            <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-lg border border-[#B6E778]/40 bg-[#101310]/90 px-3 py-1.5 backdrop-blur-md">
-              <span className="size-2 rounded-full bg-[#B6E778]" />
-              <span className="font-mono text-[11px] font-bold text-[#F1F4EF]">
+          {/* Real Photo Column - 100% Clean & Unobstructed */}
+          <div className="space-y-2 lg:col-span-7">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#B6E778]/30 bg-[#101310] shadow-lg">
+              <Image
+                src="/projects/epaper-display-esp32.jpg"
+                alt="Vignesh Sugunathan bringing up ESP32 with 1.54 inch e-paper SPI display running paper_screen.ino in Arduino IDE"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                priority
+              />
+            </div>
+            {/* Clean bottom caption bar outside image */}
+            <div className="flex flex-wrap items-center justify-between gap-2 px-1 font-mono text-[11px] text-[#9EAA9A]">
+              <span className="inline-flex items-center gap-1.5 text-[#B6E778] font-semibold">
+                <span className="size-1.5 rounded-full bg-[#B6E778]" />
                 DOIT ESP32 DEVKIT V1 · Arduino IDE 2.3.10
               </span>
+              <span>1.54&quot; 200×200 E-Paper SPI Bring-Up</span>
             </div>
           </div>
 

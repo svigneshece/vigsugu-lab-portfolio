@@ -31,6 +31,7 @@ export async function GET() {
       status: "Database active and connected",
       databaseType: "VIGSUGU LAB Local JSON Store + Cloud Ready",
       totalMessages: messages.length,
+      messages: Array.isArray(messages) ? messages : [],
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
@@ -84,6 +85,33 @@ export async function POST(req: Request) {
 
     records.unshift(newRecord);
     fs.writeFileSync(DB_FILE, JSON.stringify(records, null, 2), "utf-8");
+
+    // Optional Instant Forwarders (Free Telegram / Discord alerts on mobile)
+    const tgToken = process.env.TELEGRAM_BOT_TOKEN;
+    const tgChatId = process.env.TELEGRAM_CHAT_ID;
+    if (tgToken && tgChatId) {
+      try {
+        const text = `🔔 *New VIGSUGU LAB Dispatch*\n\n👤 *From:* ${name}\n📧 *Email:* ${email}\n📝 *Subject:* ${newRecord.subject}\n\n💬 *Message:*\n${message}`;
+        fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: tgChatId, text, parse_mode: "Markdown" }),
+        }).catch(() => {});
+      } catch {}
+    }
+
+    const discordWebhook = process.env.DISCORD_WEBHOOK_URL;
+    if (discordWebhook) {
+      try {
+        fetch(discordWebhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            content: `⚡ **New Portfolio Dispatch from ${name}** (${email})\n**Subject:** ${newRecord.subject}\n>>> ${message}`,
+          }),
+        }).catch(() => {});
+      } catch {}
+    }
 
     return NextResponse.json(
       {

@@ -16,7 +16,7 @@ export function Certifications() {
       title="Certifications & Recognition"
       description="Professional technical credentials, national engineering competition awards, and academic milestones mapped across my journey."
     >
-      {/* Train Track Visual Header */}
+      {/* Credential Visual Header */}
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-[#B6E778]/15 pb-4">
         <div className="flex items-center gap-3">
           <div className="flex size-10 items-center justify-center rounded-lg border border-[#B6E778]/30 bg-[#1B211D] text-[#B6E778]">
@@ -25,21 +25,20 @@ export function Certifications() {
           <div>
             <div className="flex items-center gap-2">
               <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#B6E778]">
-                RAILWAY MILESTONE TRACK
+                PROFESSIONAL CREDENTIALS
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#B6E778]/30 bg-[#B6E778]/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-[#B6E778]">
-                <span className="size-1.5 animate-pulse rounded-full bg-[#B6E778]" />
-                TRACK CLEAR · 5 STATIONS
+              <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 font-mono text-[10px] text-emerald-400">
+                5 VERIFIED MILESTONES
               </span>
             </div>
             <p className="text-xs text-[#9EAA9A]">
-              Click any station along the line to inspect certified competencies and issuing bodies.
+              National engineering recognition, certified technical competencies, and peer-reviewed research.
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2 font-mono text-xs text-[#9EAA9A]">
-          <span className="text-[#B6E778] font-bold">TERMINUS:</span> LTTS TECHGIUM® ➔ VIT/SSN IEEE
+          <span className="text-[#B6E778] font-bold">RECOGNITION:</span> LTTS TECHGIUM® · NPTEL · IIT Madras · Infosys · VIT/SSN
         </div>
       </div>
 
@@ -193,10 +192,10 @@ export function Certifications() {
                     <span className="font-semibold text-[#B6E778]">{current.id.toUpperCase()}</span>
                   </div>
                   <div className="flex items-center justify-between text-[#889B8C]">
-                    <span>SIGNAL:</span>
+                    <span>CREDENTIAL:</span>
                     <span className="inline-flex items-center gap-1 font-semibold text-emerald-400">
                       <span className="size-2 rounded-full bg-emerald-400" />
-                      TRACK CLEAR
+                      VERIFIED &amp; ACTIVE
                     </span>
                   </div>
                 </div>

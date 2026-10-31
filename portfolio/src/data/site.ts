@@ -30,9 +30,9 @@ export const navLinks = [
   { id: "skills", label: "Skills" },
   { id: "toolkit", label: "Toolkit" },
   { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
   { id: "certifications", label: "Certifications" },
   { id: "research", label: "Research" },
-  { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -341,13 +341,13 @@ export const certifications: Certification[] = [
 export const hardwareBenchTools = [
   {
     id: "soldering-rework",
-    title: "Precision Soldering & Hot Air Rework Station",
-    category: "Prototyping & SMD Assembly",
-    spec: "350°C PID Temperature Controlled · ESD-Safe Grounded Bench",
+    title: "Electronics Soldering & Hardware Assembly Bench",
+    category: "Circuit Assembly & Prototyping",
+    spec: "Precision Temperature-Controlled Soldering Station · 350°C",
     image: "/tools/soldering-station.svg",
-    badges: ["0.2mm Micro-Jumpering", "QFN/SOIC Rework", "ESD-Safe", "Sn63/Pb37 Reflow"],
+    badges: ["Through-Hole Soldering", "Header Pin Assembly", "Sensor Wire Harnesses", "Breadboard & Perfboard"],
     description:
-      "High-precision thermal station used for manual SMD assembly, 0603/0805 passives, QFN chip rework, fine enameled wire bodge jumpers, and PCB pad reconstruction.",
+      "Temperature-controlled soldering station used for assembling PCB pin headers, sensor module wiring, wire tinning, perfboard prototyping, and building solid hardware connections for embedded prototypes.",
   },
   {
     id: "pcb-schematic",

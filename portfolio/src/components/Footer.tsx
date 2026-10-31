@@ -35,6 +35,13 @@ export function Footer() {
           </a>
 
           <a
+            href="/inbox"
+            className="text-[#9EAA9A] hover:text-[#B6E778] transition-colors"
+          >
+            Dispatch Inbox
+          </a>
+
+          <a
             href="#home"
             className="inline-flex items-center gap-1.5 text-[#F1F4EF] hover:text-[#B6E778] transition-colors"
           >
