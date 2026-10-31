@@ -1,0 +1,7 @@
+node_modules
+portfolio/node_modules
+portfolio/.next
+portfolio/out
+portfolio/*.tsbuildinfo
+portfolio/next-env.d.ts
+.env*.local

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "msg_1793462242919_1ca2v",
+    "name": "Vignesh S",
+    "email": "svigneshsugu24@gmail.com",
+    "subject": "Full-Time Engineering Hiring",
+    "message": "hai test",
+    "createdAt": "2026-10-31T15:57:22.919Z"
+  },
+  {
+    "id": "msg_1793460186177_7u9ei",
+    "name": "Vignesh S",
+    "email": "svigneshsugu24@gmail.com",
+    "subject": "Embedded Firmware Development",
+    "message": "Hai",
+    "createdAt": "2026-10-31T15:23:06.177Z"
+  },
+  {
+    "id": "test_1",
+    "name": "Dr. John Doe",
+    "email": "john@example.com",
+    "subject": "Embedded Firmware Role",
+    "message": "Hello Vignesh, we loved your STM32 and LoRa projects!",
+    "createdAt": "2026-10-31T15:02:13.580Z"
+  }
+]

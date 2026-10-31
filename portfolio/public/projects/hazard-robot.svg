@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="robotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a0e" />
+      <stop offset="50%" stop-color="#0d131f" />
+      <stop offset="100%" stop-color="#05070a" />
+    </linearGradient>
+    <radialGradient id="radarSweep" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#ffffff" fill-opacity="0.06" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#robotGrad)" />
+  <rect width="800" height="450" fill="url(#dotGrid)" />
+
+  <!-- Top Tech Bar -->
+  <rect x="30" y="24" width="740" height="38" rx="6" fill="#0c1424" stroke="#1f2d42" stroke-width="1" />
+  <circle cx="52" cy="43" r="4" fill="#10b981" />
+  <text x="68" y="47" fill="#94a3b8" font-family="monospace" font-size="11" letter-spacing="1.5">AUTONOMOUS HAZARD DETECTION BOT · ESP32 + ARDUINO</text>
+  <rect x="615" y="32" width="140" height="22" rx="4" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-opacity="0.5" stroke-width="1" />
+  <text x="625" y="47" fill="#fbbf24" font-family="monospace" font-size="10" font-weight="bold">★ SRM RUNNER-UP 2025</text>
+
+  <!-- Left Column: Ultrasonic Radar Scanner -->
+  <g transform="translate(45, 80)">
+    <rect width="210" height="280" rx="10" fill="#0c121d" stroke="#1e293b" stroke-width="1.2" />
+    <text x="16" y="26" fill="#10b981" font-family="monospace" font-size="11" font-weight="bold">ULTRASONIC RADAR SWEEP</text>
+    
+    <!-- Concentric radar circles -->
+    <circle cx="105" cy="140" r="85" fill="none" stroke="#1e3a35" stroke-width="1" stroke-dasharray="3,3" />
+    <circle cx="105" cy="140" r="60" fill="none" stroke="#1e3a35" stroke-width="1" />
+    <circle cx="105" cy="140" r="35" fill="none" stroke="#1e3a35" stroke-width="1" />
+    <circle cx="105" cy="140" r="8" fill="#10b981" fill-opacity="0.3" stroke="#10b981" stroke-width="1.5" />
+
+    <!-- Crosshair -->
+    <line x1="20" y1="140" x2="190" y2="140" stroke="#1e3a35" stroke-width="1" />
+    <line x1="105" y1="55" x2="105" y2="225" stroke="#1e3a35" stroke-width="1" />
+
+    <!-- Sweep Beam Sector -->
+    <path d="M 105 140 L 165 80 A 85 85 0 0 1 190 140 Z" fill="url(#radarSweep)" />
+    <line x1="105" y1="140" x2="165" y2="80" stroke="#10b981" stroke-width="1.5" />
+
+    <!-- Obstacle Blip -->
+    <circle cx="145" cy="100" r="4.5" fill="#ef4444" />
+    <circle cx="145" cy="100" r="9" fill="none" stroke="#ef4444" stroke-opacity="0.5" stroke-width="1" />
+    <text x="156" y="104" fill="#fca5a5" font-family="monospace" font-size="9">TARGET 48cm</text>
+
+    <!-- Radar Info -->
+    <rect x="15" y="235" width="180" height="32" rx="4" fill="#081018" />
+    <text x="24" y="255" fill="#94a3b8" font-family="monospace" font-size="10">OBSTACLE CLEAR: <tspan fill="#ef4444">WARNING</tspan></text>
+  </g>
+
+  <!-- Center Column: Robotics Dual-MCU Architecture -->
+  <g transform="translate(280, 80)">
+    <rect width="250" height="280" rx="10" fill="#0c121d" stroke="#1e293b" stroke-width="1.2" />
+    <text x="16" y="26" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="bold">DUAL-CONTROLLER CORES</text>
+
+    <!-- Master MCU Box -->
+    <rect x="20" y="44" width="210" height="90" rx="6" fill="#0f192b" stroke="#38bdf8" stroke-width="1.2" />
+    <text x="32" y="68" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="bold">ESP32 MASTER CORE</text>
+    <text x="32" y="86" fill="#e2e8f0" font-family="monospace" font-size="10">Telemetry · Wi-Fi · Blynk IoT</text>
+    <text x="32" y="104" fill="#94a3b8" font-family="monospace" font-size="9">Dual-Core 240MHz · RTOS Tasks</text>
+    <text x="32" y="120" fill="#34d399" font-family="monospace" font-size="9">Remote Link: CONNECTED</text>
+
+    <!-- Bus Link between MCUs -->
+    <line x1="125" y1="134" x2="125" y2="164" stroke="#00f0ff" stroke-width="2" stroke-dasharray="3,3" />
+    <rect x="90" y="142" width="70" height="16" rx="3" fill="#050a12" stroke="#00f0ff" stroke-width="0.8" />
+    <text x="96" y="154" fill="#00f0ff" font-family="monospace" font-size="9">UART / I2C</text>
+
+    <!-- Slave MCU Box -->
+    <rect x="20" y="164" width="210" height="96" rx="6" fill="#0f192b" stroke="#6366f1" stroke-width="1.2" />
+    <text x="32" y="188" fill="#818cf8" font-family="monospace" font-size="11" font-weight="bold">ARDUINO UNO SLAVE</text>
+    <text x="32" y="206" fill="#e2e8f0" font-family="monospace" font-size="10">PWM Motor Driver (L298N)</text>
+    <text x="32" y="224" fill="#94a3b8" font-family="monospace" font-size="9">Differential Drive Kinematics</text>
+    <text x="32" y="242" fill="#38bdf8" font-family="monospace" font-size="9">IR Sensor Array + Buzzer</text>
+  </g>
+
+  <!-- Right Column: Environmental Hazard Gas & Temp Sensors -->
+  <g transform="translate(555, 80)">
+    <rect width="200" height="280" rx="10" fill="#0c121d" stroke="#1e293b" stroke-width="1.2" />
+    <text x="16" y="26" fill="#f59e0b" font-family="monospace" font-size="11" font-weight="bold">HAZARD TELEMETRY</text>
+
+    <!-- MQ-2 Gas Sensor Module -->
+    <rect x="16" y="44" width="168" height="100" rx="6" fill="#121822" stroke="#334155" stroke-width="1" />
+    <text x="26" y="66" fill="#fbbf24" font-family="monospace" font-size="10" font-weight="bold">MQ-2 GAS / SMOKE</text>
+    
+    <!-- Gas Level Bar -->
+    <rect x="26" y="78" width="148" height="10" rx="3" fill="#1e293b" />
+    <rect x="26" y="78" width="62" height="10" rx="3" fill="#10b981" />
+    <text x="26" y="106" fill="#f8fafc" font-family="monospace" font-size="11">142 PPM <tspan fill="#10b981" font-size="9">[SAFE LEVEL]</tspan></text>
+    <text x="26" y="126" fill="#64748b" font-family="monospace" font-size="9">LPG · Smoke · CO Check</text>
+
+    <!-- DHT11 Sensor Module -->
+    <rect x="16" y="156" width="168" height="104" rx="6" fill="#121822" stroke="#334155" stroke-width="1" />
+    <text x="26" y="178" fill="#38bdf8" font-family="monospace" font-size="10" font-weight="bold">DHT11 SENSOR</text>
+    <text x="26" y="202" fill="#f8fafc" font-family="monospace" font-size="12" font-weight="bold">27.4 °C</text>
+    <text x="26" y="222" fill="#94a3b8" font-family="monospace" font-size="10">HUMIDITY: 58% RH</text>
+    <text x="26" y="242" fill="#34d399" font-family="monospace" font-size="9">Blynk Cloud Synced</text>
+  </g>
+
+  <!-- Bottom Banner Bar -->
+  <rect x="30" y="380" width="740" height="46" rx="8" fill="#090e17" stroke="#1f293b" stroke-width="1" />
+  <g transform="translate(50, 408)">
+    <text x="0" y="0" fill="#10b981" font-family="monospace" font-size="11" font-weight="bold">STATUS:</text>
+    <text x="75" y="0" fill="#f8fafc" font-family="monospace" font-size="11">RESPONSE: <tspan fill="#00f0ff">&lt;35ms</tspan></text>
+    <text x="230" y="0" fill="#f8fafc" font-family="monospace" font-size="11">EVENT: <tspan fill="#fbbf24">SRM NATIONAL HACKATHON</tspan></text>
+    <text x="470" y="0" fill="#f8fafc" font-family="monospace" font-size="11">PLATFORM: <tspan fill="#38bdf8">BLYNK IOT + FIREBASE</tspan></text>
+  </g>
+</svg>

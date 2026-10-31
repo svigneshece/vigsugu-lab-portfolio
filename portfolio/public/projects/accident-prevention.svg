@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="accBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#08070d" />
+      <stop offset="50%" stop-color="#120c18" />
+      <stop offset="100%" stop-color="#050408" />
+    </linearGradient>
+    <radialGradient id="alertGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="hudGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f43f5e" stroke-opacity="0.04" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#accBg)" />
+  <rect width="800" height="450" fill="url(#hudGrid)" />
+
+  <!-- Top Tech Bar -->
+  <rect x="30" y="24" width="740" height="38" rx="6" fill="#140b1a" stroke="#331c42" stroke-width="1" />
+  <circle cx="52" cy="43" r="4" fill="#f43f5e" />
+  <text x="68" y="47" fill="#cbd5e1" font-family="monospace" font-size="11" letter-spacing="1.5">DRIVER FATIGUE &amp; EYE-BLINK ACCIDENT PREVENTION SYSTEM</text>
+  <rect x="630" y="32" width="125" height="22" rx="4" fill="#f43f5e" fill-opacity="0.15" stroke="#f43f5e" stroke-opacity="0.4" stroke-width="1" />
+  <text x="640" y="47" fill="#fb7185" font-family="monospace" font-size="10" font-weight="bold">SAFETY INTERLOCK</text>
+
+  <!-- Left: Eye-Blink Sensor Pulse Waveform Analysis -->
+  <g transform="translate(45, 80)">
+    <rect width="215" height="280" rx="10" fill="#0d0914" stroke="#2a1638" stroke-width="1.2" />
+    <rect x="12" y="12" width="191" height="26" rx="4" fill="#f43f5e" fill-opacity="0.1" />
+    <text x="22" y="29" fill="#fb7185" font-family="monospace" font-size="11" font-weight="bold">EYE-BLINK PULSE TRAIN</text>
+
+    <!-- Normal Blink Waveform -->
+    <g transform="translate(16, 50)">
+      <rect width="183" height="60" rx="5" fill="#170e24" stroke="#381d52" stroke-width="1" />
+      <text x="12" y="18" fill="#38bdf8" font-family="monospace" font-size="9" font-weight="bold">NORMAL BLINK: ~250ms</text>
+      <!-- Quick pulse -->
+      <path d="M 12 44 L 40 44 L 45 28 L 55 28 L 60 44 L 110 44 L 115 28 L 125 28 L 130 44 L 170 44" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+      <text x="12" y="55" fill="#94a3b8" font-family="monospace" font-size="8">Natural Involuntary Blink</text>
+    </g>
+
+    <!-- Drowsy / Prolonged Closure Waveform -->
+    <g transform="translate(16, 120)">
+      <rect width="183" height="74" rx="5" fill="#1c0f20" stroke="#5b1a32" stroke-width="1" />
+      <text x="12" y="18" fill="#fb7185" font-family="monospace" font-size="9" font-weight="bold">DROWSY CLOSURE: &gt; 2.0s</text>
+      <!-- Prolonged high signal -->
+      <path d="M 12 50 L 30 50 L 35 28 L 140 28 L 145 50 L 170 50" fill="none" stroke="#f43f5e" stroke-width="2.2" />
+      <text x="40" y="42" fill="#fca5a5" font-family="monospace" font-size="9" font-weight="bold">THRESHOLD EXCEEDED</text>
+      <text x="12" y="66" fill="#fca5a5" font-family="monospace" font-size="8">Triggers Buzzer + Relay</text>
+    </g>
+
+    <rect x="16" y="206" width="183" height="60" rx="6" fill="#08050c" stroke="#221030" stroke-width="1" />
+    <text x="24" y="226" fill="#f8fafc" font-family="monospace" font-size="9">COMPARATOR: <tspan fill="#38bdf8">LM393 OP-AMP</tspan></text>
+    <text x="24" y="242" fill="#f8fafc" font-family="monospace" font-size="9">SENSOR: <tspan fill="#fb7185">IR PHOTODIODE</tspan></text>
+    <text x="24" y="258" fill="#34d399" font-family="monospace" font-size="9">SAMPLING: 100 Hz ISR LOOP</text>
+  </g>
+
+  <!-- Center: Automotive Cockpit Safety HUD Display -->
+  <g transform="translate(280, 80)">
+    <circle cx="120" cy="140" r="120" fill="url(#alertGlow)" />
+    <!-- Center Bezel -->
+    <rect width="240" height="280" rx="12" fill="#090510" stroke="#f43f5e" stroke-width="1.6" />
+    
+    <rect x="10" y="10" width="220" height="24" rx="4" fill="#1b0e24" />
+    <text x="18" y="26" fill="#fb7185" font-family="monospace" font-size="10" font-weight="bold">DRIVER SAFETY HUD MONITOR</text>
+
+    <!-- Cockpit Circle Gauge -->
+    <g transform="translate(120, 115)">
+      <circle cx="0" cy="0" r="54" fill="none" stroke="#271536" stroke-width="8" />
+      <circle cx="0" cy="0" r="54" fill="none" stroke="#10b981" stroke-width="8" stroke-dasharray="270,360" transform="rotate(-90)" />
+      <text x="0" y="-8" fill="#f8fafc" font-family="monospace" font-size="22" font-weight="bold" text-anchor="middle">94%</text>
+      <text x="0" y="12" fill="#10b981" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle">VIGILANCE</text>
+    </g>
+
+    <!-- Ignition Relay Interlock Box -->
+    <g transform="translate(15, 185)">
+      <rect width="210" height="80" rx="6" fill="#130a1c" stroke="#331c42" stroke-width="1" />
+      <text x="14" y="22" fill="#cbd5e1" font-family="monospace" font-size="9" font-weight="bold">VEHICLE IGNITION RELAY</text>
+      
+      <!-- Relay Status Indicator -->
+      <rect x="14" y="30" width="80" height="22" rx="3" fill="#065f46" stroke="#10b981" stroke-width="1" />
+      <text x="22" y="44" fill="#34d399" font-family="monospace" font-size="9" font-weight="bold">ACTIVE (ON)</text>
+
+      <!-- Alarm Status -->
+      <rect x="105" y="30" width="90" height="22" rx="3" fill="#1e132b" stroke="#4c2766" stroke-width="1" />
+      <text x="112" y="44" fill="#94a3b8" font-family="monospace" font-size="9">BUZZER: STANDBY</text>
+
+      <text x="14" y="68" fill="#fb7185" font-family="monospace" font-size="9">Auto-cutoff on persistent sleep</text>
+    </g>
+  </g>
+
+  <!-- Right: Arduino Interfacing & Circuit Diagram -->
+  <g transform="translate(540, 80)">
+    <rect width="215" height="280" rx="10" fill="#0d0914" stroke="#2a1638" stroke-width="1.2" />
+    <rect x="12" y="12" width="191" height="26" rx="4" fill="#f43f5e" fill-opacity="0.1" />
+    <text x="22" y="29" fill="#fb7185" font-family="monospace" font-size="11" font-weight="bold">ARDUINO CONTROLLER</text>
+
+    <!-- IO mapping -->
+    <g transform="translate(16, 50)">
+      <rect width="183" height="42" rx="4" fill="#170e24" stroke="#381d52" stroke-width="1" />
+      <text x="12" y="20" fill="#38bdf8" font-family="monospace" font-size="10" font-weight="bold">D2 (INT0): <tspan fill="#f8fafc">SENSOR INPUT</tspan></text>
+      <text x="12" y="34" fill="#94a3b8" font-family="monospace" font-size="9">Hardware Interrupt on Edge</text>
+    </g>
+
+    <g transform="translate(16, 100)">
+      <rect width="183" height="42" rx="4" fill="#170e24" stroke="#381d52" stroke-width="1" />
+      <text x="12" y="20" fill="#f43f5e" font-family="monospace" font-size="10" font-weight="bold">D8: <tspan fill="#f8fafc">PIEZO ALARM</tspan></text>
+      <text x="12" y="34" fill="#94a3b8" font-family="monospace" font-size="9">2.4 kHz High Decibel Siren</text>
+    </g>
+
+    <g transform="translate(16, 150)">
+      <rect width="183" height="42" rx="4" fill="#170e24" stroke="#381d52" stroke-width="1" />
+      <text x="12" y="20" fill="#34d399" font-family="monospace" font-size="10" font-weight="bold">D12: <tspan fill="#f8fafc">RELAY DRIVER</tspan></text>
+      <text x="12" y="34" fill="#94a3b8" font-family="monospace" font-size="9">NPN Transistor / Optocoupler</text>
+    </g>
+
+    <rect x="16" y="204" width="183" height="62" rx="6" fill="#08050c" stroke="#221030" stroke-width="1" />
+    <text x="24" y="226" fill="#f8fafc" font-family="monospace" font-size="9" font-weight="bold">PROTOTYPE VALIDATION</text>
+    <text x="24" y="242" fill="#34d399" font-family="monospace" font-size="9">Response Latency: &lt; 50ms</text>
+    <text x="24" y="258" fill="#94a3b8" font-family="monospace" font-size="9">Safety Alert Failsafe: YES</text>
+  </g>
+
+  <!-- Bottom Banner Bar -->
+  <rect x="30" y="380" width="740" height="46" rx="8" fill="#100817" stroke="#2d173c" stroke-width="1" />
+  <g transform="translate(50, 408)">
+    <text x="0" y="0" fill="#fb7185" font-family="monospace" font-size="11" font-weight="bold">ALERT LOGIC:</text>
+    <text x="100" y="0" fill="#f8fafc" font-family="monospace" font-size="11">EYE CLOSURE THRESHOLD: 2.0s</text>
+    <text x="360" y="0" fill="#f8fafc" font-family="monospace" font-size="11">ACTUATOR: <tspan fill="#f43f5e">BUZZER + IGNITION CUT</tspan></text>
+    <text x="630" y="0" fill="#34d399" font-family="monospace" font-size="11">FAILSAFE: ON</text>
+  </g>
+</svg>

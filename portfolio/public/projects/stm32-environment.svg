@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="stmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06090e" />
+      <stop offset="50%" stop-color="#0b111a" />
+      <stop offset="100%" stop-color="#040608" />
+    </linearGradient>
+    <radialGradient id="oledGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#stmBg)" />
+  <rect width="800" height="450" fill="url(#gridPattern)" />
+
+  <!-- Top Tech Bar -->
+  <rect x="30" y="24" width="740" height="38" rx="6" fill="#0c1320" stroke="#1e2c40" stroke-width="1" />
+  <circle cx="52" cy="43" r="4" fill="#00f0ff" />
+  <text x="68" y="47" fill="#94a3b8" font-family="monospace" font-size="11" letter-spacing="1.5">STM32F103C8T6 · ARM CORTEX-M3 · EMBEDDED C &amp; I2C FIRMWARE</text>
+  <rect x="650" y="32" width="105" height="22" rx="4" fill="#00f0ff" fill-opacity="0.12" stroke="#00f0ff" stroke-opacity="0.4" stroke-width="1" />
+  <text x="664" y="47" fill="#00f0ff" font-family="monospace" font-size="10" font-weight="bold">72 MHz PLL</text>
+
+  <!-- Left: STM32 Hardware Architecture Card -->
+  <g transform="translate(45, 80)">
+    <rect width="215" height="280" rx="10" fill="#0a101a" stroke="#1f2d40" stroke-width="1.2" />
+    <rect x="12" y="12" width="191" height="26" rx="4" fill="#00f0ff" fill-opacity="0.08" />
+    <text x="22" y="29" fill="#00f0ff" font-family="monospace" font-size="11" font-weight="bold">STM32 BLUE PILL</text>
+
+    <!-- MCU Pinout specs -->
+    <g transform="translate(16, 54)">
+      <rect width="183" height="36" rx="4" fill="#0f1724" stroke="#25354d" stroke-width="1" />
+      <text x="12" y="22" fill="#38bdf8" font-family="monospace" font-size="10" font-weight="bold">PB6 / PB7: <tspan fill="#f8fafc">I2C1 BUS</tspan></text>
+      <text x="12" y="32" fill="#64748b" font-family="monospace" font-size="8">OLED + DS1307 RTC (400kHz)</text>
+    </g>
+
+    <g transform="translate(16, 100)">
+      <rect width="183" height="36" rx="4" fill="#0f1724" stroke="#25354d" stroke-width="1" />
+      <text x="12" y="22" fill="#818cf8" font-family="monospace" font-size="10" font-weight="bold">PA9 / PA10: <tspan fill="#f8fafc">USART1 DEBUG</tspan></text>
+      <text x="12" y="32" fill="#64748b" font-family="monospace" font-size="8">115200 Baud · FTDI Serial Log</text>
+    </g>
+
+    <g transform="translate(16, 146)">
+      <rect width="183" height="36" rx="4" fill="#0f1724" stroke="#25354d" stroke-width="1" />
+      <text x="12" y="22" fill="#34d399" font-family="monospace" font-size="10" font-weight="bold">PA1 GPIO: <tspan fill="#f8fafc">DHT11 SENSOR</tspan></text>
+      <text x="12" y="32" fill="#64748b" font-family="monospace" font-size="8">Single-Wire Protocol Timing</text>
+    </g>
+
+    <!-- Memory Map Info -->
+    <rect x="16" y="196" width="183" height="68" rx="4" fill="#080e18" stroke="#1e293b" stroke-width="1" />
+    <text x="26" y="216" fill="#94a3b8" font-family="monospace" font-size="9">FLASH UTIL: 18.4KB / 64KB</text>
+    <rect x="26" y="224" width="163" height="6" rx="2" fill="#1e293b" />
+    <rect x="26" y="224" width="48" height="6" rx="2" fill="#00f0ff" />
+    <text x="26" y="248" fill="#94a3b8" font-family="monospace" font-size="9">SRAM: 4.2KB / 20KB OK</text>
+  </g>
+
+  <!-- Center: Authentic SH1106 128x64 OLED Display Simulation -->
+  <g transform="translate(280, 80)">
+    <circle cx="120" cy="140" r="130" fill="url(#oledGlow)" />
+    <!-- OLED Bezel Frame -->
+    <rect width="240" height="280" rx="12" fill="#020408" stroke="#00f0ff" stroke-width="1.8" />
+    <rect x="10" y="10" width="220" height="22" rx="4" fill="#070c14" />
+    <text x="18" y="25" fill="#38bdf8" font-family="monospace" font-size="10" font-weight="bold">SH1106 OLED · 128x64 DISPLAY</text>
+
+    <!-- The Active OLED Screen Canvas -->
+    <rect x="15" y="40" width="210" height="150" rx="4" fill="#000000" stroke="#164e63" stroke-width="1" />
+    
+    <!-- OLED Header Row -->
+    <rect x="20" y="46" width="200" height="18" fill="#042f2e" />
+    <text x="24" y="59" fill="#00f0ff" font-family="monospace" font-size="9" font-weight="bold">SYS MONITOR [VIGSUGU]</text>
+    <text x="180" y="59" fill="#2dd4bf" font-family="monospace" font-size="8">REC</text>
+    
+    <!-- Big Temp Number -->
+    <text x="26" y="98" fill="#00f0ff" font-family="monospace" font-size="28" font-weight="bold">24.8°C</text>
+    <text x="135" y="94" fill="#38bdf8" font-family="monospace" font-size="11">HUMIDITY</text>
+    <text x="135" y="112" fill="#f8fafc" font-family="monospace" font-size="16" font-weight="bold">62% RH</text>
+
+    <!-- Mini Telemetry Waveform Inside OLED -->
+    <path d="M 24 135 L 45 130 L 65 132 L 85 125 L 110 128 L 135 122 L 160 126 L 185 120 L 210 124" fill="none" stroke="#00f0ff" stroke-width="1.5" />
+    
+    <!-- Real-Time Clock on OLED -->
+    <rect x="20" y="148" width="200" height="34" rx="3" fill="#071927" />
+    <text x="28" y="166" fill="#38bdf8" font-family="monospace" font-size="9">DS1307 RTC TIME:</text>
+    <text x="28" y="177" fill="#f8fafc" font-family="monospace" font-size="11" font-weight="bold">14:32:08 UTC+05:30</text>
+
+    <!-- OLED Status Footprint -->
+    <rect x="15" y="202" width="210" height="66" rx="6" fill="#0a1220" stroke="#1e2c40" stroke-width="1" />
+    <text x="26" y="222" fill="#34d399" font-family="monospace" font-size="10">I2C ADDR: 0x3C [ACK OK]</text>
+    <text x="26" y="240" fill="#94a3b8" font-family="monospace" font-size="9">REFRESH: 20 Hz · Page Mode</text>
+    <text x="26" y="256" fill="#64748b" font-family="monospace" font-size="9">ZERO PIXEL FLICKER DMA</text>
+  </g>
+
+  <!-- Right: I2C Protocol Analyzer Waveform -->
+  <g transform="translate(540, 80)">
+    <rect width="215" height="280" rx="10" fill="#0a101a" stroke="#1f2d40" stroke-width="1.2" />
+    <rect x="12" y="12" width="191" height="26" rx="4" fill="#3b82f6" fill-opacity="0.1" />
+    <text x="22" y="29" fill="#60a5fa" font-family="monospace" font-size="11" font-weight="bold">I2C LOGIC ANALYZER</text>
+
+    <!-- SCL Clock Waveform -->
+    <text x="18" y="66" fill="#38bdf8" font-family="monospace" font-size="9" font-weight="bold">SCL [400 kHz CLOCK]</text>
+    <path d="M 18 90 L 35 90 L 35 75 L 50 75 L 50 90 L 65 90 L 65 75 L 80 75 L 80 90 L 95 90 L 95 75 L 110 75 L 110 90 L 125 90 L 125 75 L 140 75 L 140 90 L 155 90 L 155 75 L 170 75 L 170 90 L 195 90" fill="none" stroke="#38bdf8" stroke-width="1.8" />
+
+    <!-- SDA Data Waveform -->
+    <text x="18" y="120" fill="#00f0ff" font-family="monospace" font-size="9" font-weight="bold">SDA [FRAME / ACK BIT]</text>
+    <path d="M 18 135 L 30 135 L 30 150 L 65 150 L 65 135 L 95 135 L 95 150 L 125 150 L 125 135 L 155 135 L 155 150 L 180 150 L 180 135 L 195 135" fill="none" stroke="#00f0ff" stroke-width="1.8" />
+
+    <rect x="16" y="175" width="183" height="88" rx="6" fill="#0f1724" stroke="#25354d" stroke-width="1" />
+    <text x="26" y="196" fill="#34d399" font-family="monospace" font-size="10" font-weight="bold">UART DEBUG CONSOLE</text>
+    <text x="26" y="214" fill="#94a3b8" font-family="monospace" font-size="9">[INIT] Clock config 72MHz</text>
+    <text x="26" y="230" fill="#94a3b8" font-family="monospace" font-size="9">[I2C1] Device 0x68 RTC ACK</text>
+    <text x="26" y="246" fill="#00f0ff" font-family="monospace" font-size="9">[OLED] Buffer flush done</text>
+  </g>
+
+  <!-- Bottom Banner Bar -->
+  <rect x="30" y="380" width="740" height="46" rx="8" fill="#090d16" stroke="#1e2c40" stroke-width="1" />
+  <g transform="translate(50, 408)">
+    <text x="0" y="0" fill="#00f0ff" font-family="monospace" font-size="11" font-weight="bold">CORE:</text>
+    <text x="60" y="0" fill="#f8fafc" font-family="monospace" font-size="11">CORTEX-M3 @ 72MHz</text>
+    <text x="240" y="0" fill="#f8fafc" font-family="monospace" font-size="11">PERIPHERALS: <tspan fill="#38bdf8">I2C1 · USART1 · TIM2</tspan></text>
+    <text x="510" y="0" fill="#f8fafc" font-family="monospace" font-size="11">FIRMWARE: <tspan fill="#34d399">EMBEDDED C (HAL/REG)</tspan></text>
+  </g>
+</svg>

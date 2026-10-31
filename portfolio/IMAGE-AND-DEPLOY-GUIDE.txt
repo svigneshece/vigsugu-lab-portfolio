@@ -1,0 +1,51 @@
+VIGSUGU LAB — IMAGE & DEPLOYMENT GUIDE
+
+BRAND
+VIGSUGU LAB — Vignesh Sugunathan's engineering portfolio.
+
+PHOTOS INCLUDED
+- public/profile/vignesh.jpg: your blue-shirt professional portrait (hero profile image).
+- public/experience/instructor-session.jpg: your instructor photograph.
+- public/experience/workshop-classroom.jpg: your classroom/workshop photograph.
+The original photos were resized and lightly optimized for website loading. No face-changing edits were applied.
+
+PROJECT VISUALS
+Project cards use original in-site technical illustrations, not stock photos or fabricated prototype photos. Replace them with your actual prototype images when available. To add them, place image files in public/projects/ and set the matching project's image field in src/data/site.ts, e.g. image: "/projects/lora-mesh.jpg".
+
+RESUME
+A PDF resume is included at public/resume.pdf and the hero Download Resume button points to it.
+
+RUN LOCALLY
+1. Install Node.js LTS (Node 20.9+ recommended; Node 22 LTS is a good choice).
+2. Extract this ZIP.
+3. Open a terminal inside the portfolio folder (the folder containing package.json).
+4. Run: npm install
+5. Run: npm run dev
+6. Open: http://localhost:3000
+
+CHECK BEFORE DEPLOYMENT
+Run: npm run typecheck
+Run: npm run build
+Both commands should complete without errors.
+
+DEPLOY TO VERCEL
+1. Push the portfolio folder to a GitHub repository.
+2. Sign in to Vercel and choose Add New > Project.
+3. Import the GitHub repository.
+4. Keep the detected Next.js framework and default build settings.
+5. Click Deploy.
+6. Optional: add NEXT_PUBLIC_SITE_URL with your final https:// domain in Vercel Project Settings > Environment Variables, then redeploy.
+
+CONTACT FORM
+The contact form opens the visitor's default email application with the message prefilled. It does not silently send or store messages; the visitor must press Send in their email app.
+
+EDIT CONTENT
+Most profile text, skills, project details, work history, and services are in src/data/site.ts.
+
+
+LATEST PORTFOLIO UPDATE (30 OCT 2026)
+- Profile photo: public/profile/vignesh.jpg (professional blue-shirt portrait).
+- Workshop photos: public/experience/instructor-session.jpg and public/experience/workshop-classroom.jpg.
+- Project-specific generated images are intentionally pending and can be added later under public/projects/.
+- Project cards currently retain the portfolio's custom technical illustrations until the project image set is ready.
+- Added a click-to-open 3D portrait showcase, engineering tools, electronics interests, microcontroller field notes, impact statistics, GitHub repository links and IEEE Xplore links.
