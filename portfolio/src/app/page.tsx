@@ -16,11 +16,17 @@ import { site } from "@/data/site";
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: site.name,
+  name: "Vignesh Sugunathan",
+  alternateName: ["Vignesh S", "VIGSUGU LAB", "Vignesh Sugunathan Portfolio"],
   jobTitle: site.role,
   worksFor: { "@type": "Organization", name: "NxtWave" },
-  address: { "@type": "PostalAddress", addressLocality: "Chennai", addressCountry: "IN" },
+  address: { "@type": "PostalAddress", addressLocality: "Chennai", addressRegion: "Tamil Nadu", addressCountry: "IN" },
   alumniOf: site.education,
+  sameAs: [
+    site.contact.linkedin,
+    site.contact.github,
+    site.contact.twitter,
+  ],
 };
 
 export default function Page() {
