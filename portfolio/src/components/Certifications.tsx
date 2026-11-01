@@ -10,11 +10,13 @@ export function Certifications() {
 
   return (
     <Section
-      id="certifications"
+      id="achievements"
       badge="VERIFIED CREDENTIALS"
-      title="Certifications &amp; Honors"
+      title="Certifications &amp; Achievements"
       description="National engineering competition awards, proctored embedded systems credentials, and academic recognitions."
     >
+      <div id="certifications" className="scroll-mt-24" />
+
       {/* Credential Navigation Tabs / Stepper */}
       <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
         {certifications.map((cert, idx) => {
@@ -26,31 +28,31 @@ export function Certifications() {
               onClick={() => setActiveCertIdx(idx)}
               className={`group flex flex-col items-start rounded-xl border p-4 text-left transition-all duration-300 cursor-pointer ${
                 isActive
-                  ? "border-[#38BDF8] bg-[#0E1422] shadow-[0_0_20px_rgba(56,189,248,0.15)] ring-1 ring-[#38BDF8]/50"
-                  : "border-[#38BDF8]/15 bg-[#070A11]/80 hover:border-[#38BDF8]/40 hover:bg-[#0E1422]"
+                  ? "border-sky-400 bg-[#0E1422] shadow-[0_0_20px_rgba(56,189,248,0.15)] ring-1 ring-sky-400/50"
+                  : "border-slate-800 bg-[#070A11]/80 hover:border-sky-400/40 hover:bg-[#0E1422]"
               }`}
             >
               <div className="mb-2 flex w-full items-center justify-between">
                 <span
                   className={`flex size-7 items-center justify-center rounded-lg border text-xs font-mono font-bold transition-all ${
                     isActive
-                      ? "border-[#38BDF8] bg-[#38BDF8] text-[#070A11]"
-                      : "border-[#1E293B] bg-[#070A11] text-[#94A3B8] group-hover:text-[#38BDF8]"
+                      ? "border-sky-400 bg-sky-400 text-slate-950"
+                      : "border-slate-800 bg-[#070A11] text-slate-400 group-hover:text-sky-400"
                   }`}
                 >
-                  {cert.number}
+                  0{idx + 1}
                 </span>
-                <span className="font-mono text-[10px] text-[#64748B]">{cert.year}</span>
+                <span className="font-mono text-[10px] text-slate-500">{cert.year}</span>
               </div>
 
               <h4
                 className={`line-clamp-2 text-xs font-bold leading-snug transition-colors ${
-                  isActive ? "text-white" : "text-[#CBD5E1] group-hover:text-white"
+                  isActive ? "text-white" : "text-slate-300 group-hover:text-white"
                 }`}
               >
                 {cert.title}
               </h4>
-              <p className="mt-1 line-clamp-1 text-[11px] text-[#64748B]">{cert.organization}</p>
+              <p className="mt-1 line-clamp-1 text-[11px] text-slate-500">{cert.organization}</p>
             </button>
           );
         })}
@@ -59,17 +61,18 @@ export function Certifications() {
       {/* Active Featured Credential Card */}
       {(() => {
         const current = certifications[activeCertIdx];
+        const currentAny = current as Record<string, unknown>;
         return (
-          <div className="overflow-hidden rounded-2xl border border-[#38BDF8]/30 bg-[#0E1422] p-6 shadow-2xl transition-all md:p-8">
+          <div className="overflow-hidden rounded-2xl border border-sky-400/30 bg-[#0E1422] p-6 shadow-2xl transition-all md:p-8">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
               {/* Left Column: Details */}
               <div className="space-y-4 lg:max-w-2xl">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-md border border-[#38BDF8]/40 bg-[#38BDF8]/10 px-2.5 py-1 font-mono text-xs font-bold text-[#38BDF8]">
+                  <span className="inline-flex items-center gap-1.5 rounded-md border border-sky-400/40 bg-sky-500/10 px-2.5 py-1 font-mono text-xs font-bold text-sky-400">
                     <Award className="size-3.5" />
-                    CREDENTIAL {current.number} OF 05
+                    CREDENTIAL 0{activeCertIdx + 1} OF 05
                   </span>
-                  <span className="rounded-md border border-[#1E293B] bg-[#070A11] px-2.5 py-1 font-mono text-xs text-[#94A3B8]">
+                  <span className="rounded-md border border-slate-800 bg-[#070A11] px-2.5 py-1 font-mono text-xs text-slate-400">
                     {current.badge}
                   </span>
                   <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs text-emerald-400">
@@ -82,23 +85,23 @@ export function Certifications() {
                   <h3 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                     {current.title}
                   </h3>
-                  <p className="mt-1 font-mono text-sm font-semibold text-[#38BDF8]">
+                  <p className="mt-1 font-mono text-sm font-semibold text-sky-400">
                     {current.organization} · {current.year}
                   </p>
-                  <p className="mt-0.5 text-xs text-[#94A3B8]">{current.field}</p>
+                  <p className="mt-0.5 text-xs text-slate-400">{current.field}</p>
                 </div>
 
-                <p className="text-xs leading-relaxed text-[#CBD5E1] sm:text-sm">
+                <p className="text-xs leading-relaxed text-slate-300 sm:text-sm">
                   {current.description}
                 </p>
 
-                {current.linkHref && (
+                {Boolean(currentAny.linkHref) && (
                   <div className="pt-2">
                     <a
-                      href={current.linkHref}
-                      className="inline-flex items-center gap-2 rounded-lg border border-[#38BDF8]/40 bg-[#070A11] px-4 py-2 font-mono text-xs font-semibold text-[#38BDF8] transition-all hover:border-[#38BDF8] hover:bg-[#38BDF8]/10"
+                      href={String(currentAny.linkHref)}
+                      className="inline-flex items-center gap-2 rounded-lg border border-sky-400/40 bg-[#070A11] px-4 py-2 font-mono text-xs font-semibold text-sky-400 transition-all hover:border-sky-400 hover:bg-sky-500/10"
                     >
-                      {current.linkText || "View Details"}
+                      {String(currentAny.linkText || "View Details")}
                       <ExternalLink className="size-3.5" />
                     </a>
                   </div>
@@ -106,88 +109,77 @@ export function Certifications() {
               </div>
 
               {/* Right Column: Credential Specs Box */}
-              <div className="flex flex-col justify-between rounded-xl border border-[#38BDF8]/15 bg-[#070A11] p-5 lg:w-80 space-y-4">
+              <div className="flex flex-col justify-between rounded-xl border border-sky-400/15 bg-[#070A11] p-5 lg:w-80 space-y-4">
                 <div className="space-y-3 font-mono text-xs">
-                  <div className="flex items-center justify-between border-b border-[#1E293B] pb-2 text-[#64748B]">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-2 text-slate-400">
                     <span>STATUS:</span>
                     <span className="font-semibold text-emerald-400">ACCREDITED</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#1E293B] pb-2 text-[#64748B]">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-2 text-slate-400">
                     <span>ISSUING BODY:</span>
-                    <span className="text-right font-semibold text-[#F8FAFC] truncate max-w-[150px]">
+                    <span className="text-right font-semibold text-white truncate max-w-[150px]">
                       {current.organization}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#1E293B] pb-2 text-[#64748B]">
-                    <span>TRACK ID:</span>
-                    <span className="font-semibold text-[#38BDF8]">{current.id.toUpperCase()}</span>
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-2 text-slate-400">
+                    <span>TIMELINE:</span>
+                    <span className="font-semibold text-sky-400">{current.year}</span>
                   </div>
-                  <div className="flex items-center justify-between text-[#64748B]">
-                    <span>VERIFICATION:</span>
-                    <span className="inline-flex items-center gap-1 font-semibold text-emerald-400">
-                      <span className="size-2 rounded-full bg-emerald-400" />
-                      AUTHENTICATED
+                  <div className="flex items-center justify-between text-slate-400">
+                    <span>CREDENTIAL ID:</span>
+                    <span className="font-semibold text-slate-300">
+                      {current.id.toUpperCase()}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between border-t border-[#1E293B] pt-4">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setActiveCertIdx((prev) => (prev > 0 ? prev - 1 : certifications.length - 1))
-                    }
-                    className="rounded-md border border-[#1E293B] px-3 py-1 font-mono text-xs text-[#94A3B8] hover:border-[#38BDF8] hover:text-[#38BDF8]"
-                  >
-                    ← Prev
-                  </button>
-                  <span className="font-mono text-xs text-[#64748B]">
-                    {activeCertIdx + 1} / {certifications.length}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setActiveCertIdx((prev) => (prev < certifications.length - 1 ? prev + 1 : 0))
-                    }
-                    className="inline-flex items-center gap-1 rounded-md border border-[#38BDF8]/30 bg-[#38BDF8]/10 px-3 py-1 font-mono text-xs font-semibold text-[#38BDF8] hover:bg-[#38BDF8]/20"
-                  >
-                    Next →
-                  </button>
+                <div className="rounded-lg border border-sky-400/20 bg-sky-500/5 p-3">
+                  <div className="flex items-center gap-2 font-mono text-[11px] text-sky-300">
+                    <ShieldCheck className="size-4 text-emerald-400" />
+                    <span>Tamper-Proof Verification</span>
+                  </div>
+                  <p className="mt-1 text-[11px] text-slate-400 leading-normal">
+                    This milestone reflects certified theoretical coursework and demonstrated practical engineering delivery.
+                  </p>
                 </div>
               </div>
+            </div>
+
+            {/* Stepper Navigation Buttons */}
+            <div className="mt-8 flex items-center justify-between border-t border-slate-800 pt-5">
+              <button
+                type="button"
+                disabled={activeCertIdx === 0}
+                onClick={() => setActiveCertIdx((prev) => Math.max(0, prev - 1))}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-800 bg-[#070A11] px-3.5 py-1.5 font-mono text-xs text-slate-400 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+              >
+                <span>← Previous Milestone</span>
+              </button>
+
+              <div className="flex items-center gap-1.5">
+                {certifications.map((_, dotIdx) => (
+                  <span
+                    key={dotIdx}
+                    onClick={() => setActiveCertIdx(dotIdx)}
+                    className={`size-2 rounded-full cursor-pointer transition-all ${
+                      dotIdx === activeCertIdx ? "w-6 bg-sky-400" : "bg-slate-700 hover:bg-slate-500"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                disabled={activeCertIdx === certifications.length - 1}
+                onClick={() => setActiveCertIdx((prev) => Math.min(certifications.length - 1, prev + 1))}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-800 bg-[#070A11] px-3.5 py-1.5 font-mono text-xs text-slate-400 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+              >
+                <span>Next Milestone →</span>
+              </button>
             </div>
           </div>
         );
       })()}
-
-      {/* Grid of All Credentials */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {certifications.map((cert, index) => (
-          <div
-            key={cert.id}
-            onClick={() => setActiveCertIdx(index)}
-            className={`cursor-pointer rounded-xl border p-5 transition-all duration-300 ${
-              index === activeCertIdx
-                ? "border-[#38BDF8] bg-[#0E1422] shadow-lg"
-                : "border-[#38BDF8]/15 bg-[#070A11] hover:border-[#38BDF8]/40 hover:bg-[#0E1422]"
-            }`}
-          >
-            <div className="flex items-center justify-between text-xs">
-              <span className="font-mono font-bold text-[#38BDF8]">CREDENTIAL {cert.number}</span>
-              <span className="font-mono text-[11px] text-[#64748B]">{cert.year}</span>
-            </div>
-            <h4 className="mt-2 font-bold text-white text-sm leading-snug">{cert.title}</h4>
-            <p className="mt-1 font-mono text-xs text-[#38BDF8]">{cert.organization}</p>
-            <p className="mt-2 text-xs text-[#94A3B8] line-clamp-2">{cert.description}</p>
-            <div className="mt-3 flex items-center justify-between border-t border-[#1E293B] pt-2 text-[11px]">
-              <span className="text-[#64748B]">{cert.badge}</span>
-              <span className="inline-flex items-center gap-0.5 font-mono text-[#38BDF8]">
-                Inspect <ChevronRight className="size-3" />
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
     </Section>
   );
 }

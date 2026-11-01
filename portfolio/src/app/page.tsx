@@ -1,13 +1,15 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { ProfessionalImpact } from "@/components/ProfessionalImpact";
 import { Skills } from "@/components/Skills";
 import { Projects } from "@/components/Projects";
-import { Experience } from "@/components/Experience";
 import { EngineeringToolkit } from "@/components/EngineeringToolkit";
+import { Services } from "@/components/Services";
+import { TeachingTraining } from "@/components/TeachingTraining";
+import { Experience } from "@/components/Experience";
 import { Research } from "@/components/Research";
 import { Certifications } from "@/components/Certifications";
-import { TelemetryConsole } from "@/components/TelemetryConsole";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { WelcomePopup } from "@/components/WelcomePopup";
@@ -17,7 +19,7 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Vignesh Sugunathan",
-  alternateName: ["Vignesh S", "VIGSUGU LAB", "Vignesh Sugunathan Portfolio"],
+  alternateName: ["Vignesh S", "VIGNESH.", "Vignesh Sugunathan Portfolio"],
   jobTitle: site.role,
   worksFor: { "@type": "Organization", name: "NxtWave" },
   address: { "@type": "PostalAddress", addressLocality: "Chennai", addressRegion: "Tamil Nadu", addressCountry: "IN" },
@@ -40,15 +42,40 @@ export default function Page() {
       </a>
       <Header />
       <main id="main">
+        {/* 01. Home / Hero */}
         <Hero />
+
+        {/* 02. About Me */}
         <About />
+
+        {/* 03. Professional Impact */}
+        <ProfessionalImpact />
+
+        {/* 04. Technical Expertise */}
         <Skills />
+
+        {/* 05. Featured Engineering Projects */}
         <Projects />
-        <Experience />
+
+        {/* 06. Engineering Toolkit / Workspace */}
         <EngineeringToolkit />
+
+        {/* 07. Professional Services */}
+        <Services />
+
+        {/* 08. Teaching, Training & Public Speaking */}
+        <TeachingTraining />
+
+        {/* 09. Professional Experience */}
+        <Experience />
+
+        {/* 10. Research & Publications */}
         <Research />
+
+        {/* 11. Certifications & Achievements */}
         <Certifications />
-        <TelemetryConsole />
+
+        {/* 12. Contact & Collaboration */}
         <Contact />
       </main>
       <Footer />

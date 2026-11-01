@@ -95,7 +95,7 @@ export function Research() {
 
               <div className="pt-1">
                 <a
-                  href="#icridet-2024"
+                  href="#oil-spill-ssn-2024"
                   className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-amber-400 hover:text-white transition-colors"
                 >
                   View Award-Winning Publication Below ↓

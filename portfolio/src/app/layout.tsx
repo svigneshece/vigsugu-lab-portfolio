@@ -3,7 +3,7 @@ import { site } from "@/data/site";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vignesh-sugunathan.vercel.app";
-const title = `${site.name} | Embedded Systems Engineer | Firmware & Hardware R&D`;
+const title = "Vignesh | Embedded Systems Engineer | Firmware & Electronics";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

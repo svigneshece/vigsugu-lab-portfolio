@@ -5,25 +5,31 @@ import { ArrowUpRight, Cpu, Layers, Radio, Sparkles } from "lucide-react";
 import type { Project } from "@/data/site";
 import { GitHubIcon } from "./icons";
 
-type Props = { project: Project; onOpen: (p: Project) => void };
+type Props = {
+  project: Project;
+  onOpen?: (p: Project) => void;
+  onSelect?: (p: Project) => void;
+};
 
-export function ProjectCard({ project, onOpen }: Props) {
+export function ProjectCard({ project, onOpen, onSelect }: Props) {
   const isLarge = project.featured;
+  const handleOpen = () => (onOpen || onSelect)?.(project);
 
   return (
     <article
       className={`group flex flex-col overflow-hidden rounded-2xl border transition-all duration-300 hover:shadow-2xl ${
         isLarge
-          ? "border-[#38BDF8]/40 bg-[#0E1422] hover:border-[#38BDF8] md:col-span-2 lg:grid lg:grid-cols-12 lg:items-center"
-          : "border-[#38BDF8]/20 bg-[#0E1422] hover:border-[#38BDF8]/50"
+          ? "border-sky-400/40 bg-[#0E1422] hover:border-sky-400 md:col-span-2 lg:grid lg:grid-cols-12 lg:items-center"
+          : "border-slate-800 bg-[#0E1422] hover:border-sky-400/50"
       }`}
     >
       {/* Visual Image Header */}
       <div
-        className={`relative overflow-hidden bg-[#070A11] ${
+        onClick={handleOpen}
+        className={`relative overflow-hidden bg-[#070A11] cursor-pointer ${
           isLarge
-            ? "h-64 sm:h-80 lg:col-span-6 lg:h-full min-h-[300px] border-b lg:border-b-0 lg:border-r border-[#38BDF8]/20"
-            : "h-52 sm:h-60 w-full border-b border-[#38BDF8]/15"
+            ? "h-64 sm:h-80 lg:col-span-6 lg:h-full min-h-[300px] border-b lg:border-b-0 lg:border-r border-slate-800"
+            : "h-52 sm:h-60 w-full border-b border-slate-800"
         }`}
       >
         <Image
@@ -38,86 +44,94 @@ export function ProjectCard({ project, onOpen }: Props) {
         {/* Gradient Overlay for Text Readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0E1422] via-transparent to-transparent opacity-80 lg:opacity-40" />
 
-        {/* Category Pill */}
-        <div className="absolute left-3 top-3 flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#38BDF8]/30 bg-[#070A11]/90 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-[#38BDF8] backdrop-blur-md">
-            <span className="size-1.5 rounded-full bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]" />
+        {/* Category & Result Pill */}
+        <div className="absolute left-3.5 top-3.5 flex flex-wrap items-center gap-2 z-10">
+          <span className="rounded-md border border-sky-400/30 bg-[#070A11]/90 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-sky-400 backdrop-blur-md">
             {project.category}
           </span>
-          {isLarge && (
-            <span className="inline-flex items-center gap-1 rounded-full border border-[#00F0FF]/30 bg-[#00F0FF]/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-[#00F0FF]">
-              ★ FEATURED FLAGSHIP
+          {project.result && (
+            <span className="rounded-md border border-cyan-400/40 bg-cyan-950/80 px-2 py-0.5 font-mono text-[10px] font-bold text-cyan-300 backdrop-blur-md">
+              {project.result.value}
             </span>
           )}
         </div>
       </div>
 
-      {/* Content Column */}
-      <div className={`flex flex-1 flex-col p-6 sm:p-7 ${isLarge ? "lg:col-span-6" : ""}`}>
+      {/* Content Block */}
+      <div
+        className={`flex flex-col justify-between p-6 sm:p-7 ${
+          isLarge ? "lg:col-span-6" : ""
+        }`}
+      >
         <div>
-          <span className="font-mono text-[10px] uppercase tracking-widest text-[#38BDF8]">
+          <div className="flex items-start justify-between gap-3">
+            <h3
+              onClick={handleOpen}
+              className="font-bold leading-snug tracking-tight text-white group-hover:text-sky-300 transition-colors cursor-pointer text-lg sm:text-xl line-clamp-2"
+            >
+              {project.title}
+            </h3>
+
+            <button
+              type="button"
+              onClick={handleOpen}
+              aria-label={`Open details for ${project.title}`}
+              className="grid size-8 shrink-0 place-items-center rounded-lg border border-slate-800 bg-[#070A11] text-slate-400 group-hover:border-sky-400 group-hover:text-sky-400 transition-colors cursor-pointer"
+            >
+              <ArrowUpRight className="size-4" />
+            </button>
+          </div>
+
+          <p className="mt-2 text-xs font-medium text-sky-400 line-clamp-1">
             {project.subtitle}
-          </span>
-          <h3 className="mt-1 text-xl font-bold leading-snug tracking-tight text-white group-hover:text-[#38BDF8] transition-colors sm:text-2xl">
-            {project.title}
-          </h3>
-          <p className="mt-2.5 text-xs leading-relaxed text-[#94A3B8] sm:text-sm">
+          </p>
+
+          <p className="mt-2.5 text-xs leading-relaxed text-slate-300 line-clamp-3 sm:text-sm">
             {project.summary}
           </p>
         </div>
 
-        {/* Result / Validation Metric */}
-        {project.result && (
-          <div className="mt-4 inline-flex items-center gap-2.5 rounded-lg border border-[#38BDF8]/20 bg-[#070A11] px-3.5 py-2 font-mono text-xs">
-            <span className="size-2 rounded-full bg-emerald-400" />
-            <span className="font-bold text-[#38BDF8]">{project.result.value}</span>
-            <span className="text-[#94A3B8]">{project.result.label}</span>
-          </div>
-        )}
-
-        {/* Tech Badges */}
-        <div className="mt-5">
-          <ul className="flex flex-wrap gap-1.5">
-            {project.technologies.slice(0, isLarge ? 8 : 5).map((t) => (
-              <li
-                key={t}
-                className="rounded border border-[#38BDF8]/15 bg-[#070A11] px-2 py-0.5 font-mono text-[11px] text-[#CBD5E1]"
+        {/* Technologies Tags & Actions */}
+        <div className="mt-6 border-t border-slate-800/80 pt-4">
+          <div className="mb-4 flex flex-wrap gap-1.5">
+            {project.technologies.slice(0, 5).map((tech) => (
+              <span
+                key={tech}
+                className="rounded border border-slate-800 bg-[#070A11] px-2 py-0.5 font-mono text-[10px] text-slate-400"
               >
-                {t}
-              </li>
+                {tech}
+              </span>
             ))}
-            {project.technologies.length > (isLarge ? 8 : 5) && (
-              <li className="rounded border border-[#1E293B] bg-[#070A11] px-2 py-0.5 font-mono text-[11px] text-[#64748B]">
-                +{project.technologies.length - (isLarge ? 8 : 5)} more
-              </li>
+            {project.technologies.length > 5 && (
+              <span className="rounded border border-slate-800 bg-[#070A11] px-2 py-0.5 font-mono text-[10px] text-slate-500">
+                +{project.technologies.length - 5} more
+              </span>
             )}
-          </ul>
-        </div>
+          </div>
 
-        {/* Footer CTAs */}
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-[#1E293B] pt-5">
-          <button
-            type="button"
-            onClick={() => onOpen(project)}
-            aria-haspopup="dialog"
-            aria-label={`View engineering details: ${project.title}`}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[#38BDF8]/40 bg-[#070A11] px-4 py-2 font-mono text-xs font-bold text-[#38BDF8] hover:border-[#38BDF8] hover:bg-[#38BDF8]/10 transition-all cursor-pointer"
-          >
-            Engineering Breakdown
-            <ArrowUpRight className="size-3.5" aria-hidden="true" />
-          </button>
-
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-mono text-xs text-[#94A3B8] hover:text-[#38BDF8] transition-colors"
+          <div className="flex items-center justify-between font-mono text-xs">
+            <button
+              type="button"
+              onClick={handleOpen}
+              className="inline-flex items-center gap-1.5 font-semibold text-sky-400 hover:text-sky-300 transition-colors cursor-pointer"
             >
-              <GitHubIcon className="size-3.5" />
-              <span>GitHub Repo</span>
-            </a>
-          )}
+              <span>Inspect Architecture</span>
+              <ArrowUpRight className="size-3.5" />
+            </button>
+
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`GitHub repository for ${project.title}`}
+                className="inline-flex items-center gap-1.5 text-slate-400 hover:text-sky-300 transition-colors"
+              >
+                <GitHubIcon className="size-3.5" />
+                <span>Source</span>
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </article>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg8051" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070A11" />
+      <stop offset="100%" stop-color="#0E1422" />
+    </linearGradient>
+    <pattern id="grid8051" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1E293B" stroke-width="0.8" opacity="0.6" />
+    </pattern>
+    <linearGradient id="icGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="380" fill="url(#bg8051)" />
+  <rect width="600" height="380" fill="url(#grid8051)" />
+
+  <!-- PCB Traces -->
+  <path d="M 60 70 L 160 70 L 200 120 L 200 260 L 160 310 L 60 310" fill="none" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4" />
+  <path d="M 540 70 L 440 70 L 400 120 L 400 260 L 440 310 L 540 310" fill="none" stroke="#00F0FF" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4" />
+
+  <!-- AT89C51 DIP-40 IC Package -->
+  <g transform="translate(220, 50)">
+    <!-- IC Body -->
+    <rect x="0" y="0" width="160" height="280" rx="8" fill="url(#icGrad)" stroke="#38BDF8" stroke-width="2" />
+    <!-- Notch -->
+    <path d="M 65 0 A 15 15 0 0 0 95 0 Z" fill="#070A11" stroke="#38BDF8" stroke-width="1.5" />
+    <!-- Pin 1 Dot -->
+    <circle cx="20" cy="20" r="4" fill="#00F0FF" />
+
+    <!-- Text on IC -->
+    <text x="80" y="110" font-family="monospace" font-size="14" font-weight="bold" fill="#F8FAFC" text-anchor="middle">AT89C51</text>
+    <text x="80" y="130" font-family="monospace" font-size="10" fill="#38BDF8" text-anchor="middle">8051 CISC CORE</text>
+    <text x="80" y="155" font-family="monospace" font-size="9" fill="#94A3B8" text-anchor="middle">11.0592 MHz XTAL</text>
+    <text x="80" y="175" font-family="monospace" font-size="9" fill="#00F0FF" text-anchor="middle">UART · TIMERS · GPIO</text>
+
+    <!-- Pins Left -->
+    <g fill="#64748B" stroke="#38BDF8" stroke-width="0.8">
+      <rect x="-16" y="30" width="16" height="6" rx="1" />
+      <rect x="-16" y="55" width="16" height="6" rx="1" />
+      <rect x="-16" y="80" width="16" height="6" rx="1" />
+      <rect x="-16" y="105" width="16" height="6" rx="1" />
+      <rect x="-16" y="130" width="16" height="6" rx="1" />
+      <rect x="-16" y="155" width="16" height="6" rx="1" />
+      <rect x="-16" y="180" width="16" height="6" rx="1" />
+      <rect x="-16" y="205" width="16" height="6" rx="1" />
+      <rect x="-16" y="230" width="16" height="6" rx="1" />
+    </g>
+
+    <!-- Pins Right -->
+    <g fill="#64748B" stroke="#00F0FF" stroke-width="0.8">
+      <rect x="160" y="30" width="16" height="6" rx="1" />
+      <rect x="160" y="55" width="16" height="6" rx="1" />
+      <rect x="160" y="80" width="16" height="6" rx="1" />
+      <rect x="160" y="105" width="16" height="6" rx="1" />
+      <rect x="160" y="130" width="16" height="6" rx="1" />
+      <rect x="160" y="155" width="16" height="6" rx="1" />
+      <rect x="160" y="180" width="16" height="6" rx="1" />
+      <rect x="160" y="205" width="16" height="6" rx="1" />
+      <rect x="160" y="230" width="16" height="6" rx="1" />
+    </g>
+  </g>
+
+  <!-- Left Module: Crystal Oscillator -->
+  <g transform="translate(50, 140)">
+    <rect x="0" y="0" width="110" height="70" rx="6" fill="#0E1422" stroke="#38BDF8" stroke-width="1.2" />
+    <text x="55" y="25" font-family="monospace" font-size="10" font-weight="bold" fill="#38BDF8" text-anchor="middle">OSCILLATOR</text>
+    <text x="55" y="45" font-family="monospace" font-size="12" font-weight="bold" fill="#F8FAFC" text-anchor="middle">11.0592 MHz</text>
+    <text x="55" y="60" font-family="monospace" font-size="8" fill="#64748B" text-anchor="middle">Baud Rate Lock</text>
+  </g>
+
+  <!-- Right Module: 7-Segment / LCD Interface -->
+  <g transform="translate(440, 140)">
+    <rect x="0" y="0" width="110" height="70" rx="6" fill="#0E1422" stroke="#00F0FF" stroke-width="1.2" />
+    <text x="55" y="25" font-family="monospace" font-size="10" font-weight="bold" fill="#00F0FF" text-anchor="middle">BUS INTERFACE</text>
+    <text x="55" y="45" font-family="monospace" font-size="12" font-weight="bold" fill="#F8FAFC" text-anchor="middle">UART &amp; LCD</text>
+    <text x="55" y="60" font-family="monospace" font-size="8" fill="#64748B" text-anchor="middle">Proteus Verified</text>
+  </g>
+
+  <!-- Header Banner -->
+  <rect x="20" y="20" width="220" height="26" rx="4" fill="#0E1422" stroke="#38BDF8" stroke-width="0.8" />
+  <text x="30" y="37" font-family="monospace" font-size="10" font-weight="bold" fill="#38BDF8">KEIL C51 &amp; PROTEUS SUITE</text>
+</svg>

@@ -12,8 +12,8 @@ export function Contact() {
     <Section
       id="contact"
       badge="CONNECT & COLLABORATE"
-      title="Initiate Contact"
-      description="Available for firmware engineering positions, embedded hardware roles, and R&D discussions."
+      title="Let's Connect & Build Something Meaningful."
+      description="Available for engineering opportunities, technical collaborations, STEM workshops, project mentoring, and professional networking."
     >
       <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr] items-start">
         {/* Left column: Direct channels & statement */}
