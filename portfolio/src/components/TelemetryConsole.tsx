@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Terminal, Play, Cpu, ShieldCheck, Code2, CircuitBoard } from "lucide-react";
 
-type SimProgram = "stm32" | "lora" | "ros2" | "picsim";
+type SimProgram = "stm32" | "lora" | "robot" | "picsim";
 
 const programData: Record<
   SimProgram,
@@ -33,16 +33,16 @@ const programData: Record<
       "[OLED_INIT] Sending SH1106 initialization sequence (0xAE Display OFF, 0xD5, 0x80)",
       "[OLED_CMD] 0xA8 Multiplex: 0x3F | 0xD3 Offset: 0x00 | 0x8D Charge Pump: ON",
       "[OLED_CMD] 0xAF Display ON -> I2C Address 0x3C ACK Received",
-      "[SENSORS] DHT11 acquisition on PA1: Temp = 24.8 °C, Humidity = 62% RH",
-      "[RTC_SYNC] DS1307 real-time clock over I2C (0x68): 14:32:08 UTC+05:30",
-      "[FRAME_BUFFER] Drawing: 'TEMP: 24.8 C' at (x:0, y:16, Font_7x10)",
-      "[FRAME_BUFFER] Drawing: 'HUM : 62 %'  at (x:0, y:32, Font_7x10)",
+      "[SENSORS] DHT11 acquisition on PA1: Temp = 31.3 °C, Humidity = 64.9% RH",
+      "[RTC_SYNC] DS1307 real-time clock over I2C (0x68): Synchronized",
+      "[FRAME_BUFFER] Drawing: 'TEMP: 31.3 C' at (x:0, y:16, Font_7x10)",
+      "[FRAME_BUFFER] Drawing: 'HUM : 64.9 %' at (x:0, y:32, Font_7x10)",
       "[DMA1_CH6] Circular DMA display buffer transfer complete (20 FPS stable, 0% CPU overhead)",
     ],
   },
   lora: {
     title: "LoRa SX1278 (433MHz) Multi-Node Mesh Hardware",
-    chip: "TTGO ESP32 LoRa + OLED Modules",
+    chip: "ESP32 + Arduino Nano Dual-Node LoRa Transceivers",
     badge: "WIRELESS MESH",
     codeSnippet: `void LoRa_Transmit_Encrypted(uint8_t destNode, uint8_t *payload, uint8_t len) {
     uint8_t cipher[64];
@@ -58,45 +58,48 @@ const programData: Record<
       "[RADIO] Freq: 433.05 MHz | Spreading Factor: SF12 | Bandwidth: 125 kHz | CR: 4/5",
       "[SECURITY] AES-CBC-128 Encryption initialized with secret key hash",
       "[MESH_ROUTING] Dynamic route discovery initiated across field nodes:",
-      "  ✓ Node A [Gateway Sink] -> RSSI: -74 dBm, SNR: +8.4 dB",
-      "  ✓ Node B [Relay 01]     -> Hop Count: 1, Solar LiPo: 4.18V",
-      "  ✓ Node C [Sensor Node]  -> GPS Lock: Lat 12.9716°N, Lon 80.2437°E",
-      "[PACKET_TX] Broadcasting 48-byte encrypted payload over air...",
-      "[PACKET_RX] ACK received from Gateway sink in 138ms",
-      "[BENCHMARK] 500 field transmissions verified: 96.4% packet delivery rate",
+      "  -> Node 01 (Base): RSSI -68 dBm, SNR: +8.5 dB (DIRECT LINK OK)",
+      "  -> Node 02 (Relay): RSSI -84 dBm, SNR: +4.2 dB (HOP 1 OK)",
+      "  -> Node 03 (Sensor Node): RSSI -96 dBm, SNR: -1.2 dB (ROUTED VIA NODE 02)",
+      "[GPS] NEO-6M Fix acquired: Latitude 13.0827° N, Longitude 80.2707° E, Sats: 8",
+      "[PACKET_DISPATCH] 48 bytes AES ciphertext sent -> ACK received in 84ms",
+      "[METRIC] Tested packet delivery rate: 96.4% across 500 field transmissions",
     ],
   },
-  ros2: {
-    title: "ROS 2 Humble · Gazebo 3D & RViz SLAM Mapping",
-    chip: "Ubuntu 22.04 LTS · CycloneDDS",
-    badge: "AUTONOMOUS ROBOTICS",
-    codeSnippet: `def cmd_vel_callback(self, msg: Twist):
-    v = msg.linear.x
-    w = msg.angular.z
-    # Differential drive inverse kinematics
-    v_left  = (2 * v - w * self.wheel_separation) / (2 * self.wheel_radius)
-    v_right = (2 * v + w * self.wheel_separation) / (2 * self.wheel_radius)
-    self.send_motor_pwm(v_left, v_right)`,
+  robot: {
+    title: "ESP32 & Arduino Uno Autonomous Mechatronic Controller",
+    chip: "Dual MCU Architecture · Voice, IR & Mobile App Control",
+    badge: "MECHATRONICS",
+    codeSnippet: `void loop() {
+    uint16_t gasLevel = analogRead(MQ2_PIN);
+    if (gasLevel > GAS_THRESHOLD) {
+        triggerEmergencyBuzzer();
+        broadcastHazardAlert(gasLevel);
+    }
+    handleMultiModeInputs(); // Voice / Line / Obstacle / IR / App
+}`,
     lines: [
-      "[ROS2] Initializing rclpy node /diff_drive_slam_controller",
-      "[GAZEBO] Spawning URDF differential drive robot model into 3D world",
-      "[TF2] Publishing transforms: map -> odom -> base_link -> laser_frame",
-      "[LIDAR] /scan topic active: 360 laser range samples [0.12m - 8.0m]",
-      "[SLAM] Generating 2D Occupancy Grid Costmap in RViz...",
-      "[NAV_GOAL] 2D Nav Goal received: target (x: 4.50m, y: -2.10m, θ: 0.0)",
-      "[PLANNER] DWA Local Planner computed velocity: v = 0.45 m/s, ω = 0.12 rad/s",
-      "[STATUS] Real-time factor: 0.98 | Zero obstacle collisions recorded",
+      "[ROBOT_INIT] Hardware self-test started on dual MCU bus (ESP32 <-> Arduino Uno)",
+      "[MOTORS] L298N dual H-bridge initialized: Left & Right PWM channels 0-255",
+      "[SENSORS] HC-SR04 ultrasonic rangefinder active: Ping distance 48.2 cm",
+      "[LINE_TRACK] 3-Channel infrared reflective array calibrated: On-track",
+      "[GAS_SENSOR] MQ-2 electrochemical sensor heated and analog ADC zeroed: 112 ppm (NORMAL)",
+      "[BLUETOOTH] Smartphone mobile telemetry bridge connected: Handshake OK",
+      "[VOICE_CMD] Voice recognition module standby: Listening for directional commands",
+      "[OBSTACLE_AVOID] Path clear. Cruising speed 65% PWM duty cycle",
+      "[SAFETY_INTERLOCK] Auto-stop latency verified: <35ms reaction on sudden obstruction",
     ],
   },
   picsim: {
-    title: "PIC16F877A Microwave Appliance Controller",
-    chip: "8-bit PIC MCU · MPLAB X · PICSimLab",
-    badge: "EMBEDDED APPLIANCE",
-    codeSnippet: `void ISR_Timer1(void) interrupt 1 {
-    if (PIR1bits.TMR1IF) {
-        PIR1bits.TMR1IF = 0;
-        TMR1 = TMR1_RELOAD_VALUE;
-        if (cooking_active && sec_counter > 0) {
+    title: "PIC16F877A Microwave Oven Automation System",
+    chip: "8-bit Microchip PIC @ 20MHz · MPLAB X XC8",
+    badge: "APPLIANCE FIRMWARE",
+    codeSnippet: `void __interrupt() ISR(void) {
+    if (TMR1IF) {
+        TMR1IF = 0;
+        TMR1 = 0x3CAF; // 10ms tick
+        if (++tick_count >= 100) {
+            tick_count = 0;
             sec_counter--;
             CLCD_Display_Time(sec_counter);
         }
@@ -146,25 +149,25 @@ export function TelemetryConsole() {
   };
 
   return (
-    <div className="rounded-2xl border border-[#B6E778]/25 bg-[#1B211D] p-5 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+    <div className="rounded-2xl border border-[#38BDF8]/25 bg-[#0E1422] p-5 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
       {/* Console Top Toolbar */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-[#B6E778]/15 pb-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-[#1E293B] pb-4">
         <div className="flex items-center gap-2.5">
           <span className="flex size-3 rounded-full bg-[#ef4444]" />
           <span className="flex size-3 rounded-full bg-[#f59e0b]" />
-          <span className="flex size-3 rounded-full bg-[#B6E778]" />
-          <span className="ml-2 font-mono text-xs font-bold uppercase tracking-wider text-[#F1F4EF]">
+          <span className="flex size-3 rounded-full bg-[#38BDF8]" />
+          <span className="ml-2 font-mono text-xs font-bold uppercase tracking-wider text-[#F8FAFC]">
             Interactive Firmware &amp; Architecture Console
           </span>
         </div>
 
         {/* Program Buttons */}
-        <div className="flex flex-wrap gap-1 rounded-lg border border-[#B6E778]/20 bg-[#101310] p-1">
-          {(["stm32", "lora", "ros2", "picsim"] as SimProgram[]).map((p) => {
+        <div className="flex flex-wrap gap-1 rounded-xl border border-[#38BDF8]/20 bg-[#070A11] p-1">
+          {(["stm32", "lora", "robot", "picsim"] as SimProgram[]).map((p) => {
             const labels: Record<SimProgram, string> = {
               stm32: "STM32 OLED",
               lora: "LoRa SX1278",
-              ros2: "ROS 2 SLAM",
+              robot: "Robot Bot MCU",
               picsim: "PIC Microwave",
             };
             return (
@@ -172,10 +175,10 @@ export function TelemetryConsole() {
                 key={p}
                 type="button"
                 onClick={() => switchTab(p)}
-                className={`rounded-md px-3 py-1.5 font-mono text-xs transition-all cursor-pointer ${
+                className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-all cursor-pointer ${
                   activeProg === p
-                    ? "bg-[#B6E778] text-[#101310] font-bold shadow-[0_0_12px_rgba(182,231,120,0.3)]"
-                    : "text-[#9EAA9A] hover:text-[#F1F4EF]"
+                    ? "bg-[#38BDF8] text-[#070A11] font-bold shadow-[0_0_12px_rgba(56,189,248,0.25)]"
+                    : "text-[#94A3B8] hover:text-[#F8FAFC]"
                 }`}
               >
                 {labels[p]}
@@ -188,83 +191,90 @@ export function TelemetryConsole() {
       {/* Program Metadata Bar */}
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
         <div className="flex items-center gap-2">
-          <CircuitBoard className="size-4 text-[#B6E778]" />
-          <span className="font-bold text-[#F1F4EF]">{current.title}</span>
+          <CircuitBoard className="size-4 text-[#38BDF8]" />
+          <span className="font-bold text-[#F8FAFC]">{current.title}</span>
           <span className="hidden sm:inline text-neutral-600">·</span>
-          <span className="hidden sm:inline text-[#9EAA9A]">{current.chip}</span>
+          <span className="hidden sm:inline text-[#94A3B8]">{current.chip}</span>
         </div>
         <div className="flex items-center gap-2.5">
           <button
             type="button"
             onClick={() => setShowCode(!showCode)}
-            className="inline-flex items-center gap-1 rounded-md border border-[#B6E778]/25 bg-[#101310] px-2.5 py-1 text-xs text-[#B6E778] hover:bg-[#B6E778]/10 cursor-pointer"
+            className="inline-flex items-center gap-1 rounded-md border border-[#38BDF8]/25 bg-[#070A11] px-2.5 py-1 text-xs text-[#38BDF8] hover:bg-[#38BDF8]/10 cursor-pointer"
           >
             <Code2 className="size-3" />
-            {showCode ? "View Serial Output" : "View C / Python Source"}
+            {showCode ? "Hide Firmware" : "View Driver C"}
           </button>
-
-          <button
-            type="button"
-            disabled={running}
-            onClick={runSimulation}
-            className="inline-flex items-center gap-1.5 rounded-md bg-[#B6E778] px-3 py-1 font-bold text-[#101310] hover:bg-[#cbf58f] transition-all disabled:opacity-50 cursor-pointer shadow-[0_0_12px_rgba(182,231,120,0.2)]"
-          >
-            <Play className="size-3 fill-current" />
-            {running ? "Simulating..." : "Run Test"}
-          </button>
+          <span className="rounded bg-[#38BDF8]/15 px-2 py-0.5 text-[10px] font-bold text-[#38BDF8]">
+            {current.badge}
+          </span>
         </div>
       </div>
 
-      {/* Code Snippet View OR Terminal Viewport */}
-      {showCode ? (
-        <div className="mt-4 rounded-xl border border-[#B6E778]/20 bg-[#101310] p-4 font-mono text-xs leading-relaxed text-[#B6E778] overflow-x-auto min-h-[220px]">
-          <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#B6E778]/15 text-[11px] text-[#9EAA9A]">
-            <span>SOURCE CODE IMPLEMENTATION</span>
-            <span>C99 / Embedded C / rclpy</span>
+      {/* Code Snippet Drawer */}
+      {showCode && (
+        <div className="mt-4 overflow-hidden rounded-xl border border-[#38BDF8]/20 bg-[#070A11] p-4 font-mono text-xs">
+          <div className="mb-2 flex items-center justify-between border-b border-[#1E293B] pb-2 text-[10px] text-[#64748B]">
+            <span>EMBEDDED C SOURCE SNIPPET</span>
+            <span className="text-[#38BDF8]">driver.c</span>
           </div>
-          <pre className="font-mono text-xs text-[#F1F4EF] whitespace-pre">
-            {current.codeSnippet}
+          <pre className="overflow-x-auto text-[#CBD5E1]">
+            <code>{current.codeSnippet}</code>
           </pre>
-        </div>
-      ) : (
-        <div className="mt-4 rounded-xl border border-[#B6E778]/20 bg-[#101310] p-4 font-mono text-xs leading-relaxed text-[#F1F4EF] overflow-x-auto min-h-[220px]">
-          <div className="space-y-1.5">
-            {current.lines.slice(0, visibleCount).map((line, idx) => {
-              let color = "text-[#F1F4EF]";
-              if (line.includes("[OLED_INIT]") || line.includes("[OLED_CMD]"))
-                color = "text-[#B6E778]";
-              if (line.includes("ACK Received") || line.includes("complete") || line.includes("96.4%"))
-                color = "text-[#B6E778] font-bold";
-              if (line.includes("[FRAME_BUFFER]") || line.includes("✓"))
-                color = "text-[#cbf58f]";
-              if (line.includes("[SENSORS]") || line.includes("[RTC_SYNC]"))
-                color = "text-[#9EAA9A]";
-              return (
-                <div key={idx} className="flex gap-2 font-mono">
-                  <span className="select-none text-[#6D786A]">
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-                  <span className={color}>{line}</span>
-                </div>
-              );
-            })}
-            {running && (
-              <div className="flex items-center gap-2 text-[#9EAA9A]">
-                <span className="inline-block size-2 animate-pulse bg-[#B6E778]" />
-                <span>Streaming MCU telemetry packets...</span>
-              </div>
-            )}
-          </div>
         </div>
       )}
 
-      {/* Footer Info */}
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-[#9EAA9A]">
-        <span>BAUD: 115200 · PROTOCOL: I2C / SPI / UART · STATUS: BUFFER NOMINAL</span>
-        <span className="text-[#B6E778] flex items-center gap-1 font-semibold">
-          <ShieldCheck className="size-3.5" />
-          Hardware Bring-Up &amp; Register Validated
-        </span>
+      {/* Terminal Output Window */}
+      <div className="mt-4 overflow-hidden rounded-xl border border-[#1E293B] bg-[#070A11] p-4 font-mono text-xs">
+        <div className="mb-3 flex items-center justify-between border-b border-[#1E293B] pb-2 text-[11px]">
+          <span className="flex items-center gap-1.5 text-[#38BDF8]">
+            <Terminal className="size-3.5" />
+            <span>SERIAL / UART DIAGNOSTIC STREAM (115200 BAUD)</span>
+          </span>
+          <button
+            type="button"
+            onClick={runSimulation}
+            disabled={running}
+            className="inline-flex items-center gap-1 rounded bg-[#38BDF8] px-2.5 py-0.5 font-mono text-[10px] font-bold text-[#070A11] hover:bg-[#7dd3fc] disabled:opacity-50 cursor-pointer"
+          >
+            <Play className="size-2.5 fill-current" />
+            {running ? "STREAMING..." : "RE-RUN TELEMETRY"}
+          </button>
+        </div>
+
+        <div className="space-y-1.5 text-[11px] leading-relaxed">
+          {current.lines.slice(0, visibleCount).map((line, i) => {
+            const isError = line.includes("ERR") || line.includes("OVERHEAD");
+            const isSuccess =
+              line.includes("OK") ||
+              line.includes("complete") ||
+              line.includes("stable") ||
+              line.includes("Acquired");
+            const isHighlight =
+              line.includes("72MHz") ||
+              line.includes("96.4%") ||
+              line.includes("Fix acquired") ||
+              line.includes("<35ms");
+
+            return (
+              <div
+                key={i}
+                className={`flex items-start gap-2 ${
+                  isHighlight
+                    ? "font-bold text-[#38BDF8]"
+                    : isSuccess
+                    ? "text-emerald-400"
+                    : isError
+                    ? "text-rose-400"
+                    : "text-[#94A3B8]"
+                }`}
+              >
+                <span className="text-[#64748B] select-none">{String(i + 1).padStart(2, "0")}</span>
+                <span>{line}</span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { X, Maximize2, Radio, Terminal, Sparkles, Cpu } from "lucide-react";
+import { X, Maximize2, Cpu, Sparkles, Compass } from "lucide-react";
 import { site } from "@/data/site";
 
 export function Profile3D() {
   const [mode, setMode] = useState<"portrait" | "session">("portrait");
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+
   const open = () => dialogRef.current?.showModal();
   const close = () => dialogRef.current?.close();
 
@@ -21,16 +24,32 @@ export function Profile3D() {
     return () => dialog.removeEventListener("close", onClose);
   }, []);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    // Restrained, subtle 3D tilt (max 6 degrees) - no distortion
+    setRotate({
+      x: -y / 35,
+      y: x / 35,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+  };
+
   const currentImage = mode === "portrait" ? site.profileImage : site.presentationImage;
 
   return (
     <div className="relative w-full">
-      {/* Ambient Phosphor Green Radial Glow */}
-      <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-[#B6E778]/15 via-[#B6E778]/5 to-transparent blur-3xl pointer-events-none" />
+      {/* Ambient Electric Blue Radial Glow */}
+      <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-[#38BDF8]/12 via-[#00F0FF]/6 to-transparent blur-3xl pointer-events-none" />
 
       {/* Mode Switcher Tabs */}
       <div className="relative z-10 mb-3 flex items-center justify-between gap-2">
-        <div className="inline-flex rounded-lg border border-[#B6E778]/20 bg-[#1B211D] p-1">
+        <div className="inline-flex rounded-lg border border-[#38BDF8]/20 bg-[#0E1422] p-1 shadow-sm">
           <button
             type="button"
             onClick={(e) => {
@@ -39,13 +58,13 @@ export function Profile3D() {
             }}
             className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-mono text-xs font-medium transition-all cursor-pointer ${
               mode === "portrait"
-                ? "bg-[#B6E778] text-[#101310] font-bold shadow-[0_0_12px_rgba(182,231,120,0.3)]"
-                : "text-[#9EAA9A] hover:text-[#F1F4EF]"
+                ? "bg-[#38BDF8] text-[#070A11] font-bold shadow-[0_0_12px_rgba(56,189,248,0.3)]"
+                : "text-[#94A3B8] hover:text-[#F8FAFC]"
             }`}
           >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#B6E778] opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#B6E778]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#38BDF8] opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#38BDF8]" />
             </span>
             Professional Portrait
           </button>
@@ -57,158 +76,124 @@ export function Profile3D() {
             }}
             className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-mono text-xs font-medium transition-all cursor-pointer ${
               mode === "session"
-                ? "bg-[#B6E778] text-[#101310] font-bold shadow-[0_0_12px_rgba(182,231,120,0.3)]"
-                : "text-[#9EAA9A] hover:text-[#F1F4EF]"
+                ? "bg-[#38BDF8] text-[#070A11] font-bold shadow-[0_0_12px_rgba(56,189,248,0.3)]"
+                : "text-[#94A3B8] hover:text-[#F8FAFC]"
             }`}
           >
-            Mentoring &amp; Workshop
+            Technical Presentation
           </button>
         </div>
 
-        <span className="hidden font-mono text-[11px] text-[#B6E778] sm:inline-flex items-center gap-1.5">
+        <span className="hidden font-mono text-[11px] text-[#38BDF8] sm:inline-flex items-center gap-1.5">
           <Cpu className="size-3" />
-          Embedded Engineer
+          Hardware &amp; Firmware
         </span>
       </div>
 
-      {/* Main Interactive 3D Card */}
-      <button
-        type="button"
-        onClick={() => {
-          document.body.style.overflow = "hidden";
-          open();
+      {/* Main Interactive 3D Card with Subtle Hover Physics */}
+      <div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+          transition: "transform 0.15s ease-out",
         }}
-        aria-label="Open expanded image showcase"
-        className="profile-3d group relative block w-full rounded-2xl text-left focus-visible:outline-none cursor-pointer"
+        className="group relative block w-full rounded-2xl text-left"
       >
-        <div className="profile-3d-card relative overflow-hidden rounded-2xl border border-[#B6E778]/25 bg-[#1B211D] p-2 shadow-2xl transition-all duration-300 hover:border-[#B6E778]/50">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-[#101310]">
+        <div className="relative overflow-hidden rounded-2xl border border-[#38BDF8]/25 bg-[#0E1422] p-2.5 shadow-2xl transition-all duration-300 hover:border-[#38BDF8]/60 hover:shadow-[0_0_30px_rgba(56,189,248,0.12)]">
+          {/* Engineering Viewfinder Reticles on Corners */}
+          <div className="pointer-events-none absolute left-3 top-3 z-20 font-mono text-[10px] text-[#38BDF8]/80">
+            ┌ VIGSUGU:R&amp;D
+          </div>
+          <div className="pointer-events-none absolute right-3 top-3 z-20 font-mono text-[10px] text-[#38BDF8]/80">
+            [SYS_OK] ┐
+          </div>
+          <div className="pointer-events-none absolute bottom-3 left-3 z-20 font-mono text-[10px] text-[#38BDF8]/80">
+            └ SILICON:ENG
+          </div>
+          <div className="pointer-events-none absolute bottom-3 right-3 z-20 font-mono text-[10px] text-[#38BDF8]/80">
+            CH_01 ┘
+          </div>
+
+          <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-[#070A11]">
             <Image
               src={currentImage}
               alt={
                 mode === "portrait"
                   ? "Professional portrait of Vignesh Sugunathan"
-                  : "Vignesh Sugunathan conducting technical robotics and firmware mentoring"
+                  : "Vignesh Sugunathan presenting technical research"
               }
               fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
               priority
-              sizes="(max-width: 1024px) 90vw, 440px"
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
             />
 
-            {/* Gradient Scrim */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#101310]/95 via-[#101310]/30 to-transparent" />
+            {/* Subtle Gradient Vignette at bottom */}
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#070A11] via-[#070A11]/60 to-transparent" />
 
-            {/* Top Badge */}
-            <div className="absolute left-3 top-3 right-3 flex items-center justify-between gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#B6E778]/30 bg-[#101310]/85 px-2.5 py-1 font-mono text-[10px] text-[#F1F4EF] backdrop-blur-md">
-                <span className="size-1.5 rounded-full bg-[#B6E778] shadow-[0_0_8px_#B6E778]" />
-                {mode === "portrait" ? "INDUSTRY READY" : "NXTWAVE MENTOR"}
-              </span>
+            {/* Click to inspect overlay trigger */}
+            <button
+              type="button"
+              onClick={() => {
+                document.body.style.overflow = "hidden";
+                open();
+              }}
+              className="absolute right-3 top-3 z-30 inline-flex items-center gap-1 rounded-md border border-[#38BDF8]/30 bg-[#070A11]/85 px-2.5 py-1 font-mono text-[10px] text-[#F8FAFC] backdrop-blur-md opacity-0 transition-opacity group-hover:opacity-100 hover:border-[#38BDF8] hover:text-[#38BDF8] cursor-pointer"
+            >
+              <Maximize2 className="size-3" />
+              Inspect
+            </button>
 
-              <span className="inline-flex items-center gap-1 rounded-full border border-[#B6E778]/30 bg-[#101310]/85 px-2.5 py-1 font-mono text-[10px] text-[#B6E778] backdrop-blur-md">
-                <Maximize2 className="size-3" />
-                Inspect
-              </span>
-            </div>
-
-            {/* Bottom Content Overlay */}
-            <div className="absolute bottom-4 left-4 right-4 text-[#F1F4EF]">
-              {mode === "portrait" ? (
-                <div>
-                  <p className="font-mono text-[10px] tracking-[0.2em] text-[#B6E778]">
-                    VIGSUGU LAB · CHENNAI
-                  </p>
-                  <h2 className="mt-1 text-base font-bold tracking-tight text-white sm:text-lg">
-                    Vignesh Sugunathan
-                  </h2>
-                  <p className="font-mono text-xs text-[#9EAA9A]">
-                    Embedded Systems · Firmware Engineering · Hardware Bring-Up
-                  </p>
-                </div>
-              ) : (
-                <div>
-                  <div className="inline-flex items-center gap-1.5 rounded border border-[#B6E778]/30 bg-[#101310]/80 px-2 py-0.5 font-mono text-[10px] text-[#B6E778] backdrop-blur-md">
-                    <Terminal className="size-3" />
-                    Practical Hardware &amp; Firmware Mentoring
-                  </div>
-                  <h2 className="mt-2 text-base font-bold tracking-tight text-white sm:text-lg">
-                    Live Workshop Instruction
-                  </h2>
-                  <p className="mt-0.5 font-mono text-xs text-[#9EAA9A]">
-                    Interactive code debugging, peripheral bringing-up, and robotics logic
-                  </p>
-                </div>
-              )}
+            {/* Bottom Card Identity Strip */}
+            <div className="absolute inset-x-3 bottom-3 z-20 flex items-center justify-between rounded-lg border border-[#38BDF8]/20 bg-[#0E1422]/90 p-2.5 backdrop-blur-md">
+              <div>
+                <p className="font-mono text-xs font-bold text-white">
+                  {mode === "portrait" ? "Vignesh Sugunathan" : "Technical Session Presentation"}
+                </p>
+                <p className="font-mono text-[10px] text-[#38BDF8]">
+                  {mode === "portrait" ? "Embedded Systems & Firmware Engineer" : "Agni College / NxtWave Robotics"}
+                </p>
+              </div>
+              <div className="flex items-center gap-1.5 font-mono text-[10px] text-[#94A3B8]">
+                <span className="size-1.5 rounded-full bg-emerald-400" />
+                <span>Chennai, IN</span>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Floating Mini Tech Pill */}
-        <div className="absolute -bottom-3 -right-3 hidden rounded-lg border border-[#B6E778]/25 bg-[#101310]/95 px-3 py-2 shadow-2xl backdrop-blur-md sm:flex items-center gap-2">
-          <Cpu className="size-4 text-[#B6E778]" />
-          <div>
-            <p className="font-mono text-[9px] uppercase tracking-wider text-[#9EAA9A]">
-              HARDWARE FOCUS
-            </p>
-            <p className="font-mono text-xs font-bold text-white">
-              STM32 · PIC · LoRa · ROS 2
-            </p>
-          </div>
-        </div>
-      </button>
-
-      {/* Expanded Modal */}
+      {/* Expanded Modal Dialog */}
       <dialog
         ref={dialogRef}
-        onClick={(e) => e.target === dialogRef.current && close()}
-        className="profile-dialog m-auto max-h-[94vh] w-[min(94vw,50rem)] overflow-visible rounded-2xl border border-[#B6E778]/30 bg-[#101310] p-3 text-[#F1F4EF] backdrop:bg-black/85 backdrop:backdrop-blur-md"
+        className="fixed inset-0 z-50 m-auto max-h-[90vh] w-[95vw] max-w-2xl rounded-2xl border border-[#38BDF8]/30 bg-[#0E1422] p-0 text-[#F8FAFC] shadow-2xl backdrop:bg-black/80 backdrop:backdrop-blur-sm"
       >
-        <div className="relative">
-          <button
-            type="button"
-            onClick={close}
-            aria-label="Close modal"
-            className="absolute -right-2 -top-2 z-20 rounded-full border border-[#B6E778]/30 bg-[#1B211D] p-2 text-[#9EAA9A] shadow-xl hover:text-white cursor-pointer"
-          >
-            <X className="size-5" />
-          </button>
-
-          <div className="relative aspect-[4/3] max-h-[75vh] w-full overflow-hidden rounded-xl bg-[#101310] sm:aspect-[16/10]">
+        <div className="p-6">
+          <div className="mb-4 flex items-center justify-between border-b border-[#38BDF8]/15 pb-3">
+            <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#38BDF8]">
+              High-Resolution Engineering Showcase
+            </h3>
+            <button
+              type="button"
+              onClick={close}
+              className="rounded-lg border border-[#38BDF8]/20 p-1.5 text-[#94A3B8] hover:text-white hover:border-[#38BDF8]"
+            >
+              <X className="size-4" />
+            </button>
+          </div>
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-[#38BDF8]/20 bg-[#070A11]">
             <Image
               src={currentImage}
-              alt="Vignesh Sugunathan"
+              alt="High resolution showcase"
               fill
-              sizes="(max-width: 768px) 95vw, 800px"
               className="object-contain"
             />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#101310] via-[#101310]/85 to-transparent p-6 pt-16">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div>
-                  <p className="font-mono text-xs text-[#B6E778]">
-                    {mode === "portrait"
-                      ? "EMBEDDED SYSTEMS & HARDWARE-FIRMWARE INTEGRATION"
-                      : "ROBOTICS & STEM WORKSHOP MENTORSHIP"}
-                  </p>
-                  <h2 className="mt-1 text-2xl font-bold tracking-tight text-white">
-                    Vignesh Sugunathan
-                  </h2>
-                </div>
-                <div className="inline-flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setMode(mode === "portrait" ? "session" : "portrait")}
-                    className="rounded-md border border-[#B6E778]/30 bg-[#1B211D] px-3 py-1.5 font-mono text-xs text-[#F1F4EF] hover:border-[#B6E778] cursor-pointer"
-                  >
-                    Switch to {mode === "portrait" ? "Workshop Session" : "Portrait"}
-                  </button>
-                </div>
-              </div>
-              <p className="mt-2 font-mono text-xs leading-relaxed text-[#9EAA9A]">
-                Electronics &amp; Communication Engineering graduate (2026, CGPA 8.2) specializing in STM32F103 (ARM Cortex-M3), PIC16F877A, ESP32, and LoRa SX1278 mesh networks with verified IEEE research publications.
-              </p>
-            </div>
           </div>
+          <p className="mt-3 text-center font-mono text-xs text-[#94A3B8]">
+            {site.name} · {site.role} · Agni College of Technology (Anna University)
+          </p>
         </div>
       </dialog>
     </div>

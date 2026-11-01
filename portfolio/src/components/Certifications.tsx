@@ -1,136 +1,75 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { Award, CheckCircle2, ChevronRight, ExternalLink, Milestone, Sparkles } from "lucide-react";
+import { Award, CheckCircle2, ChevronRight, ExternalLink, ShieldCheck, Trophy, Sparkles } from "lucide-react";
 import { certifications } from "@/data/site";
 import { Section } from "./Section";
 
 export function Certifications() {
-  const [activeStation, setActiveStation] = useState(0);
+  const [activeCertIdx, setActiveCertIdx] = useState(0);
 
   return (
     <Section
       id="certifications"
-      badge="CREDENTIAL MILESTONES"
-      title="Certifications & Recognition"
-      description="Professional technical credentials, national engineering competition awards, and academic milestones mapped across my journey."
+      badge="VERIFIED CREDENTIALS"
+      title="Certifications &amp; Honors"
+      description="National engineering competition awards, proctored embedded systems credentials, and academic recognitions."
     >
-      {/* Credential Visual Header */}
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-[#B6E778]/15 pb-4">
-        <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-lg border border-[#B6E778]/30 bg-[#1B211D] text-[#B6E778]">
-            <Milestone className="size-5" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#B6E778]">
-                PROFESSIONAL CREDENTIALS
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 font-mono text-[10px] text-emerald-400">
-                5 VERIFIED MILESTONES
-              </span>
-            </div>
-            <p className="text-xs text-[#9EAA9A]">
-              National engineering recognition, certified technical competencies, and peer-reviewed research.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2 font-mono text-xs text-[#9EAA9A]">
-          <span className="text-[#B6E778] font-bold">RECOGNITION:</span> LTTS TECHGIUM® · NPTEL · IIT Madras · Infosys · VIT/SSN
-        </div>
-      </div>
-
-      {/* The Train Track Stepper (Horizontal on Desktop, Scrollable) */}
-      <div className="relative mb-10 overflow-hidden rounded-2xl border border-[#B6E778]/20 bg-[#161C18] p-6 shadow-2xl">
-        {/* Railway Track Bed & Sleepers (Cross-ties) Background */}
-        <div className="absolute inset-x-0 top-12 -z-0 hidden md:block">
-          {/* Top Rail */}
-          <div className="h-1 w-full bg-[#2C3830]" />
-          {/* Cross ties (Sleepers) */}
-          <div
-            className="my-1.5 h-6 w-full opacity-60"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(90deg, #37463C 0px, #37463C 5px, transparent 5px, transparent 24px)",
-            }}
-          />
-          {/* Bottom Rail */}
-          <div className="h-1 w-full bg-[#2C3830]" />
-          {/* Active Track Highlight Segment */}
-          <div
-            className="absolute top-0 h-1 bg-gradient-to-r from-[#B6E778] via-[#B6E778] to-[#B6E778]/40 transition-all duration-500"
-            style={{ width: `${((activeStation + 1) / certifications.length) * 100}%` }}
-          />
-        </div>
-
-        {/* Stations Navigation Row */}
-        <div className="relative z-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5 md:gap-4">
-          {certifications.map((cert, idx) => {
-            const isActive = idx === activeStation;
-            return (
-              <button
-                key={cert.id}
-                type="button"
-                onClick={() => setActiveStation(idx)}
-                className={`group flex flex-col items-start rounded-xl border p-4 text-left transition-all duration-300 ${
-                  isActive
-                    ? "border-[#B6E778] bg-[#1B211D] shadow-[0_0_20px_rgba(182,231,120,0.15)] ring-1 ring-[#B6E778]/50"
-                    : "border-[#B6E778]/15 bg-[#101310]/80 hover:border-[#B6E778]/40 hover:bg-[#1B211D]"
-                }`}
-              >
-                {/* Station Node Indicator */}
-                <div className="mb-3 flex w-full items-center justify-between">
-                  <div
-                    className={`flex size-8 items-center justify-center rounded-full border text-xs font-bold transition-all ${
-                      isActive
-                        ? "border-[#B6E778] bg-[#B6E778] text-[#101310] shadow-[0_0_12px_#B6E778]"
-                        : "border-[#3A4B3F] bg-[#121613] text-[#8EA091] group-hover:border-[#B6E778]/60 group-hover:text-[#B6E778]"
-                    }`}
-                  >
-                    0{idx + 1}
-                  </div>
-                  <span
-                    className={`font-mono text-[10px] font-semibold tracking-wider ${
-                      isActive ? "text-[#B6E778]" : "text-[#738576]"
-                    }`}
-                  >
-                    {cert.year}
-                  </span>
-                </div>
-
-                <div className="font-mono text-[10px] uppercase tracking-wider text-[#B6E778]/80">
-                  {cert.stationNumber}
-                </div>
-                <h4
-                  className={`mt-1 line-clamp-2 text-xs font-bold leading-snug transition-colors ${
-                    isActive ? "text-white" : "text-[#C8D3C8] group-hover:text-white"
+      {/* Credential Navigation Tabs / Stepper */}
+      <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+        {certifications.map((cert, idx) => {
+          const isActive = idx === activeCertIdx;
+          return (
+            <button
+              key={cert.id}
+              type="button"
+              onClick={() => setActiveCertIdx(idx)}
+              className={`group flex flex-col items-start rounded-xl border p-4 text-left transition-all duration-300 cursor-pointer ${
+                isActive
+                  ? "border-[#38BDF8] bg-[#0E1422] shadow-[0_0_20px_rgba(56,189,248,0.15)] ring-1 ring-[#38BDF8]/50"
+                  : "border-[#38BDF8]/15 bg-[#070A11]/80 hover:border-[#38BDF8]/40 hover:bg-[#0E1422]"
+              }`}
+            >
+              <div className="mb-2 flex w-full items-center justify-between">
+                <span
+                  className={`flex size-7 items-center justify-center rounded-lg border text-xs font-mono font-bold transition-all ${
+                    isActive
+                      ? "border-[#38BDF8] bg-[#38BDF8] text-[#070A11]"
+                      : "border-[#1E293B] bg-[#070A11] text-[#94A3B8] group-hover:text-[#38BDF8]"
                   }`}
                 >
-                  {cert.title}
-                </h4>
-                <p className="mt-1 line-clamp-1 text-[11px] text-[#8B9B8E]">{cert.organization}</p>
-              </button>
-            );
-          })}
-        </div>
+                  {cert.number}
+                </span>
+                <span className="font-mono text-[10px] text-[#64748B]">{cert.year}</span>
+              </div>
+
+              <h4
+                className={`line-clamp-2 text-xs font-bold leading-snug transition-colors ${
+                  isActive ? "text-white" : "text-[#CBD5E1] group-hover:text-white"
+                }`}
+              >
+                {cert.title}
+              </h4>
+              <p className="mt-1 line-clamp-1 text-[11px] text-[#64748B]">{cert.organization}</p>
+            </button>
+          );
+        })}
       </div>
 
-      {/* Active Station Spotlight Platform (Detailed Card) */}
+      {/* Active Featured Credential Card */}
       {(() => {
-        const current = certifications[activeStation];
+        const current = certifications[activeCertIdx];
         return (
-          <div className="overflow-hidden rounded-2xl border border-[#B6E778]/30 bg-[#1B211D] p-6 shadow-2xl transition-all md:p-8">
+          <div className="overflow-hidden rounded-2xl border border-[#38BDF8]/30 bg-[#0E1422] p-6 shadow-2xl transition-all md:p-8">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-              {/* Left Column: Station Badge & Title */}
+              {/* Left Column: Details */}
               <div className="space-y-4 lg:max-w-2xl">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-md border border-[#B6E778]/40 bg-[#B6E778]/10 px-2.5 py-1 font-mono text-xs font-bold text-[#B6E778]">
+                  <span className="inline-flex items-center gap-1.5 rounded-md border border-[#38BDF8]/40 bg-[#38BDF8]/10 px-2.5 py-1 font-mono text-xs font-bold text-[#38BDF8]">
                     <Award className="size-3.5" />
-                    {current.stationNumber}
+                    CREDENTIAL {current.number} OF 05
                   </span>
-                  <span className="rounded-md border border-[#2D3A31] bg-[#101310] px-2.5 py-1 font-mono text-xs text-[#9EAA9A]">
+                  <span className="rounded-md border border-[#1E293B] bg-[#070A11] px-2.5 py-1 font-mono text-xs text-[#94A3B8]">
                     {current.badge}
                   </span>
                   <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs text-emerald-400">
@@ -143,13 +82,13 @@ export function Certifications() {
                   <h3 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                     {current.title}
                   </h3>
-                  <p className="mt-1 font-mono text-sm font-semibold text-[#B6E778]">
+                  <p className="mt-1 font-mono text-sm font-semibold text-[#38BDF8]">
                     {current.organization} · {current.year}
                   </p>
-                  <p className="mt-0.5 text-xs text-[#8EA091]">{current.field}</p>
+                  <p className="mt-0.5 text-xs text-[#94A3B8]">{current.field}</p>
                 </div>
 
-                <p className="text-sm leading-relaxed text-[#D2DDD3] sm:text-base">
+                <p className="text-xs leading-relaxed text-[#CBD5E1] sm:text-sm">
                   {current.description}
                 </p>
 
@@ -157,70 +96,62 @@ export function Certifications() {
                   <div className="pt-2">
                     <a
                       href={current.linkHref}
-                      className="inline-flex items-center gap-2 rounded-lg border border-[#B6E778]/40 bg-[#101310] px-4 py-2 font-mono text-xs font-semibold text-[#B6E778] transition-all hover:border-[#B6E778] hover:bg-[#B6E778]/10"
+                      className="inline-flex items-center gap-2 rounded-lg border border-[#38BDF8]/40 bg-[#070A11] px-4 py-2 font-mono text-xs font-semibold text-[#38BDF8] transition-all hover:border-[#38BDF8] hover:bg-[#38BDF8]/10"
                     >
-                      {current.linkText || "View Publication"}
+                      {current.linkText || "View Details"}
                       <ExternalLink className="size-3.5" />
                     </a>
                   </div>
                 )}
               </div>
 
-              {/* Right Column: Station Technical Specs Pill Box */}
-              <div className="flex flex-col justify-between rounded-xl border border-[#B6E778]/15 bg-[#101310] p-5 lg:w-80">
+              {/* Right Column: Credential Specs Box */}
+              <div className="flex flex-col justify-between rounded-xl border border-[#38BDF8]/15 bg-[#070A11] p-5 lg:w-80 space-y-4">
                 <div className="space-y-3 font-mono text-xs">
-                  <div className="flex items-center justify-between border-b border-[#232F26] pb-2 text-[#889B8C]">
+                  <div className="flex items-center justify-between border-b border-[#1E293B] pb-2 text-[#64748B]">
                     <span>STATUS:</span>
-                    <span className="font-semibold text-[#B6E778]">ACCREDITED</span>
+                    <span className="font-semibold text-emerald-400">ACCREDITED</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#232F26] pb-2 text-[#889B8C]">
-                    <span>DOMAIN:</span>
-                    <span className="text-right font-semibold text-[#F1F4EF]">
-                      {activeStation === 0
-                        ? "Innovation"
-                        : activeStation === 1
-                        ? "Embedded Architecture"
-                        : activeStation === 2
-                        ? "AI & Vision"
-                        : activeStation === 3
-                        ? "IoT & Cloud"
-                        : "IEEE Research"}
+                  <div className="flex items-center justify-between border-b border-[#1E293B] pb-2 text-[#64748B]">
+                    <span>ISSUING BODY:</span>
+                    <span className="text-right font-semibold text-[#F8FAFC] truncate max-w-[150px]">
+                      {current.organization}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#232F26] pb-2 text-[#889B8C]">
-                    <span>STATION ID:</span>
-                    <span className="font-semibold text-[#B6E778]">{current.id.toUpperCase()}</span>
+                  <div className="flex items-center justify-between border-b border-[#1E293B] pb-2 text-[#64748B]">
+                    <span>TRACK ID:</span>
+                    <span className="font-semibold text-[#38BDF8]">{current.id.toUpperCase()}</span>
                   </div>
-                  <div className="flex items-center justify-between text-[#889B8C]">
-                    <span>CREDENTIAL:</span>
+                  <div className="flex items-center justify-between text-[#64748B]">
+                    <span>VERIFICATION:</span>
                     <span className="inline-flex items-center gap-1 font-semibold text-emerald-400">
                       <span className="size-2 rounded-full bg-emerald-400" />
-                      VERIFIED &amp; ACTIVE
+                      AUTHENTICATED
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between pt-4 border-t border-[#232F26]">
+                <div className="flex items-center justify-between border-t border-[#1E293B] pt-4">
                   <button
                     type="button"
                     onClick={() =>
-                      setActiveStation((prev) => (prev > 0 ? prev - 1 : certifications.length - 1))
+                      setActiveCertIdx((prev) => (prev > 0 ? prev - 1 : certifications.length - 1))
                     }
-                    className="rounded-md border border-[#2D3A31] px-2.5 py-1 font-mono text-[11px] text-[#A6B8A9] hover:border-[#B6E778] hover:text-[#B6E778]"
+                    className="rounded-md border border-[#1E293B] px-3 py-1 font-mono text-xs text-[#94A3B8] hover:border-[#38BDF8] hover:text-[#38BDF8]"
                   >
-                    ← PREV
+                    ← Prev
                   </button>
-                  <span className="font-mono text-xs text-[#7E8E81]">
-                    {activeStation + 1} / {certifications.length}
+                  <span className="font-mono text-xs text-[#64748B]">
+                    {activeCertIdx + 1} / {certifications.length}
                   </span>
                   <button
                     type="button"
                     onClick={() =>
-                      setActiveStation((prev) => (prev < certifications.length - 1 ? prev + 1 : 0))
+                      setActiveCertIdx((prev) => (prev < certifications.length - 1 ? prev + 1 : 0))
                     }
-                    className="inline-flex items-center gap-1 rounded-md border border-[#B6E778]/30 bg-[#B6E778]/10 px-2.5 py-1 font-mono text-[11px] font-semibold text-[#B6E778] hover:bg-[#B6E778]/20"
+                    className="inline-flex items-center gap-1 rounded-md border border-[#38BDF8]/30 bg-[#38BDF8]/10 px-3 py-1 font-mono text-xs font-semibold text-[#38BDF8] hover:bg-[#38BDF8]/20"
                   >
-                    NEXT →
+                    Next →
                   </button>
                 </div>
               </div>
@@ -229,28 +160,28 @@ export function Certifications() {
         );
       })()}
 
-      {/* Grid of all 5 Station Cards for Quick Reference */}
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Grid of All Credentials */}
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {certifications.map((cert, index) => (
           <div
             key={cert.id}
-            onClick={() => setActiveStation(index)}
+            onClick={() => setActiveCertIdx(index)}
             className={`cursor-pointer rounded-xl border p-5 transition-all duration-300 ${
-              index === activeStation
-                ? "border-[#B6E778] bg-[#1B211D]"
-                : "border-[#B6E778]/15 bg-[#141A16]/90 hover:border-[#B6E778]/40 hover:bg-[#1B211D]"
+              index === activeCertIdx
+                ? "border-[#38BDF8] bg-[#0E1422] shadow-lg"
+                : "border-[#38BDF8]/15 bg-[#070A11] hover:border-[#38BDF8]/40 hover:bg-[#0E1422]"
             }`}
           >
             <div className="flex items-center justify-between text-xs">
-              <span className="font-mono font-bold text-[#B6E778]">{cert.stationNumber}</span>
-              <span className="font-mono text-[11px] text-[#819284]">{cert.year}</span>
+              <span className="font-mono font-bold text-[#38BDF8]">CREDENTIAL {cert.number}</span>
+              <span className="font-mono text-[11px] text-[#64748B]">{cert.year}</span>
             </div>
-            <h4 className="mt-2 font-bold text-white leading-snug">{cert.title}</h4>
-            <p className="mt-1 font-mono text-xs text-[#B6E778]/90">{cert.organization}</p>
-            <p className="mt-2 text-xs text-[#9EAA9A] line-clamp-2">{cert.description}</p>
-            <div className="mt-3 flex items-center justify-between border-t border-[#232F26] pt-2 text-[11px]">
-              <span className="text-[#819284]">{cert.badge}</span>
-              <span className="inline-flex items-center gap-0.5 font-mono text-[#B6E778]">
+            <h4 className="mt-2 font-bold text-white text-sm leading-snug">{cert.title}</h4>
+            <p className="mt-1 font-mono text-xs text-[#38BDF8]">{cert.organization}</p>
+            <p className="mt-2 text-xs text-[#94A3B8] line-clamp-2">{cert.description}</p>
+            <div className="mt-3 flex items-center justify-between border-t border-[#1E293B] pt-2 text-[11px]">
+              <span className="text-[#64748B]">{cert.badge}</span>
+              <span className="inline-flex items-center gap-0.5 font-mono text-[#38BDF8]">
                 Inspect <ChevronRight className="size-3" />
               </span>
             </div>

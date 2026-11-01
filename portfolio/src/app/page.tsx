@@ -2,13 +2,13 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Skills } from "@/components/Skills";
+import { Projects } from "@/components/Projects";
+import { Experience } from "@/components/Experience";
 import { EngineeringToolkit } from "@/components/EngineeringToolkit";
 import { Research } from "@/components/Research";
-import { Projects } from "@/components/Projects";
 import { Certifications } from "@/components/Certifications";
-import { Experience } from "@/components/Experience";
+import { TelemetryConsole } from "@/components/TelemetryConsole";
 import { Contact } from "@/components/Contact";
-import { Services } from "@/components/Services";
 import { Footer } from "@/components/Footer";
 import { WelcomePopup } from "@/components/WelcomePopup";
 import { site } from "@/data/site";
@@ -34,7 +34,7 @@ export default function Page() {
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-[#B6E778] focus:px-4 focus:py-2 focus:text-[#101310]"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-sky-400 focus:px-4 focus:py-2 focus:text-slate-950 focus:font-semibold"
       >
         Skip to content
       </a>
@@ -43,12 +43,12 @@ export default function Page() {
         <Hero />
         <About />
         <Skills />
-        <EngineeringToolkit />
         <Projects />
         <Experience />
-        <Certifications />
+        <EngineeringToolkit />
         <Research />
-        <Services />
+        <Certifications />
+        <TelemetryConsole />
         <Contact />
       </main>
       <Footer />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowUpRight, FileText } from "lucide-react";
+import { Menu, X, ArrowUpRight, FileText, Download } from "lucide-react";
 import { navLinks, site } from "@/data/site";
 import { ResumeModal } from "./ResumeModal";
 
@@ -44,29 +44,36 @@ export function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           scrolled || open
-            ? "border-b border-[#B6E778]/15 bg-[#101310]/90 backdrop-blur-xl shadow-lg shadow-black/40"
+            ? "border-b border-[#38BDF8]/15 bg-[#070A11]/90 backdrop-blur-xl shadow-lg shadow-black/60"
             : "border-b border-transparent bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-          {/* Brand Logo in Embedded Industrial aesthetic */}
+          {/* Professional Engineering Identity Brand */}
           <a
             href="#home"
-            className="group flex items-center gap-2.5 font-bold tracking-tight text-[#F1F4EF]"
+            className="group flex items-center gap-2.5 font-bold tracking-tight text-[#F8FAFC]"
             onClick={() => setOpen(false)}
           >
-            <div className="relative flex size-7 items-center justify-center rounded-md border border-[#B6E778]/30 bg-[#1B211D] transition-colors group-hover:border-[#B6E778]">
+            <div className="relative flex size-7 items-center justify-center rounded-md border border-[#38BDF8]/30 bg-[#0E1422] transition-colors group-hover:border-[#38BDF8]">
               <svg viewBox="0 0 24 24" className="size-4" fill="none">
                 <path
                   d="M12 4L20 18H4L12 4Z"
                   fill="none"
-                  stroke="#B6E778"
+                  stroke="#38BDF8"
                   strokeWidth="2.2"
                   strokeLinejoin="round"
                 />
               </svg>
             </div>
-            <span className="font-mono text-sm tracking-wider">{site.brand}</span>
+            <div className="flex flex-col">
+              <span className="font-mono text-xs font-bold tracking-wider text-white group-hover:text-[#38BDF8] transition-colors">
+                {site.name.toUpperCase()}
+              </span>
+              <span className="font-mono text-[9px] text-[#64748B] tracking-widest uppercase">
+                EMBEDDED R&amp;D
+              </span>
+            </div>
           </a>
 
           {/* Desktop Navigation */}
@@ -81,8 +88,8 @@ export function Header() {
                       aria-current={isActive ? "true" : undefined}
                       className={`rounded-md px-3 py-1.5 transition-all ${
                         isActive
-                          ? "bg-[#B6E778] text-[#101310] font-bold"
-                          : "text-[#9EAA9A] hover:text-[#F1F4EF] hover:bg-[#1B211D]"
+                          ? "bg-[#38BDF8] text-[#070A11] font-bold shadow-[0_0_12px_rgba(56,189,248,0.3)]"
+                          : "text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#0E1422]"
                       }`}
                     >
                       {l.label}
@@ -98,25 +105,26 @@ export function Header() {
             <button
               type="button"
               onClick={() => setResumeOpen(true)}
-              className="inline-flex items-center gap-1.5 rounded-md border border-[#B6E778]/30 bg-[#1B211D] px-3 py-1.5 font-mono text-xs text-[#F1F4EF] hover:border-[#B6E778] hover:text-[#B6E778] transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 rounded-md border border-[#38BDF8]/30 bg-[#0E1422] px-3 py-1.5 font-mono text-xs text-[#F8FAFC] hover:border-[#38BDF8] hover:text-[#38BDF8] transition-all cursor-pointer"
             >
-              <FileText className="size-3 text-[#B6E778]" />
+              <FileText className="size-3 text-[#38BDF8]" />
               ATS Resume
             </button>
 
             <a
-              href="#contact"
-              className="inline-flex items-center gap-1.5 rounded-md bg-[#B6E778] px-3 py-1.5 font-mono text-xs font-bold text-[#101310] hover:bg-[#cbf58f] transition-all shadow-[0_0_12px_rgba(182,231,120,0.2)]"
+              href={site.resume.href}
+              download={site.resume.downloadName}
+              className="inline-flex items-center gap-1.5 rounded-md bg-[#38BDF8] px-3.5 py-1.5 font-mono text-xs font-bold text-[#070A11] hover:bg-[#7dd3fc] transition-all shadow-[0_0_12px_rgba(56,189,248,0.25)]"
             >
-              Contact
-              <ArrowUpRight className="size-3" />
+              <Download className="size-3" />
+              Resume
             </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="rounded-md border border-[#B6E778]/20 p-2 text-[#9EAA9A] hover:text-white lg:hidden cursor-pointer"
+            className="rounded-md border border-[#38BDF8]/20 p-2 text-[#94A3B8] hover:text-white lg:hidden cursor-pointer"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -128,7 +136,11 @@ export function Header() {
 
         {/* Mobile Drawer */}
         {open && (
-          <nav id="mobile-nav" aria-label="Mobile" className="border-t border-[#B6E778]/20 bg-[#101310]/95 px-5 py-4 lg:hidden backdrop-blur-2xl">
+          <nav
+            id="mobile-nav"
+            aria-label="Mobile"
+            className="border-t border-[#38BDF8]/20 bg-[#070A11]/98 px-5 py-5 lg:hidden backdrop-blur-2xl shadow-2xl"
+          >
             <ul className="grid grid-cols-2 gap-2">
               {navLinks.map((l) => (
                 <li key={l.id}>
@@ -137,32 +149,41 @@ export function Header() {
                     onClick={() => setOpen(false)}
                     className={`block rounded-lg px-3 py-2 font-mono text-xs ${
                       active === l.id
-                        ? "bg-[#B6E778] text-[#101310] font-bold"
-                        : "text-[#F1F4EF] hover:bg-[#1B211D]"
+                        ? "bg-[#38BDF8] text-[#070A11] font-bold"
+                        : "text-[#94A3B8] hover:bg-[#0E1422] hover:text-white"
                     }`}
                   >
                     {l.label}
                   </a>
                 </li>
               ))}
-              <li className="col-span-2 pt-2 border-t border-[#B6E778]/15 flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpen(false);
-                    setResumeOpen(true);
-                  }}
-                  className="w-full text-center rounded-lg border border-[#B6E778]/30 bg-[#1B211D] py-2 font-mono text-xs text-[#B6E778]"
-                >
-                  View ATS Resume
-                </button>
-              </li>
             </ul>
+
+            <div className="mt-4 flex items-center gap-3 border-t border-[#38BDF8]/15 pt-4">
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  setResumeOpen(true);
+                }}
+                className="w-full rounded-lg border border-[#38BDF8]/30 bg-[#0E1422] py-2 font-mono text-xs text-white"
+              >
+                View ATS Resume
+              </button>
+              <a
+                href={site.resume.href}
+                download={site.resume.downloadName}
+                className="w-full text-center rounded-lg bg-[#38BDF8] py-2 font-mono text-xs font-bold text-[#070A11]"
+              >
+                Download PDF
+              </a>
+            </div>
           </nav>
         )}
       </header>
 
-      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
+      {/* Interactive ATS Resume Modal */}
+      <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
     </>
   );
 }

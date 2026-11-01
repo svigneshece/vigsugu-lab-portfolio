@@ -5,3 +5,4 @@ portfolio/out
 portfolio/*.tsbuildinfo
 portfolio/next-env.d.ts
 .env*.local
+scratch/
