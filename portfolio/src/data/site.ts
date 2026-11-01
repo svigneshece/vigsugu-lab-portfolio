@@ -79,9 +79,9 @@ export const impactStats = [
     subtext: "Delivered interactive workshops and technical demonstrations across schools and colleges.",
   },
   {
-    value: "50+",
+    value: "30+",
     label: "Technical Workshops",
-    subtext: "Hands-on robotics, microcontroller, and IoT sessions conducted for learners.",
+    subtext: "Technical sessions taken for school and college students.",
   },
   {
     value: "Multi-Field",
@@ -109,7 +109,8 @@ export const skillGroups: SkillCategory[] = [
       "ESP8266",
       "PIC16F877A",
       "8051 Architecture",
-      "Arduino",
+      "TI MSP430",
+      "Arduino (Uno/Nano/Mega)",
       "Bare-Metal & HAL",
       "Interrupts & ISR Handlers",
     ],
@@ -286,7 +287,7 @@ export const teachingAndSpeaking = {
     "Beyond bench engineering, I actively share technical knowledge through interactive workshops, robotics bootcamps, and technical presentations. With over 10,000 student interactions at NxtWave, I bridge the gap between academic theory and physical, working silicon.",
   stats: [
     { label: "Learners Impacted", value: "10,000+" },
-    { label: "Hands-on Workshops", value: "50+" },
+    { label: "Technical Sessions", value: "30+" },
     { label: "Curriculum Tracks", value: "Robotics & IoT" },
   ],
   pillars: [
@@ -932,6 +933,28 @@ export const mcuNotes = [
     bringUpFocus:
       "Employed as the central computing engine for the Smart Environmental & Climate Monitoring System. Interfaced 40-pin GPIO directly to 16x2 HD44780 LCD in 4-bit parallel mode and captured microsecond single-wire DHT11 pulses.",
   },
+  {
+    id: "ti-msp430",
+    name: "TI MSP430 (MSP430G2553)",
+    clock: "16 MHz DCO",
+    flash: "16 KB Flash",
+    sram: "512 Bytes SRAM",
+    voltage: "1.8V – 3.6V (Ultra-Low Power)",
+    peripherals: "USCI (UART / SPI / I2C), 10-bit 200ksps ADC, 2x 16-bit Timer_A, Watchdog, Ultra-Low Power LPM0-LPM4",
+    bringUpFocus:
+      "Programmed ultra-low-power sensing routines utilizing Low Power Modes (LPM3 <1μA standby). Configured USCI hardware serial peripherals and 10-bit analog-to-digital conversions for battery-operated telemetry.",
+  },
+  {
+    id: "arduino-all-boards",
+    name: "Arduino Ecosystem (Uno, Nano, Mega)",
+    clock: "16 MHz Crystal Oscillator",
+    flash: "32 KB (ATmega328P) / 256 KB (ATmega2560)",
+    sram: "2 KB / 8 KB SRAM",
+    voltage: "5V Operating (7-12V Input via VIN)",
+    peripherals: "Hardware UART, SPI (Master/Slave), I2C (Two-Wire TWI), 10-bit ADC (6-16 ch), PWM Timers, External Interrupts",
+    bringUpFocus:
+      "Rapid hardware prototyping and sensor interfacing across Uno, Nano, and Mega platforms. Utilized hardware interrupts (INT0/INT1), register-level port manipulation (PORTB/PORTD), Timer/Counter PWM for motor control, and I2C/SPI sensor integration.",
+  },
 ];
 
 
@@ -960,5 +983,15 @@ export const microcontrollerNotes = [
     name: "Raspberry Pi (SBC)",
     core: "Quad-Core 64-bit Linux & 40-Pin GPIO",
     note: "Central computing engine for Smart Environmental & Climate Monitoring System. Interfaced 40-pin GPIO directly to 16x2 HD44780 LCD in 4-bit parallel mode and captured microsecond single-wire DHT11 pulses.",
+  },
+  {
+    name: "Texas Instruments MSP430",
+    core: "16-bit Ultra-Low Power RISC @ 16 MHz",
+    note: "Programmed low-power modes (LPM3 <1μA standby). Configured USCI hardware modules for UART/SPI/I2C and 10-bit ADC channels for battery-operated wireless telemetry.",
+  },
+  {
+    name: "Arduino Ecosystem (Uno, Nano, Mega)",
+    core: "AVR 8-bit RISC @ 16 MHz",
+    note: "Prototyped across ATmega328P and ATmega2560 boards. Configured hardware interrupts, direct port register manipulation, Timer/Counter PWM for robotics, and I2C/SPI sensor nodes.",
   },
 ];
