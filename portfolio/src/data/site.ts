@@ -79,12 +79,12 @@ export const impactStats = [
     subtext: "Delivered interactive workshops and technical demonstrations across schools and colleges.",
   },
   {
-    value: "Multiple",
-    label: "Partner Institutions",
-    subtext: "Technical workshops, educational engagements, and university STEM mentorship initiatives.",
+    value: "50+",
+    label: "Technical Workshops",
+    subtext: "Hands-on robotics, microcontroller, and IoT sessions conducted for learners.",
   },
   {
-    value: "Multidisciplinary",
+    value: "Multi-Field",
     label: "Engineering & Education",
     subtext: "Seamless blend of Embedded Systems, Robotics, Electronics, and Technical Knowledge Sharing.",
   },
@@ -283,11 +283,11 @@ export const teachingAndSpeaking = {
     "Inspiring students, conducting engineering workshops, and demonstrating practical electronics across schools and universities.",
   image: "/profile/vignesh-speaker-presentation.jpg",
   summary:
-    "Beyond bench engineering, I actively share technical knowledge through interactive workshops, robotics bootcamps, and institutional presentations. With over 10,000 student interactions at NxtWave and partner institutions, I bridge the gap between academic theory and physical, working silicon.",
+    "Beyond bench engineering, I actively share technical knowledge through interactive workshops, robotics bootcamps, and technical presentations. With over 10,000 student interactions at NxtWave, I bridge the gap between academic theory and physical, working silicon.",
   stats: [
     { label: "Learners Impacted", value: "10,000+" },
     { label: "Hands-on Workshops", value: "50+" },
-    { label: "Curriculum Areas", value: "Robotics · IoT · Microcontrollers" },
+    { label: "Curriculum Tracks", value: "Robotics & IoT" },
   ],
   pillars: [
     {

@@ -38,7 +38,7 @@ export function ProfessionalImpact() {
                 </div>
 
                 <div className="mt-5">
-                  <p className="font-mono text-3xl font-black tracking-tight text-white group-hover:text-sky-300 transition-colors sm:text-4xl">
+                  <p className="font-mono text-2xl font-black tracking-tight text-white group-hover:text-sky-300 transition-colors sm:text-3xl">
                     {stat.value}
                   </p>
                   <h3 className="mt-2 font-mono text-xs font-bold uppercase tracking-wider text-sky-400">

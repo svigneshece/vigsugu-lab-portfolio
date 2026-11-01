@@ -47,13 +47,13 @@ export function TeachingTraining() {
             </p>
 
             {/* Quick Metrics */}
-            <div className="mt-6 grid grid-cols-3 gap-3 border-y border-slate-800/80 py-4">
+            <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-4 border-y border-slate-800/80 py-4">
               {teachingAndSpeaking.stats.map((s) => (
-                <div key={s.label}>
-                  <p className="font-mono text-2xl font-black text-sky-400 sm:text-3xl">
+                <div key={s.label} className="min-w-0">
+                  <p className="font-mono text-xl sm:text-2xl font-black text-sky-400 whitespace-nowrap overflow-hidden text-ellipsis">
                     {s.value}
                   </p>
-                  <p className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-slate-400">
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-slate-400 line-clamp-1">
                     {s.label}
                   </p>
                 </div>
