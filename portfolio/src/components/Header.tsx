@@ -93,7 +93,15 @@ export function Header() {
           </nav>
 
           {/* Right Action Trigger */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-2.5">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-400/50 bg-gradient-to-r from-cyan-500/15 to-sky-500/20 px-3 py-1.5 font-mono text-xs font-bold text-cyan-300 hover:border-cyan-300 hover:bg-cyan-500/30 transition-all shadow-[0_0_12px_rgba(6,182,212,0.25)] cursor-pointer"
+            >
+              <span>✉️</span>
+              <span>Get in Touch</span>
+            </a>
+
             <button
               type="button"
               onClick={() => setResumeOpen(true)}
@@ -154,27 +162,38 @@ export function Header() {
                 })}
               </ul>
 
-              <div className="mt-5 grid grid-cols-2 gap-2 border-t border-slate-800/80 pt-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpen(false);
-                    setResumeOpen(true);
-                  }}
-                  className="flex items-center justify-center gap-1.5 rounded-lg border border-slate-700 bg-[#0E1422] py-2 font-mono text-xs font-semibold text-slate-200"
-                >
-                  <FileText className="size-3.5 text-sky-400" />
-                  <span>View Resume</span>
-                </button>
-
+              <div className="mt-5 space-y-2 border-t border-slate-800/80 pt-4">
                 <a
-                  href={site.resume.href}
-                  download={site.resume.downloadName}
-                  className="flex items-center justify-center gap-1.5 rounded-lg bg-sky-400 py-2 font-mono text-xs font-bold text-slate-950"
+                  href="#contact"
+                  onClick={() => setOpen(false)}
+                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-cyan-400/50 bg-cyan-500/15 py-2.5 font-mono text-xs font-bold text-cyan-300 hover:bg-cyan-500/25 transition-all"
                 >
-                  <Download className="size-3.5" />
-                  <span>Download PDF</span>
+                  <span className="text-sm">✉️</span>
+                  <span>Get in Touch · Direct Message</span>
                 </a>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpen(false);
+                      setResumeOpen(true);
+                    }}
+                    className="flex items-center justify-center gap-1.5 rounded-lg border border-slate-700 bg-[#0E1422] py-2 font-mono text-xs font-semibold text-slate-200"
+                  >
+                    <FileText className="size-3.5 text-sky-400" />
+                    <span>View Resume</span>
+                  </button>
+
+                  <a
+                    href={site.resume.href}
+                    download={site.resume.downloadName}
+                    className="flex items-center justify-center gap-1.5 rounded-lg bg-sky-400 py-2 font-mono text-xs font-bold text-slate-950"
+                  >
+                    <Download className="size-3.5" />
+                    <span>Download PDF</span>
+                  </a>
+                </div>
               </div>
             </nav>
           </div>

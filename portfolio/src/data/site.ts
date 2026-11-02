@@ -287,7 +287,7 @@ export const teachingAndSpeaking = {
     "Beyond bench engineering, I actively share technical knowledge through interactive workshops, robotics bootcamps, and technical presentations. With over 10,000 student interactions at NxtWave, I bridge the gap between academic theory and physical, working silicon.",
   stats: [
     { label: "Learners Impacted", value: "10,000+" },
-    { label: "Technical Sessions", value: "30+" },
+    { label: "Technical Workshops", value: "30+" },
     { label: "Curriculum Tracks", value: "Robotics & IoT" },
   ],
   pillars: [
@@ -661,7 +661,7 @@ export const projects: Project[] = [
     testingAndValidation:
       "Successfully displayed custom logos and text with complete image retention upon total power disconnection, drawing <10μA in deep-sleep mode.",
     result: { value: "<10μA", label: "Quiescent Sleep Current with Image Retention" },
-    image: "/projects/epaper-display.jpg",
+    image: "/projects/epaper-display-esp32.jpg",
     github: "https://github.com/svigneshece/Proteus-Project-Sources.git",
   },
 ];
@@ -847,13 +847,13 @@ export const hardwareBenchTools = [
   },
   {
     id: "pcb-schematic",
-    title: "KiCad 2-Layer STM32 PCB Schematic & Layout",
+    title: "Custom 2-Layer PCB Layout & Circuit Routing",
     category: "Hardware EDA & Circuit Design",
-    spec: "3.3V Low-Noise LDO Rail · Star Ground Pours · Controlled Trace Width",
-    image: "/tools/pcb-schematic.svg",
-    badges: ["KiCad 8.0", "Star Grounding", "100nF Decoupling", "DRC Clearance Verified"],
+    spec: "IC DIP-8 Routing · +5V & GND Copper Rails · Passive R/C Network",
+    image: "/tools/pcb-layout.png",
+    badges: ["2-Layer PCB", "DIP-8 Package", "GND Plane Pour", "DRC Verified"],
     description:
-      "Full schematic capture and PCB routing for STM32 ARM Cortex-M microcontrollers, incorporating ceramic decoupling capacitors adjacent to VDD pins, I2C pull-ups, and ESD protection.",
+      "Physical PCB artwork and schematic layout for circuit modules, featuring dedicated +5V and GND rail routing, discrete resistor-capacitor (R1-R3, C1) networks, diode protection, and clean trace geometries.",
   },
   {
     id: "digital-multimeter",
@@ -867,13 +867,13 @@ export const hardwareBenchTools = [
   },
   {
     id: "oscilloscope",
-    title: "Digital Storage Oscilloscope & Logic Analyzer",
+    title: "Digital Storage Oscilloscope & Signal Generator",
     category: "Signal Integrity & Protocol Decoding",
-    spec: "Hardware I2C / SPI Protocol Bus Decoder · Rise/Fall Timing Analysis",
-    image: "/tools/oscilloscope.svg",
-    badges: ["400kHz SCL Clock", "I2C ACK Decoding", "Rise Time Verification", "Bus Jitter Analysis"],
+    spec: "GRATTEN GA1102CAL 100MHz 1GS/s · Signal Generator & Protocol Analysis",
+    image: "/tools/oscilloscope-bench.png",
+    badges: ["100MHz 1GS/s", "Real-Time Waveform", "Signal Generator", "PP510 Probe 100MHz"],
     description:
-      "High-speed digital storage oscilloscope capturing clock and data lines, rise/fall edge integrity, bus contention, and decoding active I2C transactions to OLED displays and sensors.",
+      "Benchtop GA1102CAL digital storage oscilloscope with 100MHz PP510 probe measuring real-time analog and PWM waveforms, analyzing frequency response (432.535 Hz test carrier), and validating clock integrity.",
   },
 ];
 

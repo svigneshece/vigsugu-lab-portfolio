@@ -69,6 +69,14 @@ export function Hero() {
             </a>
 
             <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold border border-cyan-400/60 bg-gradient-to-r from-cyan-500/20 to-sky-500/20 text-cyan-300 hover:bg-cyan-400 hover:text-slate-950 transition-all shadow-[0_0_18px_rgba(6,182,212,0.3)] cursor-pointer group"
+            >
+              <span className="text-base group-hover:scale-125 transition-transform">✉️</span>
+              <span>Get in Touch</span>
+            </a>
+
+            <a
               href={site.resume.href}
               download={site.resume.downloadName}
               className={button.secondary}
