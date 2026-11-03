@@ -66,7 +66,7 @@ export default function ResumePage() {
             <span className="flex items-center gap-1.5">
               <LinkedInIcon className="size-3 text-sky-400 print:text-black" />
               <a href={site.contact.linkedin} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                linkedin.com/in/vignesh-sugunathan
+                linkedin.com/in/vignesh-sugunathan-50320926a
               </a>
             </span>
             <span className="flex items-center gap-1.5">

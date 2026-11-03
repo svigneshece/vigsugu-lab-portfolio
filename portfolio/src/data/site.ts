@@ -29,7 +29,7 @@ export const site = {
   },
   contact: {
     email: "svigneshsugu24@gmail.com",
-    linkedin: "https://linkedin.com/in/vignesh-sugunathan-50320926",
+    linkedin: "https://www.linkedin.com/in/vignesh-sugunathan-50320926a/",
     github: "https://github.com/svigneshece",
     twitter: "https://x.com/Vignesh_S_2412",
   },
