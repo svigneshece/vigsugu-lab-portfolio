@@ -1,5 +1,11 @@
-import { Mail, MapPin, ArrowUpRight, ShieldCheck, Terminal, Sparkles } from "lucide-react";
-import Link from "next/link";
+import {
+  Mail,
+  MapPin,
+  ArrowUpRight,
+  ShieldCheck,
+  Clock,
+  Sparkles,
+} from "lucide-react";
 import { site } from "@/data/site";
 import { Section } from "./Section";
 import { ContactForm } from "./ContactForm";
@@ -16,9 +22,10 @@ export function Contact() {
       description="Available for engineering opportunities, technical collaborations, STEM workshops, project mentoring, and professional networking."
     >
       <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr] items-start">
-        {/* Left column: Direct channels & statement */}
+        {/* Left column: Direct Channels & Professional Details */}
         <div className="space-y-6">
-          <div className="rounded-2xl border border-slate-800/80 bg-[#0E1422]/90 p-6 sm:p-7 space-y-5 shadow-xl relative overflow-hidden">
+          <div className="rounded-2xl border border-slate-800/80 bg-[#0E1422]/90 p-6 sm:p-7 space-y-6 shadow-xl relative overflow-hidden">
+            {/* Ambient subtle glow */}
             <div className="absolute top-0 right-0 w-48 h-48 bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
 
             <div>
@@ -26,99 +33,134 @@ export function Contact() {
                 <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
                 OPEN FOR OPPORTUNITIES
               </div>
-              <h3 className="text-xl font-bold text-white tracking-tight">Direct Engineering Channels</h3>
+              <h3 className="text-xl font-bold text-white tracking-tight">
+                Direct Engineering Channels
+              </h3>
               <p className="mt-1 text-sm text-slate-400 leading-relaxed">
-                Connect directly for full-time embedded engineering roles, firmware architecture discussions, or technical collaboration.
+                Connect directly for embedded systems roles, firmware development, robotics research, or technical collaboration.
               </p>
             </div>
 
-            <ul className="divide-y divide-slate-800/70 border-y border-slate-800/70 font-mono text-xs">
-              <li>
-                <a
-                  href={`mailto:${email}`}
-                  className="flex items-center justify-between py-3.5 text-slate-200 hover:text-sky-300 transition-colors group"
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="p-2 rounded-lg bg-sky-500/10 text-sky-400 group-hover:bg-sky-500/20 transition-colors">
-                      <Mail className="size-4" />
-                    </span>
-                    <span className="font-semibold text-white group-hover:text-sky-300 transition-colors">{email}</span>
+            {/* Three Professional Social & Direct Contact Buttons */}
+            <div className="space-y-3 font-mono text-xs">
+              {/* 1. LinkedIn */}
+              <a
+                href={linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between p-3.5 rounded-xl border border-slate-800/90 bg-[#070A11]/60 hover:border-sky-500/40 hover:bg-sky-500/[0.04] transition-all duration-200"
+              >
+                <div className="flex items-center gap-3.5">
+                  <span className="p-2.5 rounded-lg bg-sky-500/10 text-sky-400 group-hover:bg-sky-500/20 group-hover:text-cyan-300 transition-colors">
+                    <LinkedInIcon className="size-4" />
                   </span>
-                  <ArrowUpRight className="size-4 text-slate-500 group-hover:text-sky-400 transition-colors" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between py-3.5 text-slate-200 hover:text-sky-300 transition-colors group"
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="p-2 rounded-lg bg-sky-500/10 text-sky-400 group-hover:bg-sky-500/20 transition-colors">
-                      <LinkedInIcon className="size-4" />
-                    </span>
-                    <span>LinkedIn Profile</span>
+                  <div>
+                    <div className="font-semibold text-white group-hover:text-sky-300 transition-colors text-sm font-sans">
+                      LinkedIn
+                    </div>
+                    <div className="text-[11px] text-slate-400">
+                      Professional profile &amp; experience
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 text-slate-400 group-hover:text-sky-300 transition-colors text-[11px]">
+                  <span>Connect</span>
+                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+              </a>
+
+              {/* 2. GitHub */}
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between p-3.5 rounded-xl border border-slate-800/90 bg-[#070A11]/60 hover:border-sky-500/40 hover:bg-sky-500/[0.04] transition-all duration-200"
+              >
+                <div className="flex items-center gap-3.5">
+                  <span className="p-2.5 rounded-lg bg-sky-500/10 text-sky-400 group-hover:bg-sky-500/20 group-hover:text-cyan-300 transition-colors">
+                    <GitHubIcon className="size-4" />
                   </span>
-                  <ArrowUpRight className="size-4 text-slate-500 group-hover:text-sky-400 transition-colors" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between py-3.5 text-slate-200 hover:text-sky-300 transition-colors group"
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="p-2 rounded-lg bg-sky-500/10 text-sky-400 group-hover:bg-sky-500/20 transition-colors">
-                      <GitHubIcon className="size-4" />
-                    </span>
-                    <span>GitHub Repositories</span>
+                  <div>
+                    <div className="font-semibold text-white group-hover:text-sky-300 transition-colors text-sm font-sans">
+                      GitHub
+                    </div>
+                    <div className="text-[11px] text-slate-400">
+                      Firmware code &amp; hardware repositories
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 text-slate-400 group-hover:text-sky-300 transition-colors text-[11px]">
+                  <span>View Repos</span>
+                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+              </a>
+
+              {/* 3. Email Me (Mailto client launcher - private receiving email) */}
+              <a
+                href={`mailto:${email}`}
+                className="group flex items-center justify-between p-3.5 rounded-xl border border-slate-800/90 bg-[#070A11]/60 hover:border-sky-500/40 hover:bg-sky-500/[0.04] transition-all duration-200"
+              >
+                <div className="flex items-center gap-3.5">
+                  <span className="p-2.5 rounded-lg bg-sky-500/10 text-sky-400 group-hover:bg-sky-500/20 group-hover:text-cyan-300 transition-colors">
+                    <Mail className="size-4" />
                   </span>
-                  <ArrowUpRight className="size-4 text-slate-500 group-hover:text-sky-400 transition-colors" />
-                </a>
-              </li>
-              <li className="flex items-center justify-between py-3.5 text-slate-300">
-                <span className="flex items-center gap-3">
-                  <span className="p-2 rounded-lg bg-slate-800 text-slate-400">
-                    <MapPin className="size-4" />
-                  </span>
+                  <div>
+                    <div className="font-semibold text-white group-hover:text-sky-300 transition-colors text-sm font-sans">
+                      Email Me
+                    </div>
+                    <div className="text-[11px] text-slate-400">
+                      Open default email application
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1 text-slate-400 group-hover:text-sky-300 transition-colors text-[11px]">
+                  <span>Compose</span>
+                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+              </a>
+            </div>
+
+            {/* Quick Metadata: Location & Response Timing */}
+            <div className="grid gap-2.5 pt-1 font-mono text-xs">
+              <div className="flex items-center justify-between p-3 rounded-xl border border-slate-800/60 bg-[#070A11]/40 text-slate-300">
+                <span className="flex items-center gap-2.5">
+                  <MapPin className="size-4 text-sky-400" />
                   <span>{site.location}</span>
                 </span>
                 <span className="text-[11px] text-slate-500">UTC+05:30 (IST)</span>
-              </li>
-            </ul>
+              </div>
 
-            {/* Professional Closing Statement */}
+              <div className="flex items-center justify-between p-3 rounded-xl border border-slate-800/60 bg-[#070A11]/40 text-slate-300">
+                <span className="flex items-center gap-2.5">
+                  <Clock className="size-4 text-emerald-400" />
+                  <span>Expected Response Time</span>
+                </span>
+                <span className="text-[11px] text-emerald-400 font-semibold">24–48 Hours</span>
+              </div>
+            </div>
+
+            {/* Professional Quote */}
             <div className="rounded-xl border border-sky-500/20 bg-sky-950/20 p-4">
               <div className="flex items-start gap-2.5">
                 <Sparkles className="size-4 text-sky-400 shrink-0 mt-0.5" />
                 <p className="text-sm font-medium text-slate-200 italic leading-relaxed">
-                  &ldquo;Interested in building reliable embedded systems and innovative electronics products.&rdquo;
+                  &ldquo;Interested in building reliable embedded systems, high-performance firmware, and innovative robotics solutions.&rdquo;
                 </p>
               </div>
             </div>
 
-            {/* Dedicated Message Console link */}
-            <div className="pt-1 flex items-center justify-between">
-              <Link
-                href="/inbox"
-                className="inline-flex items-center gap-2 font-mono text-xs text-slate-400 hover:text-sky-300 transition-colors"
-              >
-                <Terminal className="size-3.5 text-sky-400" />
-                <span>Open Recruiter Message Console</span>
-                <ArrowUpRight className="size-3" />
-              </Link>
-              <span className="inline-flex items-center gap-1 font-mono text-[10px] text-slate-500">
-                <ShieldCheck className="size-3 text-emerald-400" />
-                SSL Encrypted
+            {/* Security Note */}
+            <div className="pt-1 flex items-center justify-between border-t border-slate-800/70 font-mono text-[11px] text-slate-500">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="size-3.5 text-emerald-400" />
+                <span>SSL Encrypted &amp; Spam Protected</span>
               </span>
+              <span>Web3Forms Verified</span>
             </div>
           </div>
         </div>
 
-        {/* Right column: Interactive dispatch form */}
+        {/* Right column: Interactive Web3Forms Dispatch Form */}
         <div>
           <ContactForm />
         </div>
