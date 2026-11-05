@@ -10,7 +10,7 @@ export const site = {
   role: "Embedded Systems Engineer",
   subRole: "Firmware Development · Hardware Integration · IoT · Robotics",
   secondaryRoles: "Technical Educator · Robotics Instructor · STEM Trainer · Technical Mentor · Public Speaker",
-  currentPosition: "Robotics Instructor · Technical Workshop Mentor at NxtWave",
+  currentPosition: "Robotics Instructor & Workshop Mentor at NxtWave Institute of Advanced Technologies",
   education: "B.E. Electronics and Communication Engineering",
   college: "Agni College of Technology (Anna University), Chennai",
   graduation: "2026",
@@ -284,7 +284,7 @@ export const teachingAndSpeaking = {
     "Inspiring students, conducting engineering workshops, and demonstrating practical electronics across schools and universities.",
   image: "/profile/vignesh-speaker-presentation.jpg",
   summary:
-    "Beyond bench engineering, I actively share technical knowledge through interactive workshops, robotics bootcamps, and technical presentations. With over 10,000 student interactions at NxtWave, I bridge the gap between academic theory and physical, working silicon.",
+    "Beyond bench engineering, I actively share technical knowledge through interactive workshops, robotics bootcamps, and technical presentations. With over 10,000 student interactions at NxtWave Institute of Advanced Technologies, I bridge the gap between academic theory and physical, working silicon.",
   stats: [
     { label: "Learners Impacted", value: "10,000+" },
     { label: "Technical Workshops", value: "30+" },
@@ -678,7 +678,7 @@ export type Role = {
 export const experience: Role[] = [
   {
     title: "Robotics Instructor & Workshop Mentor",
-    company: "NxtWave",
+    company: "NxtWave Institute of Advanced Technologies",
     period: "September 2026 – Present",
     location: "Chennai, India",
     current: true,
@@ -691,22 +691,23 @@ export const experience: Role[] = [
     ],
   },
   {
-    title: "STEM Lab Trainer & Embedded Prototyping",
+    title: "AI Robotics Engineer",
     company: "Centrado Tech Solutions Pvt. Ltd.",
     period: "December 2025 – August 2026",
     location: "Chennai, India",
     points: [
-      "Prototyped and debugged embedded circuits and development boards for STEM and robotics learning kits.",
-      "Interfaced sensors (ultrasonic, IR, light, gas), motor drivers, and wireless modules with microcontrollers.",
-      "Conducted hardware bring-up, functional validation, wiring harness assembly, and 3D printing prototyping.",
-      "Collaborated with technical team on product design reviews, firmware optimization, and technical demonstrations.",
+      "Designed, prototyped, and validated intelligent robotic systems and autonomous embedded platforms integrating microcontrollers (ESP32, STM32, ARM Cortex-M) with multi-sensor arrays.",
+      "Engineered real-time sensor fusion pipelines and actuator control loops interfacing ultrasonic, IR, IMU, environmental telemetry, and motor drive stages (PWM, H-Bridge, BLDC/stepper motors).",
+      "Executed full-lifecycle hardware bring-up, board-level functional testing, wiring harness routing, CAD modeling, and rapid 3D-printed electromechanical prototyping.",
+      "Optimized low-latency C/C++ firmware, conducted schematic/PCB design reviews, and streamlined robotic actuation algorithms for robust real-world performance.",
+      "Collaborated with cross-functional R&D teams to deliver production-ready robotic demonstrations, technical documentation, and hands-on system benchmarks.",
     ],
   },
   {
     title: "Embedded Systems Intern",
     company: "Emertxe Information Technologies",
     period: "January 2025 – February 2025",
-    location: "Chennai, India",
+    location: "Bengaluru, India",
     points: [
       "Engineered Embedded C firmware for Microchip PIC16F877A utilizing GPIO, hardware timers, ADC, interrupts, and EEPROM.",
       "Developed and validated an end-to-end Microwave Oven Automation system using finite state machines and CLCD interface.",

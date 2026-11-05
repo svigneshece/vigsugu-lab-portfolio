@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowDown, Download, Mail, Check, Copy, FileText } from "lucide-react";
+import { ArrowDown, Download, Mail, FileText } from "lucide-react";
 import { site } from "@/data/site";
 import { button } from "./ui";
 import { Profile3D } from "./Profile3D";
@@ -11,14 +11,7 @@ import { GitHubIcon, LinkedInIcon } from "./icons";
 const delay = (ms: number) => ({ animationDelay: `${ms}ms` });
 
 export function Hero() {
-  const [copied, setCopied] = useState<string | null>(null);
   const [resumeOpen, setResumeOpen] = useState(false);
-
-  const copyToClipboard = (text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(label);
-    setTimeout(() => setCopied(null), 2000);
-  };
 
   return (
     <section id="home" aria-label="Introduction" className="scroll-mt-16 relative">
@@ -26,14 +19,14 @@ export function Hero() {
         <div>
           {/* Welcome & Status Indicator Badges */}
           <div className="rise mb-5 flex flex-wrap items-center gap-2.5" style={delay(0)}>
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/40 bg-gradient-to-r from-cyan-500/15 via-[#0E1422] to-sky-500/15 px-3.5 py-1.5 font-mono text-xs text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/35 bg-gradient-to-r from-cyan-500/15 via-[#0E1422] to-sky-500/15 px-3.5 py-1.5 font-mono text-xs text-cyan-300 shadow-[0_0_20px_rgba(0,240,255,0.18)] backdrop-blur-md">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#00F0FF]" />
               </span>
-              <span className="font-bold text-white">👋 Welcome</span>
-              <span className="text-slate-500">·</span>
-              <span>Meet Vignesh Sugunathan</span>
+              <span className="font-bold text-white tracking-wide">👋 Welcome</span>
+              <span className="text-slate-600">·</span>
+              <span className="text-slate-200">Meet Vignesh Sugunathan</span>
             </div>
             <div className="inline-flex items-center gap-1.5 rounded-full border border-slate-800 bg-[#0E1422] px-3 py-1 font-mono text-[11px] text-slate-400">
               <span>📍 Chennai, India</span>
@@ -41,23 +34,56 @@ export function Hero() {
           </div>
 
           {/* Main Heading: VIGNESH */}
-          <div className="rise" style={delay(100)}>
-            <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-cyan-400 block mb-1">
-              WELCOME TO THE ENGINEERING PORTFOLIO OF
-            </span>
-            <h1 className="text-5xl font-black tracking-tight text-white sm:text-7xl lg:text-8xl tracking-tight">
-              VIGNESH<span className="text-sky-400">.</span>
-            </h1>
+          <div className="rise relative" style={delay(100)}>
+            {/* Background Ambient Glow specifically highlighting the unique Name */}
+            <div className="absolute -left-6 -top-10 -bottom-6 w-80 sm:w-96 bg-gradient-to-r from-cyan-500/20 via-sky-500/15 to-transparent blur-3xl rounded-full pointer-events-none -z-10" />
+
+            <div className="flex items-center gap-2 mb-2">
+              <span className="h-px w-5 bg-gradient-to-r from-transparent to-cyan-400" />
+              <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-cyan-200">
+                WELCOME TO THE ENGINEERING PORTFOLIO OF
+              </span>
+              <span className="h-px w-8 bg-gradient-to-r from-cyan-400 to-transparent" />
+            </div>
+
+            <div className="flex flex-wrap items-baseline gap-3">
+              <h1 className="text-6xl font-black tracking-tight sm:text-8xl lg:text-9xl tracking-tight bg-gradient-to-br from-white via-[#F8FAFC] to-[#38BDF8] bg-clip-text text-transparent filter drop-shadow-[0_4px_35px_rgba(56,189,248,0.35)]">
+                VIGNESH<span className="text-cyan-400 drop-shadow-[0_0_20px_#00F0FF] animate-pulse">.</span>
+              </h1>
+              <span className="align-middle inline-flex items-center gap-1.5 rounded-md border border-cyan-400/40 bg-cyan-950/40 px-2.5 py-1 font-mono text-[10px] sm:text-xs font-bold text-cyan-300 tracking-wider shadow-[0_0_14px_rgba(0,240,255,0.25)]">
+                <span className="size-1.5 rounded-full bg-cyan-400 animate-ping" />
+                <span>DEV // LAB</span>
+              </span>
+            </div>
           </div>
 
           {/* Professional Designation & Supporting Headline */}
-          <div className="rise mt-3 space-y-1.5" style={delay(180)}>
-            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-              {site.role}
+          <div className="rise mt-4 space-y-3" style={delay(180)}>
+            <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl text-white">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-sky-200">
+                {site.role}
+              </span>
             </h2>
-            <p className="font-mono text-xs uppercase tracking-wider text-sky-400 sm:text-sm font-semibold">
-              {site.subRole}
-            </p>
+
+            {/* Interactive Domain Badges */}
+            <div className="flex flex-wrap items-center gap-2 pt-0.5 font-mono text-xs">
+              {[
+                "Firmware Development",
+                "Hardware Integration",
+                "IoT",
+                "Robotics",
+              ].map((domain) => (
+                <span
+                  key={domain}
+                  className="group inline-flex items-center gap-2 rounded-xl border border-sky-400/25 bg-[#0E1422]/90 px-3.5 py-1.5 text-xs text-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.3)] hover:border-cyan-400 hover:bg-[#131B2E] hover:text-white hover:shadow-[0_0_16px_rgba(0,240,255,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-default"
+                >
+                  <span className="size-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#00F0FF] group-hover:scale-125 transition-transform" />
+                  <span className="font-semibold tracking-wide text-slate-200 group-hover:text-cyan-200 transition-colors">
+                    {domain}
+                  </span>
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Exact Introduction Quote */}
@@ -132,26 +158,8 @@ export function Hero() {
               className="inline-flex items-center gap-2 hover:text-sky-400 transition-colors"
             >
               <Mail className="size-4 text-slate-300" />
-              <span>{site.contact.email}</span>
+              <span>Email Direct</span>
             </a>
-
-            <button
-              type="button"
-              onClick={() => copyToClipboard(site.contact.email, "email")}
-              className="inline-flex items-center gap-1 rounded border border-slate-800 bg-[#0E1422] px-2 py-0.5 text-[10px] text-slate-400 hover:border-sky-400 hover:text-sky-300 transition-colors cursor-pointer"
-            >
-              {copied === "email" ? (
-                <>
-                  <Check className="size-3 text-emerald-400" />
-                  <span>Copied</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="size-3" />
-                  <span>Copy</span>
-                </>
-              )}
-            </button>
           </div>
         </div>
 

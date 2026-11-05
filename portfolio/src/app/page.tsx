@@ -21,7 +21,7 @@ const personJsonLd = {
   name: "Vignesh Sugunathan",
   alternateName: ["Vignesh S", "VIGNESH.", "Vignesh Sugunathan Portfolio"],
   jobTitle: site.role,
-  worksFor: { "@type": "Organization", name: "NxtWave" },
+  worksFor: { "@type": "Organization", name: "NxtWave Institute of Advanced Technologies" },
   address: { "@type": "PostalAddress", addressLocality: "Chennai", addressRegion: "Tamil Nadu", addressCountry: "IN" },
   alumniOf: site.education,
   sameAs: [

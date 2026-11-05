@@ -6,7 +6,6 @@ import {
   Cpu,
   CircuitBoard,
   Wrench,
-  Search,
   Layers,
   Terminal,
   Activity,
@@ -15,22 +14,12 @@ import {
 } from "lucide-react";
 import {
   hardwareBenchTools,
-  microcontrollerNotes,
 } from "@/data/site";
 import { Section } from "./Section";
 import { TelemetryConsole } from "./TelemetryConsole";
 
 export function EngineeringToolkit() {
-  const [filterQuery, setFilterQuery] = useState("");
   const [selectedToolIdx, setSelectedToolIdx] = useState(0);
-
-  const filteredNotes = microcontrollerNotes.filter(
-    (m) =>
-      !filterQuery ||
-      m.name.toLowerCase().includes(filterQuery.toLowerCase()) ||
-      m.core.toLowerCase().includes(filterQuery.toLowerCase()) ||
-      m.note.toLowerCase().includes(filterQuery.toLowerCase())
-  );
 
   const laboratoryToolchains = [
     {
@@ -325,58 +314,6 @@ export function EngineeringToolkit() {
             </article>
           );
         })}
-      </div>
-
-      {/* 5. Microcontroller Field Notes with Search */}
-      <div className="mt-14">
-        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="font-mono text-xs tracking-[0.2em] text-[#38BDF8] font-bold uppercase">
-              QUICK REFERENCE COMPENDIUM
-            </p>
-            <h3 className="mt-1 text-2xl font-bold tracking-tight text-white">
-              Microcontroller Field Notes
-            </h3>
-            <p className="mt-1 text-xs text-[#94A3B8]">
-              Silicon architecture specs, core peripherals, and practical register considerations.
-            </p>
-          </div>
-
-          <div className="relative min-w-[220px]">
-            <Search className="absolute left-3 top-2.5 size-3.5 text-[#64748B]" />
-            <input
-              type="text"
-              value={filterQuery}
-              onChange={(e) => setFilterQuery(e.target.value)}
-              placeholder="Search MCU (STM32, PIC, ESP32...)"
-              className="w-full rounded-xl border border-[#38BDF8]/25 bg-[#0E1422] py-2 pl-9 pr-3 font-mono text-xs text-[#F8FAFC] placeholder:text-[#64748B] focus:border-[#38BDF8] focus:outline-none transition-colors"
-            />
-          </div>
-        </div>
-
-        <div className="grid gap-3 md:grid-cols-2">
-          {filteredNotes.map((m) => (
-            <details
-              key={m.name}
-              className="group rounded-xl border border-[#38BDF8]/20 bg-[#0E1422] p-5 open:border-[#38BDF8]/50 transition-colors"
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                <span>
-                  <span className="block font-bold text-white">{m.name}</span>
-                  <span className="mt-0.5 block font-mono text-xs font-semibold text-[#38BDF8]">
-                    {m.core}
-                  </span>
-                </span>
-                <span className="grid size-7 shrink-0 place-items-center rounded-full border border-[#38BDF8]/25 text-sm text-[#94A3B8] transition-transform group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-              <p className="mt-3 border-t border-[#1E293B] pt-3 font-mono text-xs leading-relaxed text-[#94A3B8]">
-                {m.note}
-              </p>
-            </details>
-          ))}
-        </div>
       </div>
     </Section>
   );
