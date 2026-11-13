@@ -106,8 +106,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen antialiased bg-[#070A11] text-[#F8FAFC] selection:bg-[#38BDF8]/20 selection:text-[#38BDF8]">
-        {children}
+      <body className="min-h-screen antialiased bg-[#070A11] text-[#F8FAFC] selection:bg-[#38BDF8]/20 selection:text-[#38BDF8] relative">
+        <div className="fixed inset-0 pointer-events-none z-0 bg-[url('/engineering-grid.svg')] bg-[size:480px_480px] bg-repeat opacity-75" aria-hidden="true" />
+        <div className="relative z-10">
+          {children}
+        </div>
         <Analytics />
       </body>
     </html>

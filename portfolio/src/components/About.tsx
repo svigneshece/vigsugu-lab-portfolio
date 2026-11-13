@@ -1,5 +1,6 @@
-import { Target, GraduationCap, Award, BookOpen, Users } from "lucide-react";
-import { about } from "@/data/site";
+import Image from "next/image";
+import { Target, GraduationCap } from "lucide-react";
+import { about, site } from "@/data/site";
 import { Section } from "./Section";
 
 export function About() {
@@ -84,17 +85,26 @@ export function About() {
             </div>
           </div>
 
-          {/* Core Competency Quick Summary */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-xl border border-slate-800 bg-[#0E1422] p-4">
-              <span className="font-mono text-2xl font-black text-sky-400">100+</span>
-              <p className="mt-1 font-mono text-xs font-semibold text-white">Projects</p>
-              <p className="mt-0.5 text-[10px] text-slate-400">Developed, supported &amp; mentored</p>
-            </div>
-            <div className="rounded-xl border border-slate-800 bg-[#0E1422] p-4">
-              <span className="font-mono text-2xl font-black text-cyan-400">10k+</span>
-              <p className="mt-1 font-mono text-xs font-semibold text-white">Learners Mentored</p>
-              <p className="mt-0.5 text-[10px] text-slate-400">Across STEM &amp; robotics workshops</p>
+          {/* Engineering Mentor & Speaker Action Card */}
+          <div className="group overflow-hidden rounded-2xl border border-sky-400/25 bg-[#0E1422] p-3 shadow-xl transition-all duration-300 hover:border-sky-400/50">
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-800 bg-[#070A11]">
+              <Image
+                src={site.presentationImage}
+                alt="Vignesh Sugunathan delivering an interactive technical session at a podium in front of a coding display"
+                fill
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#070A11] via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-2.5 left-3 right-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-400/30 bg-slate-900/90 px-2.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider text-sky-300 backdrop-blur-md">
+                  <span className="size-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  Live Technical Presentation &amp; Workshop Session
+                </span>
+                <p className="mt-1 font-mono text-[11px] font-semibold text-white">
+                  Vignesh Sugunathan · Speaker &amp; Instructor
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -14,12 +14,14 @@ import {
 } from "lucide-react";
 import {
   hardwareBenchTools,
+  mcuNotes,
 } from "@/data/site";
 import { Section } from "./Section";
 import { TelemetryConsole } from "./TelemetryConsole";
 
 export function EngineeringToolkit() {
   const [selectedToolIdx, setSelectedToolIdx] = useState(0);
+  const [selectedMcuIdx, setSelectedMcuIdx] = useState(0);
 
   const laboratoryToolchains = [
     {
@@ -283,7 +285,104 @@ export function EngineeringToolkit() {
         <TelemetryConsole />
       </div>
 
-      {/* 4. Development Toolchains 4-Grid */}
+      {/* 4. Microcontroller Architecture Field Notes */}
+      <div className="mb-14">
+        <div className="mb-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/25 bg-sky-500/10 px-3 py-1 font-mono text-[11px] font-semibold text-sky-300">
+            <Cpu className="size-3.5 text-cyan-400" />
+            <span>SILICON BRING-UP FIELD NOTES</span>
+          </div>
+          <h3 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            Microcontroller Architecture &amp; Hardware Bring-Up
+          </h3>
+          <p className="mt-1 text-xs text-slate-400">
+            Real register-level, bare-metal and HAL bring-up observations across ARM Cortex-M, Xtensa, RISC, CISC, MSP430, and Arduino.
+          </p>
+        </div>
+
+        {/* Tab Buttons */}
+        <div className="mb-5 flex flex-wrap gap-2">
+          {mcuNotes.map((mcu, idx) => (
+            <button
+              key={mcu.id}
+              type="button"
+              onClick={() => setSelectedMcuIdx(idx)}
+              className={`rounded-xl border px-3.5 py-2 font-mono text-xs font-semibold transition-all cursor-pointer ${
+                selectedMcuIdx === idx
+                  ? "border-sky-400 bg-sky-500/20 text-sky-200 shadow-[0_0_15px_rgba(56,189,248,0.25)]"
+                  : "border-slate-800 bg-[#0E1422] text-slate-400 hover:border-slate-700 hover:text-white"
+              }`}
+            >
+              <span className="mr-1.5 text-sky-400 font-bold">0{idx + 1}</span>
+              <span>{mcu.name.split(" ")[0]}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Active MCU Card */}
+        {(() => {
+          const mcu = mcuNotes[selectedMcuIdx] || mcuNotes[0];
+          return (
+            <div className="rounded-2xl border border-sky-400/30 bg-[#0E1422] p-6 sm:p-8 shadow-2xl transition-all">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-800 pb-4">
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-sky-400 font-bold">
+                    SILICON ARCHITECTURE 0{selectedMcuIdx + 1} OF 07
+                  </span>
+                  <h4 className="mt-1 text-xl font-bold text-white sm:text-2xl">{mcu.name}</h4>
+                </div>
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 font-mono text-xs font-bold text-cyan-300">
+                  <span className="size-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  Clock: {mcu.clock}
+                </span>
+              </div>
+
+              {/* Hardware Specs Grid */}
+              <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4 font-mono text-xs">
+                <div className="rounded-xl border border-slate-800/80 bg-[#070A11] p-3">
+                  <span className="text-[10px] uppercase text-slate-500">Flash Memory</span>
+                  <p className="mt-0.5 font-bold text-white">{mcu.flash}</p>
+                </div>
+                <div className="rounded-xl border border-slate-800/80 bg-[#070A11] p-3">
+                  <span className="text-[10px] uppercase text-slate-500">SRAM</span>
+                  <p className="mt-0.5 font-bold text-white">{mcu.sram}</p>
+                </div>
+                <div className="rounded-xl border border-slate-800/80 bg-[#070A11] p-3">
+                  <span className="text-[10px] uppercase text-slate-500">Operating Voltage</span>
+                  <p className="mt-0.5 font-bold text-white">{mcu.voltage}</p>
+                </div>
+                <div className="rounded-xl border border-slate-800/80 bg-[#070A11] p-3">
+                  <span className="text-[10px] uppercase text-slate-500">Core Clock</span>
+                  <p className="mt-0.5 font-bold text-sky-400">{mcu.clock}</p>
+                </div>
+              </div>
+
+              {/* Peripherals */}
+              <div className="mt-4 rounded-xl border border-slate-800/80 bg-[#070A11] p-4">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500 font-bold">
+                  Integrated Peripherals &amp; Busses
+                </span>
+                <p className="mt-1 font-mono text-xs text-slate-300 leading-relaxed">
+                  {mcu.peripherals}
+                </p>
+              </div>
+
+              {/* Bring-Up Focus */}
+              <div className="mt-4 rounded-xl border border-sky-400/20 bg-gradient-to-r from-sky-500/10 via-[#0E1422] to-cyan-500/10 p-4">
+                <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-sky-300">
+                  <CheckCircle2 className="size-4 text-cyan-400" />
+                  <span>Hands-on Bring-Up &amp; Implementation Focus</span>
+                </div>
+                <p className="mt-2 text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  {mcu.bringUpFocus}
+                </p>
+              </div>
+            </div>
+          );
+        })()}
+      </div>
+
+      {/* 5. Development Toolchains 4-Grid */}
       <div className="grid gap-4 md:grid-cols-2">
         {laboratoryToolchains.map((toolchain) => {
           const Icon = toolchain.icon;

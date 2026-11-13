@@ -6,7 +6,6 @@ import { Skills } from "@/components/Skills";
 import { Projects } from "@/components/Projects";
 import { EngineeringToolkit } from "@/components/EngineeringToolkit";
 import { Services } from "@/components/Services";
-import { TeachingTraining } from "@/components/TeachingTraining";
 import { Experience } from "@/components/Experience";
 import { Research } from "@/components/Research";
 import { Certifications } from "@/components/Certifications";
@@ -63,10 +62,7 @@ export default function Page() {
         {/* 07. Professional Services */}
         <Services />
 
-        {/* 08. Teaching, Training & Public Speaking */}
-        <TeachingTraining />
-
-        {/* 09. Professional Experience */}
+        {/* 08. Professional Experience */}
         <Experience />
 
         {/* 10. Research & Publications */}
