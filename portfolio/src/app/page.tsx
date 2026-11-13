@@ -4,7 +4,6 @@ import { About } from "@/components/About";
 import { ProfessionalImpact } from "@/components/ProfessionalImpact";
 import { Skills } from "@/components/Skills";
 import { Projects } from "@/components/Projects";
-import { EngineeringToolkit } from "@/components/EngineeringToolkit";
 import { Services } from "@/components/Services";
 import { Experience } from "@/components/Experience";
 import { Research } from "@/components/Research";
@@ -56,10 +55,7 @@ export default function Page() {
         {/* 05. Featured Engineering Projects */}
         <Projects />
 
-        {/* 06. Engineering Toolkit / Workspace */}
-        <EngineeringToolkit />
-
-        {/* 07. Professional Services */}
+        {/* 06. Professional Services */}
         <Services />
 
         {/* 08. Professional Experience */}
