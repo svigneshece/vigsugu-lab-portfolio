@@ -18,15 +18,26 @@ export function WelcomePopup({ onOpenResume }: Props) {
     // Check if dismissed previously in this session
     const dismissed = sessionStorage.getItem("vigsugu_welcome_dismissed");
     if (!dismissed) {
-      const timer = setTimeout(() => {
+      const showTimer = setTimeout(() => {
         setVisible(true);
-      }, 1000);
-      return () => clearTimeout(timer);
+      }, 800);
+      return () => clearTimeout(showTimer);
     } else {
       // If previously dismissed, still offer the minimized floating button
       setMinimized(true);
     }
   }, []);
+
+  // Exactly 10 seconds auto-dismiss timer when popup becomes visible
+  useEffect(() => {
+    if (!visible) return;
+
+    const autoDismissTimer = setTimeout(() => {
+      dismiss();
+    }, 10000);
+
+    return () => clearTimeout(autoDismissTimer);
+  }, [visible]);
 
   const dismiss = () => {
     setVisible(false);
@@ -39,7 +50,7 @@ export function WelcomePopup({ onOpenResume }: Props) {
     setVisible(true);
   };
 
-  // If dismissed and not open, render the sleek floating quick-launcher
+  // If dismissed/closed, render the sleek floating quick-launcher
   if (!visible && minimized) {
     return (
       <aside aria-label="Open welcome message" className="fixed bottom-5 right-5 z-40">
@@ -76,8 +87,8 @@ export function WelcomePopup({ onOpenResume }: Props) {
       aria-label="Personal welcome from Vignesh"
       className="fixed bottom-5 right-5 z-50 max-w-sm sm:max-w-md animate-in fade-in slide-in-from-bottom-5 duration-300"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-cyan-500/30 bg-[#0A0E18]/98 p-5 text-slate-100 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(6,182,212,0.2)] backdrop-blur-2xl ring-1 ring-cyan-400/20">
-        {/* Dynamic Cyan/Sky Ambient Glow Line */}
+      <div className="relative overflow-hidden rounded-2xl border border-cyan-500/35 bg-[#0A0E18]/98 p-5 text-slate-100 shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(6,182,212,0.25)] backdrop-blur-2xl ring-1 ring-cyan-400/25">
+        {/* Dynamic Ambient Glow Line */}
         <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-sky-400 animate-pulse" />
 
         <div className="flex items-start justify-between gap-3">
@@ -100,10 +111,10 @@ export function WelcomePopup({ onOpenResume }: Props) {
             <div>
               <div className="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-cyan-300">
                 <Sparkles className="size-3 text-cyan-400" />
-                <span>PERSONAL GREETING</span>
+                <span>WELCOME GREETING</span>
               </div>
               <h3 className="text-base font-black text-white tracking-tight flex items-center gap-1.5 mt-0.5">
-                <span>Hello, I&apos;m Vignesh!</span>
+                <span>Welcome! I&apos;m Vignesh</span>
                 <span className="text-base">👋</span>
               </h3>
               <p className="font-mono text-[11px] font-semibold text-sky-400">
@@ -115,17 +126,17 @@ export function WelcomePopup({ onOpenResume }: Props) {
           <button
             type="button"
             onClick={dismiss}
-            aria-label="Minimize welcome greeting"
+            aria-label="Close welcome greeting"
             className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white transition-colors cursor-pointer"
           >
             <X className="size-4" />
           </button>
         </div>
 
-        {/* Unique Welcome Message */}
-        <div className="mt-3.5 space-y-2">
-          <p className="text-xs leading-relaxed text-slate-200">
-            Welcome to my engineering laboratory! Here you&apos;ll discover my hands-on <strong className="text-white">STM32 firmware bring-ups</strong>, custom <strong className="text-white">2-layer PCB routing</strong>, real <strong className="text-white">oscilloscope waveforms</strong>, and technical workshops impacting over <strong className="text-cyan-300">10,000+ students</strong>.
+        {/* User-Requested Exact Welcome Message */}
+        <div className="mt-3.5 space-y-2.5">
+          <p className="text-xs sm:text-sm leading-relaxed text-slate-200">
+            Welcome! I&apos;m Vignesh, an engineer driven by curiosity, experimentation, and the excitement of making things work. Explore my journey through engineering, innovation, projects, and knowledge sharing.
           </p>
 
           {/* Quick Engineering Badges */}
@@ -136,11 +147,11 @@ export function WelcomePopup({ onOpenResume }: Props) {
             </span>
             <span className="inline-flex items-center gap-1 rounded-md border border-sky-400/30 bg-sky-500/10 px-2 py-0.5 text-sky-300">
               <Award className="size-2.5" />
-              Best Paper Award
+              IEEE Best Paper Award
             </span>
             <span className="inline-flex items-center gap-1 rounded-md border border-emerald-400/30 bg-emerald-500/10 px-2 py-0.5 text-emerald-300">
               <Cpu className="size-2.5" />
-              ARM · STM32 · ESP32
+              ARM · STM32 · ESP32 · Robotics
             </span>
           </div>
         </div>
@@ -188,6 +199,27 @@ export function WelcomePopup({ onOpenResume }: Props) {
             </Link>
           )}
         </div>
+
+        {/* 10-Second Auto-Dismiss Linear Depletion Bar */}
+        <div className="absolute inset-x-0 bottom-0 h-0.5 bg-slate-800/80 overflow-hidden">
+          <div
+            style={{
+              animation: "vigsuguPopupTimer 10s linear forwards",
+            }}
+            className="h-full bg-gradient-to-r from-cyan-400 via-sky-400 to-emerald-400"
+          />
+        </div>
+
+        <style jsx>{`
+          @keyframes vigsuguPopupTimer {
+            from {
+              width: 100%;
+            }
+            to {
+              width: 0%;
+            }
+          }
+        `}</style>
       </div>
     </aside>
   );
