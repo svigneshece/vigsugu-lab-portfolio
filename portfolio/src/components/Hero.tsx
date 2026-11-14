@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowDown, Download, Mail, FileText } from "lucide-react";
+import { ArrowDown, Download, Mail, FileText, Send } from "lucide-react";
 import { site } from "@/data/site";
 import { button } from "./ui";
 import { Profile3D } from "./Profile3D";
@@ -96,17 +96,26 @@ export function Hero() {
           </p>
 
           {/* Primary Action Buttons */}
-          <div className="rise mt-8 flex flex-wrap gap-3" style={delay(340)}>
+          <div className="rise mt-8 flex flex-wrap items-center gap-3" style={delay(340)}>
             <a href="#projects" className={button.primary}>
               <ArrowDown className="size-4" aria-hidden="true" />
-              Explore My Work
+              <span>Explore My Work</span>
+            </a>
+
+            {/* Direct Interactive Contact Form CTA */}
+            <a
+              href="#contact-form"
+              className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold border border-cyan-400/60 bg-gradient-to-r from-cyan-500/25 via-sky-500/20 to-teal-500/25 text-cyan-200 hover:border-cyan-300 hover:bg-cyan-400 hover:text-slate-950 transition-all shadow-[0_0_20px_rgba(6,182,212,0.35)] cursor-pointer group"
+            >
+              <Send className="size-4 text-cyan-300 group-hover:text-slate-950 group-hover:translate-x-0.5 transition-all" />
+              <span>Contact Form</span>
             </a>
 
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold border border-cyan-400/60 bg-gradient-to-r from-cyan-500/20 to-sky-500/20 text-cyan-300 hover:bg-cyan-400 hover:text-slate-950 transition-all shadow-[0_0_18px_rgba(6,182,212,0.3)] cursor-pointer group"
+              className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold border border-slate-700 bg-[#0E1422] text-slate-200 hover:border-sky-400 hover:text-sky-300 transition-all cursor-pointer group"
             >
-              <span className="text-base group-hover:scale-125 transition-transform">✉️</span>
+              <span className="text-sm group-hover:scale-125 transition-transform">✉️</span>
               <span>Get in Touch</span>
             </a>
 
@@ -116,7 +125,7 @@ export function Hero() {
               className={button.secondary}
             >
               <Download className="size-4 text-sky-400" aria-hidden="true" />
-              Download Resume
+              <span>Download Resume</span>
             </a>
 
             <button
@@ -125,7 +134,7 @@ export function Hero() {
               className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium border border-slate-700 bg-[#070A11] text-slate-300 hover:text-white hover:border-sky-400 transition-all cursor-pointer"
             >
               <FileText className="size-4 text-sky-400" aria-hidden="true" />
-              View ATS Resume
+              <span>View ATS Resume</span>
             </button>
           </div>
 

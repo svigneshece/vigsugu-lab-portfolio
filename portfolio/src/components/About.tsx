@@ -36,21 +36,28 @@ export function About() {
         <div className="space-y-4 lg:col-span-5">
           {/* Compact Education Card */}
           <div className="rounded-2xl border border-sky-400/25 bg-[#0E1422] p-6 shadow-xl">
-            <div className="mb-4 flex items-center justify-between border-b border-slate-800 pb-3">
-              <div className="flex items-center gap-2.5">
-                <div className="flex size-9 items-center justify-center rounded-xl border border-sky-400/30 bg-[#070A11] text-sky-400">
+            <div className="mb-4 flex items-center justify-between gap-3 border-b border-slate-800 pb-3">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-sky-400/30 bg-[#070A11] text-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.2)]">
                   <GraduationCap className="size-4" />
                 </div>
-                <div>
-                  <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-sky-400">
+                <div className="min-w-0">
+                  <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-sky-400 truncate">
                     ACADEMIC FOUNDATION
                   </h3>
-                  <p className="text-xs text-slate-400">Electronics &amp; Communication</p>
+                  <p className="text-xs text-slate-400 truncate">Electronics &amp; Communication</p>
                 </div>
               </div>
-              <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 font-mono text-xs font-bold text-emerald-400">
-                CGPA 8.2 / 10
-              </span>
+
+              {/* Attractive Single-Line Academic Score Badge */}
+              <div className="shrink-0 whitespace-nowrap rounded-xl border border-emerald-400/40 bg-gradient-to-r from-emerald-500/15 via-[#070A11] to-emerald-500/10 px-3 py-1.5 font-mono shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                <div className="flex items-center gap-1.5">
+                  <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-300">CGPA</span>
+                  <span className="text-xs font-black text-white">8.2</span>
+                  <span className="text-[10px] font-semibold text-emerald-400/80">/ 10</span>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-3 font-mono text-xs">

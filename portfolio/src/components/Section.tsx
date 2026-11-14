@@ -8,8 +8,8 @@ type SectionProps = {
 
 export function Section({ id, title, description, badge, children }: SectionProps) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-16 border-t border-[#38BDF8]/15 py-20 sm:py-28">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-[240px_1fr] lg:gap-16">
+    <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-16 border-t border-[#38BDF8]/15 py-14 sm:py-20">
+      <div className="mx-auto grid max-w-6xl gap-8 px-5 sm:px-8 lg:grid-cols-[240px_1fr] lg:gap-12">
         <header className="self-start lg:sticky lg:top-28">
           {badge && (
             <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-[#38BDF8]">

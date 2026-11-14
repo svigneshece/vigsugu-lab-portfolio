@@ -161,7 +161,7 @@ export function Contact() {
         </div>
 
         {/* Right column: Interactive Web3Forms Dispatch Form */}
-        <div>
+        <div id="contact-form" className="scroll-mt-24">
           <ContactForm />
         </div>
       </div>
