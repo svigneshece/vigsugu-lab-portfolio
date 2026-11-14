@@ -25,8 +25,29 @@ export const metadata: Metadata = {
 };
 
 export default function ResumePage() {
+  const resumeSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${siteUrl}/resume/#profilepage`,
+    url: `${siteUrl}/resume`,
+    name: "Vignesh Sugunathan Resume - Embedded Systems & Firmware Engineer",
+    isPartOf: {
+      "@id": `${siteUrl}/#website`,
+    },
+    about: {
+      "@id": `${siteUrl}/#person`,
+    },
+    mainEntity: {
+      "@id": `${siteUrl}/#person`,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-[#070A11] text-slate-100 py-8 px-4 sm:px-6 print:bg-white print:text-black print:p-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(resumeSchema) }}
+      />
       {/* Top Navigation Bar (Hidden when printing) */}
       <div className="max-w-4xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-4 print:hidden">
         <Link

@@ -778,7 +778,7 @@ export const researchPublications: ResearchPublication[] = [
   {
     id: "oil-spill-ssn-2024",
     title: "Real-time Oil Spill Detection and Monitoring Using Deep Learning and Convolutional Neural Networks",
-    authors: "Vignesh S, et al.",
+    authors: "Vignesh Sugunathan (Vignesh S), et al.",
     conference: "SSN College IEEE International Conference",
     year: "2024",
     award: "BEST RESEARCH PAPER AWARD — Bharath University (ICRIDET - 2024)",
@@ -789,7 +789,7 @@ export const researchPublications: ResearchPublication[] = [
   {
     id: "dent-damage-vit-2024",
     title: "Machine Learning Based Dent Damage Detection Using Image Processing Methods",
-    authors: "Vignesh S, et al.",
+    authors: "Vignesh Sugunathan (Vignesh S), et al.",
     conference: "VIT Vellore, IEEE International Conference",
     year: "2024",
     award: "IEEE International Conference Publication",

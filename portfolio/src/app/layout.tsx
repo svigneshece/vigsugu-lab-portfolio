@@ -47,12 +47,21 @@ export const metadata: Metadata = {
     "Centrado Tech Solutions",
     "ICRIDET 2024 Best Paper",
   ],
-  authors: [{ name: site.name, url: siteUrl }],
-  creator: site.name,
-  publisher: site.name,
+  authors: [{ name: "Vignesh Sugunathan", url: siteUrl }],
+  creator: "Vignesh Sugunathan",
+  publisher: "Vignesh Sugunathan",
   applicationName: "Vignesh Sugunathan Portfolio",
   category: "technology",
   alternates: { canonical: siteUrl },
+  other: {
+    "profile:first_name": "Vignesh",
+    "profile:last_name": "Sugunathan",
+    "profile:username": "svigneshece",
+    "author": "Vignesh Sugunathan",
+    "copyright": "Vignesh Sugunathan",
+    "entity_name": "Vignesh Sugunathan",
+    "disambiguation": "Vignesh Sugunathan - Embedded Systems and Firmware Engineer Chennai",
+  },
   openGraph: {
     type: "profile",
     firstName: "Vignesh",
@@ -111,9 +120,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         name: "Vignesh Sugunathan",
         givenName: "Vignesh",
         familyName: "Sugunathan",
-        alternateName: ["Vignesh S", "VIGNESH", "svigneshece", "Vignesh Sugunathan Chennai"],
+        additionalName: "S",
+        alternateName: [
+          "Vignesh S",
+          "svigneshece",
+          "Vignesh Sugunathan Chennai",
+          "Vignesh Sugunathan Engineer",
+          "VIGNESH",
+        ],
+        disambiguatingDescription:
+          "Vignesh Sugunathan is an Embedded Systems and Firmware Engineer based in Chennai, Tamil Nadu, India, specializing in ARM Cortex-M, STM32, ESP32, Robotics, and IoT. Alumnus of Agni College of Technology (Anna University) and published IEEE researcher. Distinct from other individuals named Vignesh.",
+        gender: "https://schema.org/Male",
+        nationality: {
+          "@type": "Country",
+          name: "India",
+        },
         url: siteUrl,
-        image: `${siteUrl}${site.profileImage}`,
+        mainEntityOfPage: siteUrl,
+        image: {
+          "@type": "ImageObject",
+          "@id": `${siteUrl}/#personimage`,
+          url: `${siteUrl}${site.profileImage}`,
+          caption: "Vignesh Sugunathan - Embedded Systems and Firmware Engineer",
+        },
         jobTitle: "Embedded Systems & Firmware Engineer",
         description:
           "Vignesh Sugunathan is an Embedded Systems and Firmware Engineer based in Chennai, Tamil Nadu, India, specializing in ARM Cortex-M, STM32, ESP32, Robotics, ROS 2, and wireless IoT hardware bring-up.",
@@ -125,6 +154,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         alumniOf: {
           "@type": "CollegeOrUniversity",
           name: "Agni College of Technology, Chennai (Anna University)",
+          url: "https://act.edu.in/",
           sameAs: "https://www.annauniv.edu/",
         },
         address: {
@@ -141,6 +171,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           site.contact.twitter,
           "https://ieeexplore.ieee.org/document/11213402",
           "https://ieeexplore.ieee.org/document/10493214",
+        ],
+        hasCredential: [
+          {
+            "@type": "EducationalOccupationalCredential",
+            credentialCategory: "degree",
+            name: "Bachelor of Engineering (B.E.) in Electronics & Communication Engineering",
+            educationalLevel: "Bachelor's Degree",
+            recognizedBy: {
+              "@type": "CollegeOrUniversity",
+              name: "Anna University, Chennai",
+              sameAs: "https://www.annauniv.edu/",
+            },
+          },
+        ],
+        award: [
+          "Best Research Paper Award - ICRIDET 2024 (IEEE SSN College of Engineering / Bharath University)",
+          "Runner-Up - SRM National Robotics Hackathon (2025)",
         ],
         knowsAbout: [
           "Embedded Systems",
@@ -169,11 +216,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "@id": `${siteUrl}/#website`,
         url: siteUrl,
         name: "Vignesh Sugunathan | Embedded Systems & Firmware Engineer",
+        alternateName: [
+          "Vignesh Sugunathan",
+          "Vignesh Sugunathan Portfolio",
+          "Vignesh Sugunathan Official Website",
+          "svigneshece",
+        ],
         description,
         publisher: {
           "@id": `${siteUrl}/#person`,
         },
-        inLanguage: "en-US",
+        author: {
+          "@id": `${siteUrl}/#person`,
+        },
+        inLanguage: "en-IN",
       },
       {
         "@type": "ProfilePage",
@@ -189,6 +245,43 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         mainEntity: {
           "@id": `${siteUrl}/#person`,
         },
+        primaryImageOfPage: {
+          "@id": `${siteUrl}/#personimage`,
+        },
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "@id": "https://ieeexplore.ieee.org/document/11213402",
+        headline:
+          "Real-time Oil Spill Detection and Monitoring Using Deep Learning and Convolutional Neural Networks",
+        name: "Real-time Oil Spill Detection and Monitoring Using Deep Learning and Convolutional Neural Networks",
+        author: {
+          "@id": `${siteUrl}/#person`,
+        },
+        url: "https://ieeexplore.ieee.org/document/11213402",
+        publisher: {
+          "@type": "Organization",
+          name: "IEEE",
+        },
+        description:
+          "Published in SSN College IEEE International Conference, awarded Best Research Paper Award from Bharath University (ICRIDET - 2024).",
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "@id": "https://ieeexplore.ieee.org/document/10493214",
+        headline:
+          "Machine Learning Based Dent Damage Detection Using Image Processing Methods",
+        name: "Machine Learning Based Dent Damage Detection Using Image Processing Methods",
+        author: {
+          "@id": `${siteUrl}/#person`,
+        },
+        url: "https://ieeexplore.ieee.org/document/10493214",
+        publisher: {
+          "@type": "Organization",
+          name: "IEEE",
+        },
+        description:
+          "Published in VIT Vellore IEEE International Conference, authored by Vignesh Sugunathan (Vignesh S).",
       },
     ],
   };

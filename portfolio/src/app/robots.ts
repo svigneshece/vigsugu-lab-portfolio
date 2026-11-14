@@ -15,6 +15,16 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/api/"],
       },
+      {
+        userAgent: "Googlebot-Image",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
+        disallow: ["/api/"],
+      },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,

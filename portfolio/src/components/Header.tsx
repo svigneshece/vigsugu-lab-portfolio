@@ -60,7 +60,7 @@ export function Header() {
             </div>
             <div className="flex flex-col">
               <span className="font-mono text-sm font-black tracking-wider text-white group-hover:text-sky-300 transition-colors">
-                {site.brand}
+                VIGNESH <span className="text-sky-400 font-bold">SUGUNATHAN</span>
               </span>
               <span className="font-mono text-[9px] text-slate-400 tracking-widest uppercase">
                 EMBEDDED &amp; FIRMWARE
