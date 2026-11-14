@@ -13,22 +13,6 @@ import { Footer } from "@/components/Footer";
 import { WelcomePopup } from "@/components/WelcomePopup";
 import { site } from "@/data/site";
 
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Vignesh Sugunathan",
-  alternateName: ["Vignesh S", "VIGNESH.", "Vignesh Sugunathan Portfolio"],
-  jobTitle: site.role,
-  worksFor: { "@type": "Organization", name: "NxtWave Institute of Advanced Technologies" },
-  address: { "@type": "PostalAddress", addressLocality: "Chennai", addressRegion: "Tamil Nadu", addressCountry: "IN" },
-  alumniOf: site.education,
-  sameAs: [
-    site.contact.linkedin,
-    site.contact.github,
-    site.contact.twitter,
-  ],
-};
-
 export default function Page() {
   return (
     <>
@@ -72,10 +56,6 @@ export default function Page() {
       </main>
       <Footer />
       <WelcomePopup />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-      />
     </>
   );
 }

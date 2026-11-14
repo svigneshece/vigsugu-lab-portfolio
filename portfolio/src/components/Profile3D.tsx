@@ -121,8 +121,8 @@ export function Profile3D() {
               src={currentImage}
               alt={
                 mode === "portrait"
-                  ? "Professional portrait of Vignesh Sugunathan"
-                  : "Vignesh Sugunathan presenting technical research"
+                  ? "Vignesh Sugunathan - Embedded Systems and Firmware Engineer in Chennai, India"
+                  : "Vignesh Sugunathan delivering technical presentation and robotics workshop"
               }
               fill
               className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
@@ -186,7 +186,7 @@ export function Profile3D() {
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-[#38BDF8]/20 bg-[#070A11]">
             <Image
               src={currentImage}
-              alt="High resolution showcase"
+              alt={`${site.name} - ${site.role} - High Resolution Engineering Showcase`}
               fill
               className="object-contain"
             />

@@ -5,9 +5,23 @@ import { site } from "@/data/site";
 import { PrintButton } from "./PrintButton";
 import type { Metadata } from "next";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vignesh-sugunathan.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Vignesh Sugunathan | 1-Page ATS Engineering Resume",
-  description: "ATS 100% Industry-Ready 1-Page Resume of Vignesh Sugunathan - Embedded Firmware & Product Development Engineer.",
+  title: "Resume | Vignesh Sugunathan - Embedded Systems & Firmware Engineer",
+  description:
+    "ATS Industry-Ready 1-Page Resume of Vignesh Sugunathan - Embedded Systems, Firmware Development, STM32, ESP32, and Robotics Engineer in Chennai.",
+  alternates: {
+    canonical: `${siteUrl}/resume`,
+  },
+  openGraph: {
+    title: "Vignesh Sugunathan | Engineering Resume",
+    description:
+      "ATS Industry-Ready 1-Page Resume of Vignesh Sugunathan - Embedded Systems, Firmware Development, and Robotics Engineer.",
+    url: `${siteUrl}/resume`,
+    type: "profile",
+    images: [{ url: `${siteUrl}/profile/vignesh.jpg`, width: 800, height: 800, alt: "Vignesh Sugunathan Resume" }],
+  },
 };
 
 export default function ResumePage() {

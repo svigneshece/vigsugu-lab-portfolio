@@ -40,7 +40,7 @@ export function ProjectModal({ project, onClose }: Props) {
           <div className="relative h-64 sm:h-96 w-full border-b border-[#38BDF8]/20 bg-[#0E1422]">
             <Image
               src={project.image}
-              alt={project.title}
+              alt={`${project.title} - Hardware and Firmware Architecture by Vignesh Sugunathan`}
               fill
               className="object-contain p-2"
               priority

@@ -4,49 +4,95 @@ import { site } from "@/data/site";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vignesh-sugunathan.vercel.app";
-const title = "Vignesh Sugunathan | Embedded Systems Engineer | Firmware & Robotics Portfolio";
+const title = "Vignesh Sugunathan | Embedded Systems & Firmware Engineer";
+const description =
+  "Explore Vignesh Sugunathan's engineering portfolio featuring Embedded Systems, Firmware Development, STM32, ESP32, PCB Design, Robotics, ROS 2 projects and technical research.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: title, template: `%s | ${site.name}` },
-  description: site.description,
+  description,
   keywords: [
+    // Personal Identity Searches
     "Vignesh Sugunathan",
+    "Vignesh Sugunathan Chennai",
+    "Vignesh Sugunathan Engineer",
+    "Vignesh Sugunathan Portfolio",
+    "Vignesh Sugunathan Embedded Systems",
+    "Vignesh Sugunathan Electronics Engineer",
     "Vignesh S",
-    "Embedded Systems Engineer",
-    "Firmware Developer",
-    "Hardware Integration",
-    "ARM Cortex-M",
-    "STM32",
-    "ESP32",
-    "LoRa Mesh",
-    "Robotics Instructor",
-    "Chennai",
+    "svigneshece",
+    // Professional Searches
+    "Embedded Systems Engineer Chennai",
+    "Firmware Engineer Chennai",
+    "Electronics Engineer Portfolio",
+    "STM32 Embedded C Developer",
+    "ESP32 Firmware Developer",
+    "Robotics Engineer Chennai",
+    "ROS 2 Engineer",
+    "PCB Design Engineer",
+    "Embedded C++ Engineer",
+    // Technical Skills Searches
+    "ARM Cortex-M Developer",
+    "Hardware Bring-Up Engineer",
+    "LoRa Mesh Network",
+    "PIC16F877A",
+    "TI MSP430",
+    "8051 Microcontroller",
+    "Arduino Developer",
+    // Education & Organizations
     "Agni College of Technology",
-    "NxtWave",
+    "Anna University Chennai",
+    "NxtWave Robotics Instructor",
+    "Centrado Tech Solutions",
     "ICRIDET 2024 Best Paper",
   ],
   authors: [{ name: site.name, url: siteUrl }],
   creator: site.name,
-  alternates: { canonical: "/" },
+  publisher: site.name,
+  applicationName: "Vignesh Sugunathan Portfolio",
+  category: "technology",
+  alternates: { canonical: siteUrl },
   openGraph: {
     type: "profile",
+    firstName: "Vignesh",
+    lastName: "Sugunathan",
+    username: "svigneshece",
+    gender: "male",
     title,
-    description: site.description,
-    siteName: `${site.name} — Embedded Systems Portfolio`,
+    description,
+    siteName: "Vignesh Sugunathan Portfolio",
     locale: "en_IN",
     url: siteUrl,
-    images: [{ url: "/profile/vignesh.jpg", width: 800, height: 800, alt: site.name }],
+    images: [
+      {
+        url: `${siteUrl}/profile/vignesh.jpg`,
+        width: 800,
+        height: 800,
+        alt: "Vignesh Sugunathan - Embedded Systems and Firmware Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
-    description: site.description,
+    description,
     creator: "@Vignesh_S_2412",
+    images: [`${siteUrl}/profile/vignesh.jpg`],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    google: "google504eed7ae6e2377c",
   },
 };
 
@@ -56,40 +102,95 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const jsonLd = {
+  const schemaGraph = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: site.name,
-    alternateName: ["Vignesh Sugunathan", "Vignesh S", "svigneshece"],
-    url: siteUrl,
-    image: `${siteUrl}${site.profileImage}`,
-    jobTitle: site.role,
-    worksFor: {
-      "@type": "Organization",
-      name: "NxtWave Institute of Advanced Technologies",
-    },
-    alumniOf: {
-      "@type": "CollegeOrUniversity",
-      name: site.college,
-    },
-    sameAs: [
-      site.contact.linkedin,
-      site.contact.github,
-      site.contact.twitter,
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        name: "Vignesh Sugunathan",
+        givenName: "Vignesh",
+        familyName: "Sugunathan",
+        alternateName: ["Vignesh S", "VIGNESH", "svigneshece", "Vignesh Sugunathan Chennai"],
+        url: siteUrl,
+        image: `${siteUrl}${site.profileImage}`,
+        jobTitle: "Embedded Systems & Firmware Engineer",
+        description:
+          "Vignesh Sugunathan is an Embedded Systems and Firmware Engineer based in Chennai, Tamil Nadu, India, specializing in ARM Cortex-M, STM32, ESP32, Robotics, ROS 2, and wireless IoT hardware bring-up.",
+        worksFor: {
+          "@type": "Organization",
+          name: "NxtWave Institute of Advanced Technologies",
+          url: "https://www.nxtwave.co.in/",
+        },
+        alumniOf: {
+          "@type": "CollegeOrUniversity",
+          name: "Agni College of Technology, Chennai (Anna University)",
+          sameAs: "https://www.annauniv.edu/",
+        },
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Chennai",
+          addressRegion: "Tamil Nadu",
+          addressCountry: "IN",
+        },
+        email: `mailto:${site.contact.email}`,
+        telephone: "+91-9360266424",
+        sameAs: [
+          site.contact.linkedin,
+          site.contact.github,
+          site.contact.twitter,
+          "https://ieeexplore.ieee.org/document/11213402",
+          "https://ieeexplore.ieee.org/document/10493214",
+        ],
+        knowsAbout: [
+          "Embedded Systems",
+          "Firmware Development",
+          "Embedded C",
+          "Embedded C++",
+          "ARM Cortex-M",
+          "STM32 (STM32F103)",
+          "ESP32",
+          "Microchip PIC16F877A",
+          "8051 Microcontroller",
+          "Texas Instruments MSP430",
+          "Arduino Ecosystem",
+          "Robotics",
+          "ROS 2",
+          "IoT & Wireless Telemetry",
+          "LoRa (SX1278)",
+          "PCB Design",
+          "Hardware Integration",
+          "Circuit Prototyping",
+          "I2C / SPI / UART Protocols",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: "Vignesh Sugunathan | Embedded Systems & Firmware Engineer",
+        description,
+        publisher: {
+          "@id": `${siteUrl}/#person`,
+        },
+        inLanguage: "en-US",
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": `${siteUrl}/#profilepage`,
+        url: siteUrl,
+        name: "Vignesh Sugunathan Engineering Portfolio",
+        isPartOf: {
+          "@id": `${siteUrl}/#website`,
+        },
+        about: {
+          "@id": `${siteUrl}/#person`,
+        },
+        mainEntity: {
+          "@id": `${siteUrl}/#person`,
+        },
+      },
     ],
-    knowsAbout: [
-      "Embedded Systems",
-      "Firmware Development",
-      "ARM Cortex-M",
-      "STM32",
-      "ESP32",
-      "Robotics",
-      "IoT",
-      "LoRa Mesh Networks",
-      "Hardware Integration",
-      "Circuit Design",
-    ],
-    description: site.description,
   };
 
   return (
@@ -103,7 +204,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
         />
       </head>
       <body className="min-h-screen antialiased bg-[#070A11] text-[#F8FAFC] selection:bg-[#38BDF8]/20 selection:text-[#38BDF8] relative">

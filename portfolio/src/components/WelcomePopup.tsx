@@ -51,7 +51,7 @@ export function WelcomePopup({ onOpenResume }: Props) {
           <div className="relative size-6 overflow-hidden rounded-full border border-cyan-400/70 shadow-sm">
             <Image
               src={site.profileImage}
-              alt={site.name}
+              alt={`${site.name} profile photo`}
               fill
               sizes="24px"
               className="object-cover"
@@ -88,7 +88,7 @@ export function WelcomePopup({ onOpenResume }: Props) {
               <div className="relative size-12 overflow-hidden rounded-full border-2 border-cyan-400 bg-slate-950 shadow-inner">
                 <Image
                   src={site.profileImage}
-                  alt={site.name}
+                  alt={`${site.name} - Embedded Systems Engineer`}
                   fill
                   sizes="48px"
                   className="object-cover"

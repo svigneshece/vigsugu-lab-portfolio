@@ -15,11 +15,11 @@ export const site = {
   college: "Agni College of Technology (Anna University), Chennai",
   graduation: "2026",
   location: "Chennai, Tamil Nadu, India",
-  headline: "Embedded Systems Engineer | Firmware Development | Hardware Integration | IoT | Robotics",
+  headline: "Vignesh Sugunathan | Embedded Systems & Firmware Engineer | Chennai, India",
   intro:
     "An electronics engineer passionate about building practical engineering solutions through embedded systems, firmware development, hardware integration and robotics. Alongside technical development, I enjoy sharing knowledge, conducting workshops, mentoring students and making engineering accessible through practical learning.",
   description:
-    "Vignesh Sugunathan (VIGNESH) is an Embedded Systems and Firmware Engineer from Chennai, India, specializing in ARM Cortex-M, STM32, ESP32, PIC16F877A, 8051, hardware bring-up, communication protocols, robotics, wireless IoT, and STEM technical education.",
+    "Explore Vignesh Sugunathan's engineering portfolio featuring Embedded Systems, Firmware Development, STM32, ESP32, PCB Design, Robotics, ROS 2 projects and technical research.",
   profileImage: "/profile/vignesh.jpg",
   presentationImage: "/profile/vignesh-speaker-presentation.jpg",
   resume: {
@@ -50,7 +50,7 @@ export const navLinks = [
 export const about = {
   heading: "Beyond Engineering, Into Innovation.",
   paragraphs: [
-    "I am an Electronics and Communication Engineering graduate with a strong interest in embedded systems, firmware development, electronics and robotics.",
+    "I am Vignesh Sugunathan, an Electronics and Communication Engineering graduate based in Chennai, Tamil Nadu, specializing in embedded systems, firmware development, electronics, and robotics.",
     "My engineering journey involves working with microcontrollers, developing hardware-based prototypes, exploring wireless communication and integrating hardware with software.",
     "Beyond engineering, I have been involved in technical education, robotics training, STEM workshops, student mentoring and technical presentations across schools and colleges.",
     "I believe engineering is not only about developing solutions but also about understanding problems, sharing knowledge and helping others learn.",

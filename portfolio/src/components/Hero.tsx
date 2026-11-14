@@ -49,6 +49,7 @@ export function Hero() {
             <div className="flex flex-wrap items-baseline gap-3">
               <h1 className="text-6xl font-black tracking-tight sm:text-8xl lg:text-9xl tracking-tight bg-gradient-to-br from-white via-[#F8FAFC] to-[#38BDF8] bg-clip-text text-transparent filter drop-shadow-[0_4px_35px_rgba(56,189,248,0.35)]">
                 VIGNESH<span className="text-cyan-400 drop-shadow-[0_0_20px_#00F0FF] animate-pulse">.</span>
+                <span className="sr-only">Sugunathan | Embedded Systems &amp; Firmware Engineer</span>
               </h1>
               <span className="align-middle inline-flex items-center gap-1.5 rounded-md border border-cyan-400/40 bg-cyan-950/40 px-2.5 py-1 font-mono text-[10px] sm:text-xs font-bold text-cyan-300 tracking-wider shadow-[0_0_14px_rgba(0,240,255,0.25)]">
                 <span className="size-1.5 rounded-full bg-cyan-400 animate-ping" />
