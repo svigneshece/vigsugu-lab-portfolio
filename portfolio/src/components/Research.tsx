@@ -50,6 +50,7 @@ export function Research() {
               <Image
                 src={awardHighlight.image}
                 alt="ICRIDET - 2024 Best Research Paper Trophy Awarded to Vignesh Sugunathan"
+                title="ICRIDET 2024 Best Research Paper Trophy - Awarded to Vignesh Sugunathan"
                 fill
                 className="object-contain p-2 transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 240px, 280px"

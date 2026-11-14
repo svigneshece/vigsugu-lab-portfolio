@@ -41,6 +41,7 @@ export function ProjectModal({ project, onClose }: Props) {
             <Image
               src={project.image}
               alt={`${project.title} - Hardware and Firmware Architecture by Vignesh Sugunathan`}
+              title={`${project.title} - Engineered by Vignesh Sugunathan`}
               fill
               className="object-contain p-2"
               priority

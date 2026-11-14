@@ -124,6 +124,11 @@ export function Profile3D() {
                   ? "Vignesh Sugunathan - Embedded Systems and Firmware Engineer in Chennai, India"
                   : "Vignesh Sugunathan delivering technical presentation and robotics workshop"
               }
+              title={
+                mode === "portrait"
+                  ? "Vignesh Sugunathan - Embedded Systems and Firmware Engineer"
+                  : "Vignesh Sugunathan - Technical Presentation and Workshop Session"
+              }
               fill
               className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
@@ -187,6 +192,7 @@ export function Profile3D() {
             <Image
               src={currentImage}
               alt={`${site.name} - ${site.role} - High Resolution Engineering Showcase`}
+              title={`${site.name} - ${site.role}`}
               fill
               className="object-contain"
             />

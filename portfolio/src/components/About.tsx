@@ -98,6 +98,7 @@ export function About() {
               <Image
                 src={site.presentationImage}
                 alt="Vignesh Sugunathan delivering an interactive technical session at a podium in front of a coding display"
+                title="Vignesh Sugunathan - Speaker and Robotics Workshop Mentor"
                 fill
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 40vw"

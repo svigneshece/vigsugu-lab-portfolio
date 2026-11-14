@@ -27,7 +27,8 @@ export function ProjectCard({ project, onOpen, onSelect }: Props) {
         >
           <Image
             src={project.image}
-            alt={`${project.title} - Embedded Engineering Project by Vignesh Sugunathan`}
+            alt={`${project.title} - Embedded Systems and Hardware Engineering Project by Vignesh Sugunathan`}
+            title={`${project.title} | Hardware Architecture by Vignesh Sugunathan`}
             fill
             className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
